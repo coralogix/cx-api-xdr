@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package com.coralogix.paranoid.v1;
+
+import "com/coralogix/paranoid/v1/audit_log.proto";
+import "com/coralogix/paranoid/v1/security_test_aggregated.proto";
+import "com/coralogix/paranoid/v1/security_test_detail.proto";
+import "com/coralogix/paranoid/v1/tested_resource.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service SecurityTestService {
+  // Maybe it would be better to be a post in the future - if we decide to support pagination
+  rpc GetSecurityTestsAggregated(GetSecurityTestsAggregatedRequest) returns (GetSecurityTestsAggregatedResponse) {
+    option (audit_log_description).description = "get security tests with aggregated results";
+    option (google.api.http) = {
+      get: "/api/v1/tests/aggregated"
+    };
+  }
+
+  rpc GetSecurityTestDetail(GetSecurityTestDetailRequest) returns (GetSecurityTestDetailResponse) {
+    option (audit_log_description).description = "get security test detail with all events";
+    option (google.api.http) = {
+      get: "/api/v1/test/detail"
+    };
+  }
+
+  rpc GetTestedResource(GetTestedResourceRequest) returns (GetTestedResourceResponse) {
+    option (audit_log_description).description = "get tested resource with details";
+    option (google.api.http) = {
+      get: "/api/v1/test/resource"
+    };
+  }
+}
+
+message GetSecurityTestsAggregatedRequest {
+  optional google.protobuf.Int32Value count = 1;
+}
+
+message GetSecurityTestsAggregatedResponse {
+  repeated SecurityTestAggregated tests = 1;
+}
+
+message GetSecurityTestDetailRequest {
+  optional google.protobuf.StringValue id = 1;
+}
+
+message GetSecurityTestDetailResponse {
+  optional SecurityTestDetail tests = 1;
+}
+
+message GetTestedResourceRequest {
+  optional google.protobuf.StringValue id = 1;
+}
+
+message GetTestedResourceResponse {
+  optional TestedResource tests = 1;
+}

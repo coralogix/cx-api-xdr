@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.coralogix.paranoid.v1;
+
+import "com/coralogix/paranoid/v1/audit_log.proto";
+import "com/coralogix/paranoid/v1/configuration_rule.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service ConfigurationRuleService {
+  rpc GetConfigurationRule(GetConfigurationRuleRequest) returns (GetConfigurationRuleResponse) {
+    option (audit_log_description).description = "get configuration rule";
+    option (google.api.http) = {
+      get: "/api/v1/configuration_rule"
+    };
+  }
+}
+
+message GetConfigurationRuleRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message GetConfigurationRuleResponse {
+  optional ConfigurationRule rule = 1;
+}
