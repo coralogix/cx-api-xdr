@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package com.coralogix.paranoid.v1;
+
+import "com/coralogix/paranoid/v1/cloud_platform.proto";
+import "com/coralogix/paranoid/v1/security_test.proto";
+
+import "google/protobuf/wrappers.proto";
+
+enum SecurityTestEventResult {
+  SUCCESSFUL = 0;
+  FAILED = 1;
+}
+
+message SecurityTestEvent{
+  google.protobuf.StringValue id = 1; // UUID
+  google.protobuf.StringValue resource_id = 2;
+  google.protobuf.StringValue resource_type = 3;
+  // This could be maybe enumeration - but it may change frequently so it's not that effective
+  // to list all the possible values
+  google.protobuf.StringValue configuration_rule = 4;
+  google.protobuf.UInt32Value severity = 5;
+  SecurityTestEventResult result = 6;
+  CloudPlatform cloud_platform = 7;
+}
+
+message SecurityTestDetail{
+  // Maybe id is not necessary here as it's already contained in aggregated result
+  google.protobuf.StringValue id = 1; // UUID
+  SecurityTestAggregated security_test_aggregated = 2;
+  // This should be optimized with paginated events maybe - leaving that as it's for now
+  repeated SecurityTestEvent events = 3;
+}
