@@ -7,3 +7,4 @@ lint:
 breaking:
   use:
     - WIRE
+  ignore_unstable_packages: true
