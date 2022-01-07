@@ -17,21 +17,21 @@ service SecurityTestService {
   rpc GetSecurityTestsAggregated(GetSecurityTestsAggregatedRequest) returns (GetSecurityTestsAggregatedResponse) {
     option (audit_log_description).description = "get security tests with aggregated results";
     option (google.api.http) = {
-      get: "/api/v1/tests/aggregated"
+      get: "/paranoid/v1/tests/aggregated"
     };
   }
 
   rpc GetSecurityTestDetail(GetSecurityTestDetailRequest) returns (GetSecurityTestDetailResponse) {
     option (audit_log_description).description = "get security test detail with all events";
     option (google.api.http) = {
-      get: "/api/v1/test/detail"
+      get: "/paranoid/v1/test/detail"
     };
   }
 
   rpc GetTestedResource(GetTestedResourceRequest) returns (GetTestedResourceResponse) {
     option (audit_log_description).description = "get tested resource with details";
     option (google.api.http) = {
-      get: "/api/v1/test/resource"
+      get: "/paranoid/v1/test/resource"
     };
   }
 }
