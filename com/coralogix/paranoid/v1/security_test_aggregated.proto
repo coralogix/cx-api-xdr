@@ -9,7 +9,7 @@ message SecurityTestAggregated{
   google.protobuf.StringValue title = 2;
   // This could be maybe enumeration - but it may change frequently so it's not that effective
   // to list all the possible values
-  repeated google.protobuf.StringValue broken_configuration_rules = 3;
+  repeated google.protobuf.StringValue broken_security_rules = 3;
   google.protobuf.UInt32Value passed_count = 4;
   google.protobuf.UInt32Value failed_count = 5;
   google.protobuf.UInt32Value severity = 6;
