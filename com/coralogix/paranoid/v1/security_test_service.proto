@@ -10,7 +10,6 @@ import "com/coralogix/paranoid/v1/tested_resource.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
 
 service SecurityTestService {
   // Maybe it would be better to be a post in the future - if we decide to support pagination
