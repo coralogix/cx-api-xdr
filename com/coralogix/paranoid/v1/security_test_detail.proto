@@ -18,7 +18,7 @@ message SecurityTestEvent{
   google.protobuf.StringValue resource_type = 3;
   // This could be maybe enumeration - but it may change frequently so it's not that effective
   // to list all the possible values
-  google.protobuf.StringValue configuration_rule = 4;
+  google.protobuf.StringValue security_rule = 4;
   google.protobuf.UInt32Value severity = 5;
   SecurityTestEventResult result = 6;
   CloudPlatform cloud_platform = 7;

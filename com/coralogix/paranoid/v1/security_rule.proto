@@ -5,7 +5,7 @@ package com.coralogix.paranoid.v1;
 import "google/protobuf/wrappers.proto";
 
 // This is supposed to be provided from backoffice
-message ConfigurationRule{
+message SecurityRule{
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue rule_type = 3;
