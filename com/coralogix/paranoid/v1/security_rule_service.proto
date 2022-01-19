@@ -20,12 +20,12 @@ service SecurityRuleService {
   rpc GetSecurityRules(GetSecurityRulesRequest) returns (GetSecurityRulesResponse) {
     option (audit_log_description).description = "get security rules";
     option (google.api.http) = {
-      get: "/paranoid/v1/security_rule"
+      post: "/paranoid/v1/get_security_rules"
       body: "*"
     };
   }
 
-  rpc CreateSecurityRule(CreateSecurityRuleRequest) retuns(CreateSecurityRuleResponse) {
+  rpc CreateSecurityRule(CreateSecurityRuleRequest) returns (CreateSecurityRuleResponse) {
     option (audit_log_description).description = "create security rule";
     option (google.api.http) = {
       post: "/paranoid/v1/security_rule"
@@ -34,7 +34,7 @@ service SecurityRuleService {
     };
   }
 
-  rpc UpdateSecurityRule(UpdateSecurityRuleRequest) retuns(UpdateSecurityRuleResponse) {
+  rpc UpdateSecurityRule(UpdateSecurityRuleRequest) returns (UpdateSecurityRuleResponse) {
     option (audit_log_description).description = "update security rule";
     option (google.api.http) = {
       put: "/paranoid/v1/security_rule"
@@ -43,7 +43,7 @@ service SecurityRuleService {
     };
   }
 
-  rpc DeleteSecurityRule(DeleteSecurityRuleRequest) retuns(DeleteSecurityRuleResponse) {
+  rpc DeleteSecurityRule(DeleteSecurityRuleRequest) returns (DeleteSecurityRuleResponse) {
     option (audit_log_description).description = "delete security rule";
     option (google.api.http) = {
       delete: "/paranoid/v1/security_rule/{id}"
@@ -108,7 +108,7 @@ message UpdateSecurityRuleRequest{
   SecurityRule security_rule = 1;
 }
 
-message UpdateSecurityRuleReponse{
+message UpdateSecurityRuleResponse{
   SecurityRule security_rule = 1;
 }
 
