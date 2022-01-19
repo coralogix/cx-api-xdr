@@ -13,9 +13,44 @@ service SecurityRuleService {
   rpc GetSecurityRule(GetSecurityRuleRequest) returns (GetSecurityRuleResponse) {
     option (audit_log_description).description = "get security rule";
     option (google.api.http) = {
-      get: "/paranoid/v1/security_rule"
+      get: "/paranoid/v1/security_rule/{id}"
     };
   }
+
+  rpc GetSecurityRules(GetSecurityRulesRequest) returns (GetSecurityRulesResponse) {
+    option (audit_log_description).description = "get security rules";
+    option (google.api.http) = {
+      get: "/paranoid/v1/security_rule"
+      body: "*"
+    };
+  }
+
+  rpc CreateSecurityRule(CreateSecurityRuleRequest) retuns(CreateSecurityRuleResponse) {
+    option (audit_log_description).description = "create security rule";
+    option (google.api.http) = {
+      post: "/paranoid/v1/security_rule"
+      body: "security_rule"
+      response_body: "security_rule"
+    };
+  }
+
+  rpc UpdateSecurityRule(UpdateSecurityRuleRequest) retuns(UpdateSecurityRuleResponse) {
+    option (audit_log_description).description = "update security rule";
+    option (google.api.http) = {
+      put: "/paranoid/v1/security_rule"
+      body: "security_rule"
+      response_body: "security_rule"
+    };
+  }
+
+  rpc DeleteSecurityRule(DeleteSecurityRuleRequest) retuns(DeleteSecurityRuleResponse) {
+    option (audit_log_description).description = "delete security rule";
+    option (google.api.http) = {
+      delete: "/paranoid/v1/security_rule/{id}"
+      response_body: "response"
+    };
+  }
+
 }
 
 message GetSecurityRuleRequest {
@@ -24,4 +59,63 @@ message GetSecurityRuleRequest {
 
 message GetSecurityRuleResponse {
   optional SecurityRule rule = 1;
+}
+
+message GetSecurityRulesRequest {
+  message QueryDef {
+
+    message QueryParams {
+
+      message SortModel {
+        google.protobuf.StringValue field = 1;
+        google.protobuf.StringValue ordering = 2;
+      }
+
+      repeated SortModel sort_model = 1;
+    }
+
+    google.protobuf.UInt32Value page_index = 1;
+    google.protobuf.UInt32Value page_size = 2;
+    QueryParams query_params = 3;
+  }
+
+  QueryDef query_def = 1;
+
+}
+
+message GetSecurityRulesResponse {
+  repeated SecurityRule data = 1;
+}
+
+message CreateSecurityRuleRequest {
+  google.protobuf.StringValue name = 1;
+  google.protobuf.StringValue rule_type = 2;
+  google.protobuf.UInt32Value severity = 3;
+  google.protobuf.StringValue cloud_platform = 4;
+  google.protobuf.StringValue source = 5;
+  optional google.protobuf.StringValue current_configuration = 6;
+  optional google.protobuf.StringValue expected_configuration = 7;
+  optional google.protobuf.StringValue configuration_link = 8;
+  optional google.protobuf.StringValue recommendation_message = 9;
+  optional google.protobuf.StringValue resource_type = 10;
+}
+
+message CreateSecurityRuleResponse{
+  SecurityRule security_rule = 1;
+}
+
+message UpdateSecurityRuleRequest{
+  SecurityRule security_rule = 1;
+}
+
+message UpdateSecurityRuleReponse{
+  SecurityRule security_rule = 1;
+}
+
+message DeleteSecurityRuleRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message DeleteSecurityRuleResponse {
+  google.protobuf.StringValue response = 1;
 }
