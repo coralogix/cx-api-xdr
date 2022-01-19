@@ -20,7 +20,7 @@ service SecurityRuleService {
   rpc GetSecurityRules(GetSecurityRulesRequest) returns (GetSecurityRulesResponse) {
     option (audit_log_description).description = "get security rules";
     option (google.api.http) = {
-      get: "/paranoid/v1/security_rule"
+      post: "/paranoid/v1/get_security_rules"
       body: "*"
     };
   }
@@ -108,7 +108,7 @@ message UpdateSecurityRuleRequest{
   SecurityRule security_rule = 1;
 }
 
-message UpdateSecurityRuleReponse{
+message UpdateSecurityRuleResponse{
   SecurityRule security_rule = 1;
 }
 
