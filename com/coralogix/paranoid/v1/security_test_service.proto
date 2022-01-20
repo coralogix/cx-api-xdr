@@ -48,7 +48,7 @@ message GetSecurityTestDetailRequest {
 }
 
 message GetSecurityTestDetailResponse {
-  optional SecurityTestDetail tests = 1;
+  optional SecurityTestDetail test = 1;
 }
 
 message GetTestedResourceRequest {
@@ -56,5 +56,5 @@ message GetTestedResourceRequest {
 }
 
 message GetTestedResourceResponse {
-  optional TestedResource tests = 1;
+  optional TestedResource resource = 1;
 }
