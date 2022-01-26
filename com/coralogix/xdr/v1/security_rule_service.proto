@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package com.coralogix.paranoid.v1;
+package com.coralogix.xdr.v1;
 
-import "com/coralogix/paranoid/v1/audit_log.proto";
-import "com/coralogix/paranoid/v1/security_rule.proto";
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/security_rule.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -13,14 +13,14 @@ service SecurityRuleService {
   rpc GetSecurityRule(GetSecurityRuleRequest) returns (GetSecurityRuleResponse) {
     option (audit_log_description).description = "get security rule";
     option (google.api.http) = {
-      get: "/paranoid/v1/security_rule/{id}"
+      get: "/xdr/v1/security_rule/{id}"
     };
   }
 
   rpc GetSecurityRules(GetSecurityRulesRequest) returns (GetSecurityRulesResponse) {
     option (audit_log_description).description = "get security rules";
     option (google.api.http) = {
-      post: "/paranoid/v1/get_security_rules"
+      post: "/xdr/v1/get_security_rules"
       body: "*"
     };
   }
@@ -28,7 +28,7 @@ service SecurityRuleService {
   rpc CreateSecurityRule(CreateSecurityRuleRequest) returns (CreateSecurityRuleResponse) {
     option (audit_log_description).description = "create security rule";
     option (google.api.http) = {
-      post: "/paranoid/v1/security_rule"
+      post: "/xdr/v1/security_rule"
       body: "*"
       response_body: "security_rule"
     };
@@ -37,7 +37,7 @@ service SecurityRuleService {
   rpc UpdateSecurityRule(UpdateSecurityRuleRequest) returns (UpdateSecurityRuleResponse) {
     option (audit_log_description).description = "update security rule";
     option (google.api.http) = {
-      put: "/paranoid/v1/security_rule"
+      put: "/xdr/v1/security_rule"
       body: "security_rule"
       response_body: "security_rule"
     };
@@ -46,7 +46,7 @@ service SecurityRuleService {
   rpc DeleteSecurityRule(DeleteSecurityRuleRequest) returns (DeleteSecurityRuleResponse) {
     option (audit_log_description).description = "delete security rule";
     option (google.api.http) = {
-      delete: "/paranoid/v1/security_rule/{id}"
+      delete: "/xdr/v1/security_rule/{id}"
       response_body: "response"
     };
   }

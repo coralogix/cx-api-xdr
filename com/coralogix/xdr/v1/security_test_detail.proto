@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package com.coralogix.paranoid.v1;
+package com.coralogix.xdr.v1;
 
-import "com/coralogix/paranoid/v1/cloud_platform.proto";
-import "com/coralogix/paranoid/v1/security_test_aggregated.proto";
+import "com/coralogix/xdr/v1/cloud_platform.proto";
+import "com/coralogix/xdr/v1/security_test_aggregated.proto";
 
 import "google/protobuf/wrappers.proto";
 

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.coralogix.paranoid.v1;
+package com.coralogix.xdr.v1;
 
 import "google/protobuf/wrappers.proto";
 
