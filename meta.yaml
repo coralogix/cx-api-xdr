@@ -1,4 +1,4 @@
-name: cx-api-paranoid
+name: cx-api-xdr
 CX_PRODUCT: apis
 deployable_type: library
 code_language: protobuf
