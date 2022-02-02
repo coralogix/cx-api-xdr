@@ -2,10 +2,18 @@ syntax = "proto3";
 
 package com.coralogix.xdr.v1;
 
-import "com/coralogix/xdr/v1/cloud_platform.proto";
-
+import "com/coralogix/xdr/v1/security_test_breakdown.proto";
+import "com/coralogix/xdr/v1/security_rule.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+message CloudPlatform{
+  google.protobuf.StringValue provider = 1;
+  optional google.protobuf.StringValue project = 2;
+  optional google.protobuf.StringValue subscription = 3;
+  optional google.protobuf.StringValue timezone = 4;
+}
 
 message TestedResource{
   google.protobuf.StringValue id = 1;
@@ -19,4 +27,16 @@ message TestedResource{
   google.protobuf.BoolValue webhosting_enabled = 9;
   google.protobuf.BoolValue encrypted = 10;
   CloudPlatform cloud_platform = 11;
+  map<string, google.protobuf.Any> additional_data = 12;
 }
+
+enum SecurityTestResult {
+  SUCCESSFUL = 0;
+  FAILED = 1;
+}
+
+message SecurityTestResource{
+  TestedResource resource = 1;
+  SecurityTestResult result = 2;
+}
+

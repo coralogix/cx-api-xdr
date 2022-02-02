@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+message SecurityTestOverview{
+  google.protobuf.StringValue test_id = 1; // UUID
+  google.protobuf.Timestamp executed_at = 2;
+  google.protobuf.UInt32Value all_tests_count = 3;
+  map<int32, google.protobuf.UInt32Value> count_by_severity = 4;
+  // Add tests evolution here...
+}
