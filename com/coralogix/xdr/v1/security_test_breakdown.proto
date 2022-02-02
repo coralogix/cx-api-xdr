@@ -7,14 +7,14 @@ import "google/protobuf/timestamp.proto";
 import "com/coralogix/xdr/v1/security_rule.proto";
 
 message SecurityTestItem{
-  google.protobuf.StringValue test_item_id = 1;
-  SecurityRule rule = 2;
-  google.protobuf.UInt32Value passed_count = 3;
-  google.protobuf.UInt32Value failed_count = 4;
+  SecurityRule rule = 1;
+  google.protobuf.UInt32Value passed_count = 2;
+  google.protobuf.UInt32Value failed_count = 3;
 }
 
 message SecurityTestBreakdown{
   google.protobuf.StringValue test_id = 1; // UUID
   repeated SecurityTestItem security_test_items = 2;
   google.protobuf.Timestamp executed_at = 3;
+  google.protobuf.UInt32Value all_count = 4;
 }
