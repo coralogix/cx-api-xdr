@@ -4,7 +4,8 @@ package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "com/coralogix/xdr/v1/security_test_breakdown.proto";
-import "com/coralogix/xdr/v1/security_teste_resource.proto";
+import "com/coralogix/xdr/v1/security_test_overview.proto";
+import "com/coralogix/xdr/v1/security_test_resource.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
