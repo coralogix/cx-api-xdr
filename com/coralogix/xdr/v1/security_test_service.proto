@@ -57,7 +57,7 @@ message GetSecurityTestBreakdownRequest {
 }
 
 message GetSecurityTestBreakdownResponse {
-  SecurityTestOverview test_breakdown = 1;
+  SecurityTestBreakdown test_breakdown = 1;
 }
 
 message GetSecurityTestResourcesRequest {
