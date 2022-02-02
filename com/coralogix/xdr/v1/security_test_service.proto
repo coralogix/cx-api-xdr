@@ -16,35 +16,35 @@ service SecurityTestService {
   rpc GetSecurityTestOverview(GetSecurityTestOverviewRequest) returns (GetSecurityTestOverviewResponse) {
     option (audit_log_description).description = "get security test overview";
     option (google.api.http) = {
-      get: "/xdr/v1/test/overview"
+      get: "/xdr/v1/test/overview/{security_test_id}"
     };
   }
 
   rpc GetSecurityTestBreakdown(GetSecurityTestBreakdownRequest) returns (GetSecurityTestBreakdownResponse) {
     option (audit_log_description).description = "get security test breakdown";
     option (google.api.http) = {
-      get: "/xdr/v1/test/breakdown"
+      get: "/xdr/v1/test/breakdown/{security_test_id}"
     };
   }
 
   rpc GetSecurityTestResources(GetSecurityTestResourcesRequest) returns (GetSecurityTestResourcesResponse) {
     option (audit_log_description).description = "get security test resources";
     option (google.api.http) = {
-      get: "/xdr/v1/test/resources"
+      get: "/xdr/v1/test/resources/{security_test_id}"
     };
   }
 
   rpc GetTestedResource(GetTestedResourceRequest) returns (GetTestedResourceResponse) {
     option (audit_log_description).description = "get tested resource with details";
     option (google.api.http) = {
-      get: "/xdr/v1/test/resource"
+      get: "/xdr/v1/test/resource/{security_test_id}/{security_rule_id}"
     };
   }
 }
 
 message GetSecurityTestOverviewRequest {
   // Defaults to latest
-  optional google.protobuf.StringValue test_id = 1;
+  optional google.protobuf.StringValue security_test_id = 1;
 }
 
 message GetSecurityTestOverviewResponse {
@@ -53,11 +53,11 @@ message GetSecurityTestOverviewResponse {
 
 message GetSecurityTestBreakdownRequest {
   // Defaults to latest
-  optional google.protobuf.StringValue test_id = 1;
+  optional google.protobuf.StringValue security_test_id = 1;
 }
 
 message GetSecurityTestBreakdownResponse {
-  SecurityTestOverview testBreakdown = 1;
+  SecurityTestOverview test_breakdown = 1;
 }
 
 message GetSecurityTestResourcesRequest {
@@ -66,7 +66,7 @@ message GetSecurityTestResourcesRequest {
 }
 
 message GetSecurityTestResourcesResponse {
-  google.protobuf.StringValue id = 1; // UUID
+  google.protobuf.StringValue security_test_id = 1; // UUID
   SecurityTestItem security_test_item = 2;
   // This should be optimized with paginated events maybe - leaving that as it's for now
   repeated SecurityTestResource resources = 3;
