@@ -96,7 +96,7 @@ message CreateSecurityRuleRequest {
   google.protobuf.StringValue source = 6;
   optional google.protobuf.StringValue current_configuration = 7;
   optional google.protobuf.StringValue expected_configuration = 8;
-  optional google.protobuf.StringValue configuration_link = 8;
+  optional google.protobuf.StringValue configuration_link = 9;
   optional google.protobuf.StringValue recommendation_message = 10;
   optional google.protobuf.StringValue resource_type = 11;
   repeated SecurityClassification related_classifications = 12;
