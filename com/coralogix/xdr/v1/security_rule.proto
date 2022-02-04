@@ -14,7 +14,7 @@ message SecurityClassification{
 // This is supposed to be provided from backoffice
 message SecurityRule{
   google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue lambda_test_name = 2;
+  google.protobuf.StringValue test_identity = 2;
   google.protobuf.StringValue title = 3;
   google.protobuf.StringValue rule_type = 4;
   google.protobuf.UInt32Value severity = 5;
