@@ -62,7 +62,7 @@ message GetSecurityTestBreakdownResponse {
 
 message GetSecurityTestResourcesRequest {
   optional google.protobuf.StringValue security_test_id = 1;
-  optional google.protobuf.StringValue security_rule_id = 2;
+  optional google.protobuf.StringValue test_identity = 2;
 }
 
 message GetSecurityTestResourcesResponse {
