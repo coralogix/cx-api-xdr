@@ -3,9 +3,9 @@ syntax = "proto3";
 package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
-import "com/coralogix/xdr/v1/security_test_aggregated.proto";
-import "com/coralogix/xdr/v1/security_test_detail.proto";
-import "com/coralogix/xdr/v1/tested_resource.proto";
+import "com/coralogix/xdr/v1/security_test_breakdown.proto";
+import "com/coralogix/xdr/v1/security_test_overview.proto";
+import "com/coralogix/xdr/v1/security_test_resource.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -13,42 +13,63 @@ import "google/api/annotations.proto";
 
 service SecurityTestService {
   // Maybe it would be better to be a post in the future - if we decide to support pagination
-  rpc GetSecurityTestsAggregated(GetSecurityTestsAggregatedRequest) returns (GetSecurityTestsAggregatedResponse) {
-    option (audit_log_description).description = "get security tests with aggregated results";
+  rpc GetSecurityTestOverview(GetSecurityTestOverviewRequest) returns (GetSecurityTestOverviewResponse) {
+    option (audit_log_description).description = "get security test overview";
     option (google.api.http) = {
-      get: "/xdr/v1/tests/aggregated"
+      get: "/xdr/v1/test/overview/{security_test_id}"
     };
   }
 
-  rpc GetSecurityTestDetail(GetSecurityTestDetailRequest) returns (GetSecurityTestDetailResponse) {
-    option (audit_log_description).description = "get security test detail with all events";
+  rpc GetSecurityTestBreakdown(GetSecurityTestBreakdownRequest) returns (GetSecurityTestBreakdownResponse) {
+    option (audit_log_description).description = "get security test breakdown";
     option (google.api.http) = {
-      get: "/xdr/v1/test/detail"
+      get: "/xdr/v1/test/breakdown/{security_test_id}"
+    };
+  }
+
+  rpc GetSecurityTestResources(GetSecurityTestResourcesRequest) returns (GetSecurityTestResourcesResponse) {
+    option (audit_log_description).description = "get security test resources";
+    option (google.api.http) = {
+      get: "/xdr/v1/test/resources/{security_test_id}"
     };
   }
 
   rpc GetTestedResource(GetTestedResourceRequest) returns (GetTestedResourceResponse) {
     option (audit_log_description).description = "get tested resource with details";
     option (google.api.http) = {
-      get: "/xdr/v1/test/resource"
+      get: "/xdr/v1/test/resource/{security_test_id}/{security_rule_id}"
     };
   }
 }
 
-message GetSecurityTestsAggregatedRequest {
-  optional google.protobuf.Int32Value count = 1;
+message GetSecurityTestOverviewRequest {
+  // Defaults to latest
+  optional google.protobuf.StringValue security_test_id = 1;
 }
 
-message GetSecurityTestsAggregatedResponse {
-  repeated SecurityTestAggregated tests = 1;
+message GetSecurityTestOverviewResponse {
+  SecurityTestOverview overview = 1;
 }
 
-message GetSecurityTestDetailRequest {
-  optional google.protobuf.StringValue id = 1;
+message GetSecurityTestBreakdownRequest {
+  // Defaults to latest
+  optional google.protobuf.StringValue security_test_id = 1;
 }
 
-message GetSecurityTestDetailResponse {
-  optional SecurityTestDetail test = 1;
+message GetSecurityTestBreakdownResponse {
+  SecurityTestBreakdown test_breakdown = 1;
+}
+
+message GetSecurityTestResourcesRequest {
+  optional google.protobuf.StringValue security_test_id = 1;
+  optional google.protobuf.StringValue test_identity = 2;
+}
+
+message GetSecurityTestResourcesResponse {
+  google.protobuf.StringValue security_test_id = 1; // UUID
+  SecurityTestItem security_test_item = 2;
+  // This should be optimized with paginated events maybe - leaving that as it's for now
+  repeated SecurityTestResource resources = 3;
 }
 
 message GetTestedResourceRequest {
@@ -56,5 +77,5 @@ message GetTestedResourceRequest {
 }
 
 message GetTestedResourceResponse {
-  optional TestedResource resource = 1;
+  TestedResource resource = 1;
 }

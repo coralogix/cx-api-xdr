@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "com/coralogix/xdr/v1/security_rule.proto";
+
+message SecurityTestItem{
+  SecurityRule rule = 1;
+  google.protobuf.UInt32Value passed_count = 2;
+  google.protobuf.UInt32Value failed_count = 3;
+}
+
+message SecurityTestBreakdown{
+  google.protobuf.StringValue test_id = 1; // UUID
+  repeated SecurityTestItem security_test_items = 2;
+  google.protobuf.Timestamp executed_at = 3;
+  google.protobuf.UInt32Value all_count = 4;
+}

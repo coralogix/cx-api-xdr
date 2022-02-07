@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+message CloudPlatform{
+  google.protobuf.StringValue provider = 1;
+  optional google.protobuf.StringValue project = 2;
+  optional google.protobuf.StringValue subscription = 3;
+  optional google.protobuf.StringValue timezone = 4;
+}
+
+message TestedResource{
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue resource_type = 3;
+  optional google.protobuf.StringValue status = 4;
+  optional google.protobuf.Timestamp creation_date = 5;
+  optional google.protobuf.Int32Value retention_period = 6;
+  optional google.protobuf.StringValue external_id = 7;
+  optional google.protobuf.BoolValue logging_enabled = 8;
+  optional google.protobuf.BoolValue webhosting_enabled = 9;
+  optional google.protobuf.BoolValue encrypted = 10;
+  CloudPlatform cloud_platform = 11;
+  google.protobuf.Struct additional_data = 12;
+}
+
+enum SecurityTestResult {
+  SUCCESSFUL = 0;
+  FAILED = 1;
+}
+
+message SecurityTestResource{
+  TestedResource resource = 1;
+  SecurityTestResult result = 2;
+}
+
