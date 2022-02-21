@@ -62,7 +62,7 @@ message GetSecurityClassificationResponse {
 }
 
 message GetSecurityClassificationsRequest {
-  repeated google.protobuf.StringValue referenced_paragraphs = 1 [packed = true];
+  repeated google.protobuf.StringValue referenced_paragraphs = 1;
 }
 
 message GetSecurityClassificationsResponse {
@@ -72,7 +72,7 @@ message GetSecurityClassificationsResponse {
 message CreateSecurityClassificationRequest {
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue description = 2;
-  repeated google.protobuf.StringValue referenced_paragraphs = 3 [packed = true];
+  repeated google.protobuf.StringValue referenced_paragraphs = 3;
   google.protobuf.StringValue security_policy_id = 4;
 }
 
