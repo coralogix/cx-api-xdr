@@ -8,7 +8,7 @@ message SecurityClassification{
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
-  repeated google.protobuf.StringValue referenced_paragraphs = 4 [packed = true];
+  repeated google.protobuf.StringValue referenced_paragraphs = 4;
   google.protobuf.StringValue security_policy_id = 5;
 }
 
