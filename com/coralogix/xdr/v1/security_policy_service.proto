@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/security_policy.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
+service SecurityPolicyService {
+  rpc GetSecurityPolicy(GetSecurityPolicyRequest) returns (GetSecurityPolicyResponse) {
+    option (audit_log_description).description = "get security policy";
+    option (google.api.http) = {
+      get: "/xdr/v1/security_policy/{id}"
+    };
+  }
+
+  rpc GetSecurityPolicies(GetSecurityPoliciesRequest) returns (GetSecurityPoliciesResponse) {
+    option (audit_log_description).description = "get security policies";
+    option (google.api.http) = {
+      post: "/xdr/v1/get_security_policies"
+      body: "*"
+    };
+  }
+
+  rpc CreateSecurityPolicy(CreateSecurityPolicyRequest) returns (CreateSecurityPolicyResponse) {
+    option (audit_log_description).description = "create security policy";
+    option (google.api.http) = {
+      post: "/xdr/v1/security_policy"
+      body: "*"
+      response_body: "security_policy"
+    };
+  }
+
+  rpc UpdateSecurityPolicy(UpdateSecurityPolicyRequest) returns (UpdateSecurityPolicyResponse) {
+    option (audit_log_description).description = "update security policy";
+    option (google.api.http) = {
+      put: "/xdr/v1/security_policy"
+      body: "security_policy"
+      response_body: "security_policy"
+    };
+  }
+
+  rpc DeleteSecurityPolicy(DeleteSecurityPolicyRequest) returns (DeleteSecurityPolicyResponse) {
+    option (audit_log_description).description = "delete security policy";
+    option (google.api.http) = {
+      delete: "/xdr/v1/security_policy/{id}"
+      response_body: "response"
+    };
+  }
+
+}
+
+message GetSecurityPolicyRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message GetSecurityPolicyResponse {
+  optional SecurityPolicy policy = 1;
+}
+
+message GetSecurityPoliciesRequest {
+  // Empty for now
+}
+
+message GetSecurityPoliciesResponse {
+  repeated SecurityPolicy data = 1;
+}
+
+message CreateSecurityPolicyRequest {
+  google.protobuf.StringValue name = 1;
+  google.protobuf.StringValue description = 2;
+}
+
+message CreateSecurityPolicyResponse {
+  SecurityPolicy security_policy = 1;
+}
+
+message UpdateSecurityPolicyRequest {
+  SecurityPolicy security_policy = 1;
+}
+
+message UpdateSecurityPolicyResponse {
+  SecurityPolicy security_policy = 1;
+}
+
+message DeleteSecurityPolicyRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message DeleteSecurityPolicyResponse {
+  google.protobuf.StringValue response = 1;
+}

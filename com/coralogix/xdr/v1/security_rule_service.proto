@@ -51,6 +51,14 @@ service SecurityRuleService {
     };
   }
 
+  rpc AssignSecurityRuleToSecurityClassification(AssignSecurityRuleToSecurityClassificationRequest) returns (AssignSecurityRuleToSecurityClassificationResponse) {
+    option (audit_log_description).description = "assign security rule to security classification";
+    option (google.api.http) = {
+      post: "/xdr/v1/security_rule/assign"
+      response_body: "response"
+    };
+  }
+
 }
 
 message GetSecurityRuleRequest {
@@ -99,7 +107,7 @@ message CreateSecurityRuleRequest {
   optional google.protobuf.StringValue configuration_link = 9;
   optional google.protobuf.StringValue recommendation_message = 10;
   optional google.protobuf.StringValue resource_type = 11;
-  repeated SecurityClassification related_classifications = 12;
+  repeated google.protobuf.StringValue related_security_classifications_ids = 12;
 }
 
 message CreateSecurityRuleResponse{
@@ -120,4 +128,13 @@ message DeleteSecurityRuleRequest {
 
 message DeleteSecurityRuleResponse {
   google.protobuf.StringValue response = 1;
+}
+
+message AssignSecurityRuleToSecurityClassificationRequest {
+  google.protobuf.StringValue security_rule_id = 1;
+  google.protobuf.StringValue security_classification_id = 2;
+}
+
+message AssignSecurityRuleToSecurityClassificationResponse {
+  // Empty for now
 }

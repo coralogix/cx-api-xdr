@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/security_rule.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
+service SecurityClassificationService {
+  rpc GetSecurityClassification(GetSecurityClassificationRequest) returns (GetSecurityClassificationResponse) {
+    option (audit_log_description).description = "get security classification";
+    option (google.api.http) = {
+      get: "/xdr/v1/security_classification/{id}"
+    };
+  }
+
+  rpc GetSecurityClassifications(GetSecurityClassificationsRequest) returns (GetSecurityClassificationsResponse) {
+    option (audit_log_description).description = "get security classifications";
+    option (google.api.http) = {
+      post: "/xdr/v1/get_security_classification_categories"
+      body: "*"
+    };
+  }
+
+  rpc CreateSecurityClassification(CreateSecurityClassificationRequest) returns (CreateSecurityClassificationResponse) {
+    option (audit_log_description).description = "create security classification";
+    option (google.api.http) = {
+      post: "/xdr/v1/security_classification"
+      body: "*"
+      response_body: "security_classification"
+    };
+  }
+
+  rpc UpdateSecurityClassification(UpdateSecurityClassificationRequest) returns (UpdateSecurityClassificationResponse) {
+    option (audit_log_description).description = "update security classification";
+    option (google.api.http) = {
+      put: "/xdr/v1/security_classification"
+      body: "security_classification"
+      response_body: "security_classification"
+    };
+  }
+
+  rpc DeleteSecurityClassification(DeleteSecurityClassificationRequest) returns (DeleteSecurityClassificationResponse) {
+    option (audit_log_description).description = "delete security classification";
+    option (google.api.http) = {
+      delete: "/xdr/v1/security_classification/{id}"
+      response_body: "response"
+    };
+  }
+
+}
+
+message GetSecurityClassificationRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message GetSecurityClassificationResponse {
+  SecurityClassification policy = 1;
+}
+
+message GetSecurityClassificationsRequest {
+  repeated google.protobuf.StringValue referenced_paragraphs = 1 [packed = true];
+}
+
+message GetSecurityClassificationsResponse {
+  repeated SecurityClassification data = 1;
+}
+
+message CreateSecurityClassificationRequest {
+  google.protobuf.StringValue name = 1;
+  google.protobuf.StringValue description = 2;
+  repeated google.protobuf.StringValue referenced_paragraphs = 3 [packed = true];
+  google.protobuf.StringValue security_policy_id = 4;
+}
+
+message CreateSecurityClassificationResponse {
+  SecurityClassification security_classification = 1;
+}
+
+message UpdateSecurityClassificationRequest {
+  SecurityClassification security_classification = 1;
+}
+
+message UpdateSecurityClassificationResponse {
+  SecurityClassification security_classification = 1;
+}
+
+message DeleteSecurityClassificationRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message DeleteSecurityClassificationResponse {
+  google.protobuf.StringValue response = 1;
+}
