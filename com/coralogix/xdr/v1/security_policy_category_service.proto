@@ -23,7 +23,6 @@ service SecurityPolicyCategoryService {
     option (google.api.http) = {
       post: "/xdr/v1/get_security_policy_categories"
       body: "*"
-      response_body: "data"
     };
   }
 
