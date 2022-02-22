@@ -47,6 +47,7 @@ service SecurityPolicyService {
     option (audit_log_description).description = "delete security policy";
     option (google.api.http) = {
       delete: "/xdr/v1/security_policy/{id}"
+      response_body: "response"
     };
   }
 
