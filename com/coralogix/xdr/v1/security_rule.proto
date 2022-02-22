@@ -4,12 +4,18 @@ package com.coralogix.xdr.v1;
 
 import "google/protobuf/wrappers.proto";
 
-message SecurityClassification{
+message SecurityPolicy {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
+  repeated SecurityPolicyCategory related_policy_categories = 4;
+}
+
+message SecurityPolicyCategory {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
   repeated google.protobuf.StringValue referenced_paragraphs = 4;
-  google.protobuf.StringValue security_policy_id = 5;
 }
 
 // This is supposed to be provided from backoffice
@@ -26,5 +32,5 @@ message SecurityRule{
   google.protobuf.StringValue configuration_link = 10;
   google.protobuf.StringValue recommendation_message = 11;
   google.protobuf.StringValue resource_type = 12;
-  repeated SecurityClassification related_classifications = 13;
+  repeated SecurityPolicy related_policies = 13;
 }

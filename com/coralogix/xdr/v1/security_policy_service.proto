@@ -3,7 +3,7 @@ syntax = "proto3";
 package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
-import "com/coralogix/xdr/v1/security_policy.proto";
+import "com/coralogix/xdr/v1/security_rule.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";

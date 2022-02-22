@@ -51,17 +51,19 @@ service SecurityRuleService {
     };
   }
 
-  rpc AssignSecurityRuleToSecurityClassification(AssignSecurityRuleToSecurityClassificationRequest) returns (AssignSecurityRuleToSecurityClassificationResponse) {
-    option (audit_log_description).description = "assign security rule to security classification";
+  rpc AssignSecurityRuleToSecurityPolicyCategory(AssignSecurityRuleToSecurityPolicyCategoryRequest) returns (AssignSecurityRuleToSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "assign security rule to security policy category";
     option (google.api.http) = {
       post: "/xdr/v1/security_rule/assign"
+      body: "*"
     };
   }
 
-  rpc UnassignSecurityRuleToSecurityClassification(UnassignSecurityRuleToSecurityClassificationRequest) returns (UnassignSecurityRuleToSecurityClassificationResponse) {
-    option (audit_log_description).description = "assign security rule to security classification";
+  rpc UnassignSecurityRuleToSecurityPolicyCategory(UnassignSecurityRuleToSecurityPolicyCategoryRequest) returns (UnassignSecurityRuleToSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "unassign security rule to security policy category";
     option (google.api.http) = {
-      post: "/xdr/v1/security_rule/assign"
+      post: "/xdr/v1/security_rule/unassign"
+      body: "*"
     };
   }
 }
@@ -112,7 +114,7 @@ message CreateSecurityRuleRequest {
   optional google.protobuf.StringValue configuration_link = 9;
   optional google.protobuf.StringValue recommendation_message = 10;
   optional google.protobuf.StringValue resource_type = 11;
-  repeated google.protobuf.StringValue related_security_classifications_ids = 12;
+  repeated google.protobuf.StringValue related_security_policy_categories_ids = 12;
 }
 
 message CreateSecurityRuleResponse{
@@ -135,20 +137,20 @@ message DeleteSecurityRuleResponse {
   google.protobuf.StringValue response = 1;
 }
 
-message AssignSecurityRuleToSecurityClassificationRequest {
+message AssignSecurityRuleToSecurityPolicyCategoryRequest {
   google.protobuf.StringValue security_rule_id = 1;
-  google.protobuf.StringValue security_classification_id = 2;
+  google.protobuf.StringValue security_policy_category_id = 2;
 }
 
-message AssignSecurityRuleToSecurityClassificationResponse {
+message AssignSecurityRuleToSecurityPolicyCategoryResponse {
   // Empty for now
 }
 
-message UnassignSecurityRuleToSecurityClassificationRequest {
+message UnassignSecurityRuleToSecurityPolicyCategoryRequest {
   google.protobuf.StringValue security_rule_id = 1;
-  google.protobuf.StringValue security_classification_id = 2;
+  google.protobuf.StringValue security_policy_category_id = 2;
 }
 
-message UnassignSecurityRuleToSecurityClassificationResponse {
+message UnassignSecurityRuleToSecurityPolicyCategoryResponse {
   // Empty for now
 }
