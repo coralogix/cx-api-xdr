@@ -55,7 +55,6 @@ service SecurityRuleService {
     option (audit_log_description).description = "assign security rule to security classification";
     option (google.api.http) = {
       post: "/xdr/v1/security_rule/assign"
-      response_body: "response"
     };
   }
 
