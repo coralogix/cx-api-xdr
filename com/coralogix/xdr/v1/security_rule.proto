@@ -2,21 +2,9 @@ syntax = "proto3";
 
 package com.coralogix.xdr.v1;
 
+import "com/coralogix/xdr/v1/security_policy.proto";
+
 import "google/protobuf/wrappers.proto";
-
-message SecurityPolicy {
-  google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue name = 2;
-  google.protobuf.StringValue description = 3;
-  repeated SecurityPolicyCategory related_policy_categories = 4;
-}
-
-message SecurityPolicyCategory {
-  google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue name = 2;
-  google.protobuf.StringValue description = 3;
-  repeated google.protobuf.StringValue referenced_paragraphs = 4;
-}
 
 // This is supposed to be provided from backoffice
 message SecurityRule{
