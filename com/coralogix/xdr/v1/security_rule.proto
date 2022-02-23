@@ -7,7 +7,7 @@ import "com/coralogix/xdr/v1/security_policy.proto";
 import "google/protobuf/wrappers.proto";
 
 // This is supposed to be provided from backoffice
-message SecurityRule{
+message SecurityRule {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue test_identity = 2;
   google.protobuf.StringValue title = 3;
