@@ -38,7 +38,7 @@ service SecurityRuleService {
     option (audit_log_description).description = "update security rule";
     option (google.api.http) = {
       put: "/xdr/v1/security_rule"
-      body: "security_rule"
+      body: "*"
       response_body: "security_rule"
     };
   }
@@ -51,6 +51,21 @@ service SecurityRuleService {
     };
   }
 
+  rpc AssignSecurityRuleToSecurityPolicyCategory(AssignSecurityRuleToSecurityPolicyCategoryRequest) returns (AssignSecurityRuleToSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "assign security rule to security policy category";
+    option (google.api.http) = {
+      post: "/xdr/v1/security_rule/assign"
+      body: "*"
+    };
+  }
+
+  rpc UnassignSecurityRuleToSecurityPolicyCategory(UnassignSecurityRuleToSecurityPolicyCategoryRequest) returns (UnassignSecurityRuleToSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "unassign security rule to security policy category";
+    option (google.api.http) = {
+      post: "/xdr/v1/security_rule/unassign"
+      body: "*"
+    };
+  }
 }
 
 message GetSecurityRuleRequest {
@@ -99,18 +114,29 @@ message CreateSecurityRuleRequest {
   optional google.protobuf.StringValue configuration_link = 9;
   optional google.protobuf.StringValue recommendation_message = 10;
   optional google.protobuf.StringValue resource_type = 11;
-  repeated SecurityClassification related_classifications = 12;
+  repeated google.protobuf.StringValue related_security_policy_categories_ids = 12;
 }
 
-message CreateSecurityRuleResponse{
+message CreateSecurityRuleResponse {
   SecurityRule security_rule = 1;
 }
 
-message UpdateSecurityRuleRequest{
-  SecurityRule security_rule = 1;
+message UpdateSecurityRuleRequest {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue test_identity = 2;
+  google.protobuf.StringValue title = 3;
+  google.protobuf.StringValue rule_type = 4;
+  google.protobuf.UInt32Value severity = 5;
+  google.protobuf.StringValue cloud_platform = 6;
+  google.protobuf.StringValue source = 7;
+  optional google.protobuf.StringValue current_configuration = 8;
+  optional google.protobuf.StringValue expected_configuration = 9;
+  optional google.protobuf.StringValue configuration_link = 10;
+  optional google.protobuf.StringValue recommendation_message = 11;
+  optional google.protobuf.StringValue resource_type = 12;
 }
 
-message UpdateSecurityRuleResponse{
+message UpdateSecurityRuleResponse {
   SecurityRule security_rule = 1;
 }
 
@@ -120,4 +146,22 @@ message DeleteSecurityRuleRequest {
 
 message DeleteSecurityRuleResponse {
   google.protobuf.StringValue response = 1;
+}
+
+message AssignSecurityRuleToSecurityPolicyCategoryRequest {
+  google.protobuf.StringValue security_rule_id = 1;
+  google.protobuf.StringValue security_policy_category_id = 2;
+}
+
+message AssignSecurityRuleToSecurityPolicyCategoryResponse {
+  // Empty for now
+}
+
+message UnassignSecurityRuleToSecurityPolicyCategoryRequest {
+  google.protobuf.StringValue security_rule_id = 1;
+  google.protobuf.StringValue security_policy_category_id = 2;
+}
+
+message UnassignSecurityRuleToSecurityPolicyCategoryResponse {
+  // Empty for now
 }
