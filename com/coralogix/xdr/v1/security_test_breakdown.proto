@@ -4,6 +4,8 @@ package com.coralogix.xdr.v1;
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
 import "com/coralogix/xdr/v1/security_rule.proto";
 
 message SecurityTestItem{
@@ -17,4 +19,5 @@ message SecurityTestBreakdown{
   repeated SecurityTestItem security_test_items = 2;
   google.protobuf.Timestamp executed_at = 3;
   google.protobuf.UInt32Value all_count = 4;
+  google.protobuf.Struct count_by_severity = 5;
 }
