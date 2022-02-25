@@ -4,7 +4,7 @@ package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "com/coralogix/xdr/v1/security_test_breakdown.proto";
-import "com/coralogix/xdr/v1/security_test_overview.proto";
+import "com/coralogix/xdr/v1/security_tests_overview.proto";
 import "com/coralogix/xdr/v1/security_test_resource.proto";
 
 import "google/protobuf/wrappers.proto";
@@ -13,8 +13,8 @@ import "google/api/annotations.proto";
 
 service SecurityTestService {
   // Maybe it would be better to be a post in the future - if we decide to support pagination
-  rpc GetSecurityTestOverview(GetSecurityTestOverviewRequest) returns (GetSecurityTestOverviewResponse) {
-    option (audit_log_description).description = "get security test overview";
+  rpc GetSecurityTestOverview(GetSecurityTestsOverviewRequest) returns (GetSecurityTestsOverviewResponse) {
+    option (audit_log_description).description = "get security tests overview - stats grouped by day";
     option (google.api.http) = {
       get: "/xdr/v1/test/overview/{security_test_id}"
     };
@@ -42,13 +42,13 @@ service SecurityTestService {
   }
 }
 
-message GetSecurityTestOverviewRequest {
+message GetSecurityTestsOverviewRequest {
   // Defaults to latest
   optional google.protobuf.StringValue security_test_id = 1;
 }
 
-message GetSecurityTestOverviewResponse {
-  SecurityTestOverview overview = 1;
+message GetSecurityTestsOverviewResponse {
+  SecurityTestsOverview overview = 1;
 }
 
 message GetSecurityTestBreakdownRequest {
