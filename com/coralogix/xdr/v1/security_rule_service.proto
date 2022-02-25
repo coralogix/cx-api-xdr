@@ -114,7 +114,7 @@ message CreateSecurityRuleRequest {
   optional google.protobuf.StringValue configuration_link = 9;
   optional google.protobuf.StringValue recommendation_message = 10;
   optional google.protobuf.StringValue resource_type = 11;
-  repeated google.protobuf.StringValue related_security_policy_categories_ids = 12;
+  repeated google.protobuf.StringValue related_security_policy_category_ids = 12;
 }
 
 message CreateSecurityRuleResponse {
