@@ -9,11 +9,9 @@ import "google/protobuf/struct.proto";
 import "com/coralogix/xdr/v1/security_rule.proto";
 
 message CountBySeverity{
-  google.protobuf.UInt32Value debug = 1;
-  google.protobuf.UInt32Value verbose = 2;
-  google.protobuf.UInt32Value info = 3;
-  google.protobuf.UInt32Value warning = 4;
-  google.protobuf.UInt32Value error = 5;
+  google.protobuf.UInt32Value low = 3;
+  google.protobuf.UInt32Value medium = 4;
+  google.protobuf.UInt32Value high = 5;
   google.protobuf.UInt32Value critical = 6;
 }
 
