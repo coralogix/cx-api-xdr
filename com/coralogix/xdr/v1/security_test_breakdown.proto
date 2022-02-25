@@ -8,6 +8,15 @@ import "google/protobuf/struct.proto";
 
 import "com/coralogix/xdr/v1/security_rule.proto";
 
+message CountBySeverity{
+  google.protobuf.UInt32Value debug = 1;
+  google.protobuf.UInt32Value verbose = 2;
+  google.protobuf.UInt32Value info = 3;
+  google.protobuf.UInt32Value warning = 4;
+  google.protobuf.UInt32Value error = 5;
+  google.protobuf.UInt32Value critical = 6;
+}
+
 message SecurityTestItem{
   SecurityRule rule = 1;
   google.protobuf.UInt32Value passed_count = 2;
@@ -19,5 +28,5 @@ message SecurityTestBreakdown{
   repeated SecurityTestItem security_test_items = 2;
   google.protobuf.Timestamp executed_at = 3;
   google.protobuf.UInt32Value all_count = 4;
-  google.protobuf.Struct count_by_severity = 5;
+  CountBySeverity count_by_severity = 5;
 }
