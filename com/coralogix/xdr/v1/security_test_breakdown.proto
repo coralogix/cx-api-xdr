@@ -8,20 +8,20 @@ import "google/protobuf/struct.proto";
 
 import "com/coralogix/xdr/v1/security_rule.proto";
 
-message CountBySeverity{
+message CountBySeverity {
   google.protobuf.UInt32Value low = 1;
   google.protobuf.UInt32Value medium = 2;
   google.protobuf.UInt32Value high = 3;
   google.protobuf.UInt32Value critical = 4;
 }
 
-message SecurityTestItem{
+message SecurityTestItem {
   SecurityRule rule = 1;
   google.protobuf.UInt32Value passed_count = 2;
   google.protobuf.UInt32Value failed_count = 3;
 }
 
-message SecurityTestBreakdown{
+message SecurityTestBreakdown {
   google.protobuf.StringValue test_id = 1; // UUID
   repeated SecurityTestItem security_test_items = 2;
   google.protobuf.Timestamp executed_at = 3;
