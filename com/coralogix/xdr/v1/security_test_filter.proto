@@ -3,8 +3,6 @@ syntax = "proto3";
 package com.coralogix.xdr.v1;
 
 import "google/protobuf/wrappers.proto";
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/struct.proto";
 
 message SecurityTestFilter {
   LogFilter log_filter = 1;
