@@ -4,7 +4,6 @@ package com.coralogix.xdr.v1;
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/struct.proto";
 
 import "com/coralogix/xdr/v1/security_rule.proto";
 
