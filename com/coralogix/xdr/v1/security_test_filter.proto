@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+message SecurityTestFilter {
+  LogFilter log_filter = 1;
+  SecurityRuleFilter security_rule_filter = 2;
+}
+
+message CustomFilterValue {
+  repeated google.protobuf.StringValue filter_values = 1;
+}
+
+message LogFilter {
+  repeated google.protobuf.StringValue test_identity = 1;
+  repeated google.protobuf.StringValue name = 2;
+  repeated google.protobuf.StringValue provider = 3;
+  repeated google.protobuf.StringValue resource_type = 4;
+  map<string, CustomFilterValue> custom_filters = 5;
+}
+
+message SecurityRuleFilter {
+  // This is defined on security rule level
+  repeated google.protobuf.UInt32Value severity = 1;
+  repeated google.protobuf.StringValue name = 2;
+}
+
+message CustomFilterValueCounts {
+  map<string, google.protobuf.UInt32Value> filter_values = 1;
+}
+
+message LogFilterCounts {
+  map<string, google.protobuf.UInt32Value> test_identity = 1;
+  map<string, google.protobuf.UInt32Value> name = 2;
+  map<string, google.protobuf.UInt32Value> provider = 3;
+  map<string, google.protobuf.UInt32Value> resource_type = 4;
+  map<string, CustomFilterValueCounts> custom_filters = 5;
+}
+
+message SecurityRuleFilterCounts {
+  // This is defined on security rule level
+  map<string, google.protobuf.UInt32Value> severity = 1;
+  map<string, google.protobuf.UInt32Value> name = 2;
+}
+

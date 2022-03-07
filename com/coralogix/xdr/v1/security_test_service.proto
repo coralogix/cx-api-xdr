@@ -6,6 +6,7 @@ import "com/coralogix/xdr/v1/audit_log.proto";
 import "com/coralogix/xdr/v1/security_test_breakdown.proto";
 import "com/coralogix/xdr/v1/security_tests_overview.proto";
 import "com/coralogix/xdr/v1/security_test_resource.proto";
+import "com/coralogix/xdr/v1/security_test_filter.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -40,6 +41,13 @@ service SecurityTestService {
       get: "/xdr/v1/test/resource/{security_test_id}/{security_rule_id}"
     };
   }
+
+  rpc GetSecurityTestFilterAggs(GetSecurityTestFilterAggsRequest) returns (GetSecurityTestFilterAggsResponse) {
+    option (audit_log_description).description = "get security test filter aggregations";
+    option (google.api.http) = {
+      get: "/xdr/v1/security-test/stats"
+    };
+  }
 }
 
 message GetSecurityTestsOverviewRequest {
@@ -54,6 +62,7 @@ message GetSecurityTestsOverviewResponse {
 message GetSecurityTestBreakdownRequest {
   // Defaults to latest
   optional google.protobuf.StringValue security_test_id = 1;
+  optional SecurityTestFilter filter = 2;
 }
 
 message GetSecurityTestBreakdownResponse {
@@ -63,6 +72,7 @@ message GetSecurityTestBreakdownResponse {
 message GetSecurityTestResourcesRequest {
   optional google.protobuf.StringValue security_test_id = 1;
   optional google.protobuf.StringValue test_identity = 2;
+  optional SecurityTestFilter filter = 3;
 }
 
 message GetSecurityTestResourcesResponse {
@@ -78,4 +88,13 @@ message GetTestedResourceRequest {
 
 message GetTestedResourceResponse {
   TestedResource resource = 1;
+}
+
+message GetSecurityTestFilterAggsRequest {
+  SecurityTestFilter filter = 1;
+}
+
+message GetSecurityTestFilterAggsResponse {
+  LogFilterCounts log_filter = 1;
+  SecurityRuleFilterCounts security_rule_filter = 2;
 }
