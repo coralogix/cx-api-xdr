@@ -95,7 +95,7 @@ message GetTestedResourceResponse {
 
 message GetSecurityTestFilterAggsRequest {
   google.protobuf.StringValue security_test_id = 1; // UUID
-  SecurityTestFilter filter = 1;
+  SecurityTestFilter filter = 2;
 }
 
 message GetSecurityTestFilterAggsResponse {
