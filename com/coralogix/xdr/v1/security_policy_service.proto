@@ -14,6 +14,7 @@ service SecurityPolicyService {
     option (audit_log_description).description = "get security policy";
     option (google.api.http) = {
       get: "/xdr/v1/security_policy/{id}"
+      response_body: "security_policy"
     };
   }
 
