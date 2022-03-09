@@ -17,7 +17,7 @@ message LogFilter {
   repeated google.protobuf.StringValue test_identity = 1;
   repeated google.protobuf.StringValue name = 2;
   repeated google.protobuf.StringValue provider = 3;
-  repeated google.protobuf.StringValue resource_type = 4;
+  repeated google.protobuf.StringValue service = 4;
   map<string, CustomFilterValue> custom_filters = 5;
 }
 
@@ -35,7 +35,7 @@ message LogFilterCounts {
   map<string, google.protobuf.UInt32Value> test_identity = 1;
   map<string, google.protobuf.UInt32Value> name = 2;
   map<string, google.protobuf.UInt32Value> provider = 3;
-  map<string, google.protobuf.UInt32Value> resource_type = 4;
+  map<string, google.protobuf.UInt32Value> service = 4;
   map<string, CustomFilterValueCounts> custom_filters = 5;
 }
 

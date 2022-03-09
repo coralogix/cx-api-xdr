@@ -10,7 +10,7 @@ message TestedResource {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue provider = 3;
-  google.protobuf.StringValue resource_type = 4;
+  google.protobuf.StringValue service = 4;
   optional google.protobuf.Timestamp creation_date = 5;
   google.protobuf.Struct additional_data = 6;
 }

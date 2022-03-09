@@ -19,6 +19,6 @@ message SecurityRule {
   google.protobuf.StringValue expected_configuration = 9;
   google.protobuf.StringValue configuration_link = 10;
   google.protobuf.StringValue recommendation_message = 11;
-  google.protobuf.StringValue resource_type = 12;
+  google.protobuf.StringValue service = 12;
   repeated SecurityPolicy related_policies = 13;
 }
