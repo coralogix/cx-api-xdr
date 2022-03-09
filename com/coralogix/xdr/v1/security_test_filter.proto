@@ -18,7 +18,8 @@ message LogFilter {
   repeated google.protobuf.StringValue name = 2;
   repeated google.protobuf.StringValue provider = 3;
   repeated google.protobuf.StringValue service = 4;
-  map<string, CustomFilterValue> custom_filters = 5;
+  repeated google.protobuf.StringValue item_type = 5;
+  map<string, CustomFilterValue> custom_filters = 6;
 }
 
 message SecurityRuleFilter {
@@ -36,7 +37,8 @@ message LogFilterCounts {
   map<string, google.protobuf.UInt32Value> name = 2;
   map<string, google.protobuf.UInt32Value> provider = 3;
   map<string, google.protobuf.UInt32Value> service = 4;
-  map<string, CustomFilterValueCounts> custom_filters = 5;
+  map<string, google.protobuf.UInt32Value> item_type = 5;
+  map<string, CustomFilterValueCounts> custom_filters = 6;
 }
 
 message SecurityRuleFilterCounts {
