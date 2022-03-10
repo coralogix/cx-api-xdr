@@ -119,9 +119,9 @@ message GetFilterableFieldsResponse {
     repeated google.protobuf.StringValue values = 1;
   }
 
-  map<string, PossibleValues> provider = 1;
-  map<string, PossibleValues> service = 2;
-  map<string, PossibleValues> securityRule = 3;
+  map<string, PossibleValues> provider_filters = 1;
+  map<string, PossibleValues> service_filters = 2;
+  map<string, PossibleValues> security_rule_filters = 3;
 
 
 }
