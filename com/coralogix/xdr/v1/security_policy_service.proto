@@ -39,7 +39,7 @@ service SecurityPolicyService {
     option (audit_log_description).description = "update security policy";
     option (google.api.http) = {
       put: "/xdr/v1/security_policy"
-      body: "security_policy"
+      body: "*"
       response_body: "security_policy"
     };
   }
@@ -80,7 +80,9 @@ message CreateSecurityPolicyResponse {
 }
 
 message UpdateSecurityPolicyRequest {
-  SecurityPolicy security_policy = 1;
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
 }
 
 message UpdateSecurityPolicyResponse {
