@@ -39,7 +39,7 @@ service SecurityPolicyCategoryService {
     option (audit_log_description).description = "update security policy category";
     option (google.api.http) = {
       put: "/xdr/v1/security_policy_category"
-      body: "security_policy_category"
+      body: "*"
       response_body: "security_policy_category"
     };
   }
@@ -82,7 +82,11 @@ message CreateSecurityPolicyCategoryResponse {
 }
 
 message UpdateSecurityPolicyCategoryRequest {
-  SecurityPolicyCategory security_policy_category = 1;
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
+  repeated google.protobuf.StringValue referenced_paragraphs = 4;
+  google.protobuf.StringValue security_policy_id = 5;
 }
 
 message UpdateSecurityPolicyCategoryResponse {
