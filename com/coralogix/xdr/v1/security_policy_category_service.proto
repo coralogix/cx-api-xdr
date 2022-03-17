@@ -63,7 +63,7 @@ message GetSecurityPolicyCategoryResponse {
 }
 
 message GetSecurityPolicyCategoriesRequest {
-  repeated google.protobuf.StringValue referenced_paragraphs = 1;
+  google.protobuf.StringValue security_policy_id = 1;
 }
 
 message GetSecurityPolicyCategoriesResponse {
