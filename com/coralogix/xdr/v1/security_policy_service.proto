@@ -25,8 +25,10 @@ service SecurityPolicyService {
       body: "*"
     };
   }
+}
 
-  rpc CreateSecurityPolicy(CreateSecurityPolicyRequest) returns (CreateSecurityPolicyResponse) {
+service SecurityPolicyManagementService {
+  rpc CreateSecurityPilicy(CreateSecurityPolicyRequest) returns (CreateSecurityPolicyResponse) {
     option (audit_log_description).description = "create security policy";
     option (google.api.http) = {
       post: "/xdr/v1/security_policy"
@@ -51,7 +53,6 @@ service SecurityPolicyService {
       response_body: "response"
     };
   }
-
 }
 
 message GetSecurityPolicyRequest {
