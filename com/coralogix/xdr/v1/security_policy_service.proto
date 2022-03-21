@@ -25,9 +25,7 @@ service SecurityPolicyService {
       body: "*"
     };
   }
-}
 
-service SecurityPolicyManagementService {
   rpc CreateSecurityPolicy(CreateSecurityPolicyRequest) returns (CreateSecurityPolicyResponse) {
     option (audit_log_description).description = "create security policy";
     option (google.api.http) = {
