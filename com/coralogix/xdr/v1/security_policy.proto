@@ -8,7 +8,6 @@ message SecurityPolicy {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
-  repeated SecurityPolicyCategory related_policy_categories = 4;
 }
 
 message SecurityPolicyCategory {
