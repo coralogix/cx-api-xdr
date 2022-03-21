@@ -39,7 +39,8 @@ message LogFilterCounts {
   map<string, google.protobuf.UInt32Value> provider = 3;
   map<string, google.protobuf.UInt32Value> service = 4;
   map<string, google.protobuf.UInt32Value> item_type = 5;
-  map<string, CustomFilterValueCounts> custom_filters = 6;
+  map<string, google.protobuf.UInt32Value> result_status = 6;
+  map<string, CustomFilterValueCounts> custom_filters = 7;
 }
 
 message SecurityRuleFilterCounts {
