@@ -21,5 +21,4 @@ message SecurityRule {
   google.protobuf.StringValue recommendation_message = 11;
   google.protobuf.StringValue service = 12;
   google.protobuf.StringValue item_type = 13;
-  repeated SecurityPolicy related_policies = 14;
 }
