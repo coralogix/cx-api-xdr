@@ -62,7 +62,7 @@ service SecurityTestService {
 }
 
 message GetSecurityTestsOverviewRequest {
-  optional SecurityTestFilter filter = 2;
+  optional SecurityTestFilter filter = 1;
 }
 
 message GetSecurityTestsOverviewResponse {
