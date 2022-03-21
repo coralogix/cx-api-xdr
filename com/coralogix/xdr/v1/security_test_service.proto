@@ -17,7 +17,8 @@ service SecurityTestService {
   rpc GetSecurityTestOverview(GetSecurityTestsOverviewRequest) returns (GetSecurityTestsOverviewResponse) {
     option (audit_log_description).description = "get security tests overview - stats grouped by day";
     option (google.api.http) = {
-      get: "/xdr/v1/test/overview/{security_test_id}"
+      post: "/xdr/v1/test/overview/{security_test_id}"
+      body: "*"
     };
   }
 
