@@ -61,8 +61,7 @@ service SecurityTestService {
 }
 
 message GetSecurityTestsOverviewRequest {
-  // Defaults to latest
-  optional google.protobuf.StringValue security_test_id = 1;
+  optional SecurityTestFilter filter = 2;
 }
 
 message GetSecurityTestsOverviewResponse {

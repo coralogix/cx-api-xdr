@@ -19,7 +19,8 @@ message LogFilter {
   repeated google.protobuf.StringValue provider = 3;
   repeated google.protobuf.StringValue service = 4;
   repeated google.protobuf.StringValue item_type = 5;
-  map<string, CustomFilterValue> custom_filters = 6;
+  repeated google.protobuf.StringValue result_status = 6;
+  map<string, CustomFilterValue> custom_filters = 7;
 }
 
 message SecurityRuleFilter {
