@@ -25,7 +25,9 @@ service SecurityPolicyCategoryService {
       body: "*"
     };
   }
+}
 
+service SecurityPolicyCategoryManagementService {
   rpc CreateSecurityPolicyCategory(CreateSecurityPolicyCategoryRequest) returns (CreateSecurityPolicyCategoryResponse) {
     option (audit_log_description).description = "create security policy category";
     option (google.api.http) = {
