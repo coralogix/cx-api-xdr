@@ -30,7 +30,7 @@ service SecurityRuleManagementService {
   rpc CreateSecurityRule(CreateSecurityRuleRequest) returns (CreateSecurityRuleResponse) {
     option (audit_log_description).description = "create security rule";
     option (google.api.http) = {
-      post: "/xdr/v1/security_rule"
+      post: "/xdr/management/v1/security_rule"
       body: "*"
       response_body: "security_rule"
     };
@@ -39,7 +39,7 @@ service SecurityRuleManagementService {
   rpc UpdateSecurityRule(UpdateSecurityRuleRequest) returns (UpdateSecurityRuleResponse) {
     option (audit_log_description).description = "update security rule";
     option (google.api.http) = {
-      put: "/xdr/v1/security_rule"
+      put: "/xdr/management/v1/security_rule"
       body: "*"
       response_body: "security_rule"
     };
@@ -48,7 +48,7 @@ service SecurityRuleManagementService {
   rpc DeleteSecurityRule(DeleteSecurityRuleRequest) returns (DeleteSecurityRuleResponse) {
     option (audit_log_description).description = "delete security rule";
     option (google.api.http) = {
-      delete: "/xdr/v1/security_rule/{id}"
+      delete: "/xdr/management/v1/security_rule/{id}"
       response_body: "response"
     };
   }
@@ -56,7 +56,7 @@ service SecurityRuleManagementService {
   rpc AssignSecurityRuleToSecurityPolicyCategory(AssignSecurityRuleToSecurityPolicyCategoryRequest) returns (AssignSecurityRuleToSecurityPolicyCategoryResponse) {
     option (audit_log_description).description = "assign security rule to security policy category";
     option (google.api.http) = {
-      post: "/xdr/v1/security_rule/assign"
+      post: "/xdr/management/v1/security_rule/assign"
       body: "*"
     };
   }
@@ -64,7 +64,7 @@ service SecurityRuleManagementService {
   rpc UnassignSecurityRuleToSecurityPolicyCategory(UnassignSecurityRuleToSecurityPolicyCategoryRequest) returns (UnassignSecurityRuleToSecurityPolicyCategoryResponse) {
     option (audit_log_description).description = "unassign security rule to security policy category";
     option (google.api.http) = {
-      post: "/xdr/v1/security_rule/unassign"
+      post: "/xdr/management/v1/security_rule/unassign"
       body: "*"
     };
   }
