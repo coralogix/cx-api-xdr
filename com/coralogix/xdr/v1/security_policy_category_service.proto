@@ -31,7 +31,7 @@ service SecurityPolicyCategoryManagementService {
   rpc CreateSecurityPolicyCategory(CreateSecurityPolicyCategoryRequest) returns (CreateSecurityPolicyCategoryResponse) {
     option (audit_log_description).description = "create security policy category";
     option (google.api.http) = {
-      post: "/xdr/v1/security_policy_category"
+      post: "/xdr/management/v1/security_policy_category"
       body: "*"
       response_body: "security_policy_category"
     };
@@ -40,7 +40,7 @@ service SecurityPolicyCategoryManagementService {
   rpc UpdateSecurityPolicyCategory(UpdateSecurityPolicyCategoryRequest) returns (UpdateSecurityPolicyCategoryResponse) {
     option (audit_log_description).description = "update security policy category";
     option (google.api.http) = {
-      put: "/xdr/v1/security_policy_category"
+      put: "/xdr/management/v1/security_policy_category"
       body: "*"
       response_body: "security_policy_category"
     };
@@ -49,7 +49,7 @@ service SecurityPolicyCategoryManagementService {
   rpc DeleteSecurityPolicyCategory(DeleteSecurityPolicyCategoryRequest) returns (DeleteSecurityPolicyCategoryResponse) {
     option (audit_log_description).description = "delete security policy category";
     option (google.api.http) = {
-      delete: "/xdr/v1/security_policy_category/{id}"
+      delete: "/xdr/management/v1/security_policy_category/{id}"
       response_body: "response"
     };
   }
