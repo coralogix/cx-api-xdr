@@ -148,7 +148,7 @@ message DeleteSecurityRuleRequest {
 }
 
 message DeleteSecurityRuleResponse {
-  google.protobuf.StringValue response = 1;
+  // Empty
 }
 
 message AssignSecurityRuleToSecurityPolicyCategoryRequest {

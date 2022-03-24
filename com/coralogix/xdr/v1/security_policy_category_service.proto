@@ -100,5 +100,5 @@ message DeleteSecurityPolicyCategoryRequest {
 }
 
 message DeleteSecurityPolicyCategoryResponse {
-  google.protobuf.StringValue response = 1;
+  // Empty
 }

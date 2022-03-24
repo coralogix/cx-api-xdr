@@ -95,5 +95,5 @@ message DeleteSecurityPolicyRequest {
 }
 
 message DeleteSecurityPolicyResponse {
-  google.protobuf.StringValue response = 1;
+  // Empty
 }
