@@ -46,7 +46,7 @@ service SecurityPolicyCategoryManagementService {
     };
   }
 
-  rpc DeleteSecurityPolicyCategory(DeleteSecurityPolicyCategoryRequest) returns (DeleteSecurityPolicyCategoryResponse) {
+  rpc DeleteSecurityPolicyCategory(DeleteSecurityPolicyCategoryRequest) returns (DeleteSecurityPolicyCategoryResponseTest) {
     option (audit_log_description).description = "delete security policy category";
     option (google.api.http) = {
       delete: "/xdr/management/v1/security_policy_category/{id}"
@@ -99,6 +99,6 @@ message DeleteSecurityPolicyCategoryRequest {
   google.protobuf.StringValue id = 1;
 }
 
-message DeleteSecurityPolicyCategoryResponse {
+message DeleteSecurityPolicyCategoryResponseTest {
   // Empty
 }
