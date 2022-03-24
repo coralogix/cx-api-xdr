@@ -50,7 +50,7 @@ service SecurityPolicyManagementService {
     option (audit_log_description).description = "delete security policy";
     option (google.api.http) = {
       delete: "/xdr/management/v1/security_policy/{id}"
-      response_body: "response"
+      body: "*"
     };
   }
 }
@@ -95,5 +95,5 @@ message DeleteSecurityPolicyRequest {
 }
 
 message DeleteSecurityPolicyResponse {
-  google.protobuf.StringValue response = 1;
+  // Empty
 }
