@@ -49,7 +49,7 @@ service SecurityRuleManagementService {
     option (audit_log_description).description = "delete security rule";
     option (google.api.http) = {
       delete: "/xdr/management/v1/security_rule/{id}"
-      response_body: "response"
+      body: "*"
     };
   }
 
