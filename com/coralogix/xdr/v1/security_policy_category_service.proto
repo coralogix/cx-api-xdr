@@ -99,6 +99,10 @@ message DeleteSecurityPolicyCategoryRequest {
   google.protobuf.StringValue id = 1;
 }
 
+message DeleteSecurityPolicyCategoryResponse {
+  // Empty
+}
+
 message DeleteSecurityPolicyCategoryResponseTest {
   // Empty
 }
