@@ -81,7 +81,7 @@ message GetSecurityPoliciesResponse {
 }
 
 message GetSecurityPoliciesWithTestResultsSummaryRequest {
-  optional google.protobuf.StringValue security_test_id = 1;
+  optional google.protobuf.StringValue execution_id = 1;
   optional SecurityTestFilter filter = 2;
 }
 
