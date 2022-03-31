@@ -25,6 +25,14 @@ service SecurityPolicyService {
       body: "*"
     };
   }
+
+  rpc GetSecurityPoliciesWithTestResultsSummary(GetSecurityPoliciesWithTestResultsSummaryRequest) returns (GetSecurityPoliciesWithTestResultsSummaryResponse) {
+    option (audit_log_description).description = "get security policies with test results summary";
+    option (google.api.http) = {
+      post: "/xdr/v1/get_security_policies_with_test_results_summary"
+      body: "*"
+    };
+  }
 }
 
 service SecurityPolicyManagementService {
@@ -69,6 +77,19 @@ message GetSecurityPoliciesRequest {
 
 message GetSecurityPoliciesResponse {
   repeated SecurityPolicy data = 1;
+}
+
+message GetSecurityPoliciesWithTestResultsSummaryRequest {
+  optional google.protobuf.StringValue security_test_id = 1;
+}
+
+message GetSecurityPoliciesWithTestResultsSummaryResponse {
+  message SecurityPolicyWithTestResultsSummary {
+    SecurityPolicy security_policy = 1;
+    google.protobuf.UInt32Value amount_passed_tests = 2;
+    google.protobuf.UInt32Value amount_failed_tests = 3;
+  }
+  repeated SecurityPolicyWithTestResultsSummary summaries = 1;
 }
 
 message CreateSecurityPolicyRequest {
