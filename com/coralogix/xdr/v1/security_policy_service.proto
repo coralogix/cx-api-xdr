@@ -4,6 +4,7 @@ package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "com/coralogix/xdr/v1/security_policy.proto";
+import "com/coralogix/xdr/v1/security_test_filter.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -81,6 +82,7 @@ message GetSecurityPoliciesResponse {
 
 message GetSecurityPoliciesWithTestResultsSummaryRequest {
   optional google.protobuf.StringValue security_test_id = 1;
+  optional SecurityTestFilter filter = 2;
 }
 
 message GetSecurityPoliciesWithTestResultsSummaryResponse {
