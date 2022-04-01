@@ -88,8 +88,8 @@ message GetSecurityPoliciesWithTestResultsSummaryRequest {
 message GetSecurityPoliciesWithTestResultsSummaryResponse {
   message SecurityPolicyWithTestResultsSummary {
     SecurityPolicy security_policy = 1;
-    google.protobuf.UInt32Value amount_passed_tests = 2;
-    google.protobuf.UInt32Value amount_failed_tests = 3;
+    google.protobuf.UInt32Value passed_count = 2;
+    google.protobuf.UInt32Value failed_count = 3;
   }
   repeated SecurityPolicyWithTestResultsSummary summaries = 1;
 }
