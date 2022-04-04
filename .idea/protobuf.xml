@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BufFileManager">
+    <modules>
+      <module>
+        <dependencies>
+          <set>
+            <option value="buf.build/googleapis/googleapis" />
+          </set>
+        </dependencies>
+        <lockedDependencies>
+          <dependency>
+            <commit>8ddecb90872a4ae2af168c11deaf6a47</commit>
+            <owner>googleapis</owner>
+            <remote>buf.build</remote>
+            <repository>googleapis</repository>
+          </dependency>
+        </lockedDependencies>
+        <path>$PROJECT_DIR$</path>
+        <yaml>$PROJECT_DIR$/buf.yaml</yaml>
+      </module>
+    </modules>
+  </component>
+</project>
