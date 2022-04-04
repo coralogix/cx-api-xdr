@@ -6,7 +6,7 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 
 message TestExecution{
-  google.protobuf.StringValue test_id = 1; // UUID
+  google.protobuf.StringValue execution_id = 1; // UUID
   google.protobuf.Timestamp executed_at = 2;
   google.protobuf.StringValue date = 3;
   google.protobuf.UInt32Value passed_count = 4;
