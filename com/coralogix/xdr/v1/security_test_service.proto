@@ -48,7 +48,7 @@ service SecurityTestService {
   rpc GetSecurityTestFilterAggs(GetSecurityTestFilterAggsRequest) returns (GetSecurityTestFilterAggsResponse) {
     option (audit_log_description).description = "get security test filter aggregations - value counts";
     option (google.api.http) = {
-      post: "/xdr/v1/security-test/{security_test_id}/filter-aggregations"
+      post: "/xdr/v1/security-test/{execution_id}/filter-aggregations"
       body: "*"
     };
   }
@@ -71,7 +71,7 @@ message GetSecurityTestsOverviewResponse {
 
 message GetSecurityTestBreakdownRequest {
   // Defaults to latest
-  optional google.protobuf.StringValue security_test_id = 1;
+  optional google.protobuf.StringValue execution_id = 1;
   optional SecurityTestFilter filter = 2;
 }
 
@@ -80,13 +80,13 @@ message GetSecurityTestBreakdownResponse {
 }
 
 message GetSecurityTestResourcesRequest {
-  optional google.protobuf.StringValue security_test_id = 1;
+  optional google.protobuf.StringValue execution_id = 1;
   optional google.protobuf.StringValue test_identity = 2;
   optional SecurityTestFilter filter = 3;
 }
 
 message GetSecurityTestResourcesResponse {
-  google.protobuf.StringValue security_test_id = 1; // UUID
+  google.protobuf.StringValue execution_id = 1; // UUID
   SecurityTestItem security_test_item = 2;
   // This should be optimized with paginated events maybe - leaving that as it's for now
   repeated SecurityTestResource resources = 3;
@@ -101,7 +101,7 @@ message GetTestedResourceResponse {
 }
 
 message GetSecurityTestFilterAggsRequest {
-  google.protobuf.StringValue security_test_id = 1; // UUID
+  google.protobuf.StringValue execution_id = 1; // UUID
   SecurityTestFilter filter = 2;
 }
 
