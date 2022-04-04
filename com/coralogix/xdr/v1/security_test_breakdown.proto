@@ -21,7 +21,7 @@ message SecurityTestItem {
 }
 
 message SecurityTestBreakdown {
-  google.protobuf.StringValue test_id = 1; // UUID
+  google.protobuf.StringValue execution_id = 1; // UUID
   repeated SecurityTestItem security_test_items = 2;
   google.protobuf.Timestamp executed_at = 3;
   google.protobuf.UInt32Value all_count = 4;
