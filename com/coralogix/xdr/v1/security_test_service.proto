@@ -17,7 +17,7 @@ service SecurityTestService {
   rpc GetSecurityTestOverview(GetSecurityTestsOverviewRequest) returns (GetSecurityTestsOverviewResponse) {
     option (audit_log_description).description = "get security tests overview - stats grouped by day";
     option (google.api.http) = {
-      post: "/xdr/v1/test/overview/{security_test_id}"
+      post: "/xdr/v1/test/overview/{execution_id}"
       body: "*"
     };
   }
@@ -25,7 +25,7 @@ service SecurityTestService {
   rpc GetSecurityTestBreakdown(GetSecurityTestBreakdownRequest) returns (GetSecurityTestBreakdownResponse) {
     option (audit_log_description).description = "get security test breakdown";
     option (google.api.http) = {
-      post: "/xdr/v1/test/breakdown/{security_test_id}"
+      post: "/xdr/v1/test/breakdown/{execution_id}"
       body: "*"
     };
   }
@@ -33,7 +33,7 @@ service SecurityTestService {
   rpc GetSecurityTestResources(GetSecurityTestResourcesRequest) returns (GetSecurityTestResourcesResponse) {
     option (audit_log_description).description = "get security test resources";
     option (google.api.http) = {
-      post: "/xdr/v1/test/resources/{security_test_id}"
+      post: "/xdr/v1/test/resources/{execution_id}"
       body: "*"
     };
   }
@@ -41,7 +41,7 @@ service SecurityTestService {
   rpc GetTestedResource(GetTestedResourceRequest) returns (GetTestedResourceResponse) {
     option (audit_log_description).description = "get tested resource with details";
     option (google.api.http) = {
-      get: "/xdr/v1/test/resource/{security_test_id}/{security_rule_id}"
+      get: "/xdr/v1/test/resource/{execution_id}/{security_rule_id}"
     };
   }
 
