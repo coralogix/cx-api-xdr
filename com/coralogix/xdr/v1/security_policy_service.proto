@@ -90,6 +90,7 @@ message GetSecurityPoliciesWithTestResultsSummaryResponse {
     SecurityPolicy security_policy = 1;
     google.protobuf.UInt32Value passed_count = 2;
     google.protobuf.UInt32Value failed_count = 3;
+    google.protobuf.UInt32Value insights_count = 4;
   }
   google.protobuf.StringValue execution_id = 1;
   repeated SecurityPolicyWithTestResultsSummary summaries = 2;
