@@ -4,6 +4,7 @@ package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "com/coralogix/xdr/v1/security_policy.proto";
+import "com/coralogix/xdr/v1/security_test_filter.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -22,6 +23,14 @@ service SecurityPolicyService {
     option (audit_log_description).description = "get security policies";
     option (google.api.http) = {
       post: "/xdr/v1/get_security_policies"
+      body: "*"
+    };
+  }
+
+  rpc GetSecurityPoliciesWithTestResultsSummary(GetSecurityPoliciesWithTestResultsSummaryRequest) returns (GetSecurityPoliciesWithTestResultsSummaryResponse) {
+    option (audit_log_description).description = "get security policies with test results summary";
+    option (google.api.http) = {
+      post: "/xdr/v1/get_security_policies_with_test_results_summary"
       body: "*"
     };
   }
@@ -69,6 +78,22 @@ message GetSecurityPoliciesRequest {
 
 message GetSecurityPoliciesResponse {
   repeated SecurityPolicy data = 1;
+}
+
+message GetSecurityPoliciesWithTestResultsSummaryRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional SecurityTestFilter filter = 2;
+}
+
+message GetSecurityPoliciesWithTestResultsSummaryResponse {
+  message SecurityPolicyWithTestResultsSummary {
+    SecurityPolicy security_policy = 1;
+    google.protobuf.UInt32Value passed_count = 2;
+    google.protobuf.UInt32Value failed_count = 3;
+    google.protobuf.UInt32Value insights_count = 4;
+  }
+  google.protobuf.StringValue execution_id = 1;
+  repeated SecurityPolicyWithTestResultsSummary summaries = 2;
 }
 
 message CreateSecurityPolicyRequest {
