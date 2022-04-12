@@ -1,0 +1,7 @@
+.history
+.cache
+.lib/
+.idea/
+.bsp/
+*.log
+*.iml
