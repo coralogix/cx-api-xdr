@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/security_policy.proto";
+import "com/coralogix/xdr/v1/security_rule.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
+service SecurityPolicyManagementService {
+  rpc ReplaceSecurityData(ReplaceSecurityDataRequest) returns (ReplaceSecurityDataResponse) {
+    option (audit_log_description).description = "Replace security data";
+    option (google.api.http) = {
+      post: "/xdr/management/v1/replace_security_data"
+      body: "*"
+    };
+  }
+}
+
+message ReplaceSecurityDataRequest {
+  message RuleToCategoryAssociation {
+    google.protobuf.StringValue security_rule_id = 1;
+    google.protobuf.StringValue security_policy_category_id = 2;
+  }
+
+  repeated SecurityPolicy policies = 1;
+  repeated SecurityPolicyCategory categories = 2;
+  repeated SecurityRule rules = 3;
+  repeated RuleToCategoryAssociation rule_to_categories = 4;
+}
+
+message ReplaceSecurityDataResponse {
+  // Empty for now.
+}
