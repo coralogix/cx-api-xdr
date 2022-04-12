@@ -10,7 +10,7 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 
-service SecurityPolicyManagementService {
+service SecurityContentManagementService {
   rpc ReplaceSecurityData(ReplaceSecurityDataRequest) returns (ReplaceSecurityDataResponse) {
     option (audit_log_description).description = "Replace security data";
     option (google.api.http) = {
