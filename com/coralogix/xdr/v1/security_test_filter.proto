@@ -15,7 +15,7 @@ message CustomFilterValue {
 
 message LogFilter {
   repeated google.protobuf.StringValue test_identity = 1;
-  repeated google.protobuf.StringValue name = 2;
+  repeated google.protobuf.StringValue resource_name = 2;
   repeated google.protobuf.StringValue provider = 3;
   repeated google.protobuf.StringValue service = 4;
   repeated google.protobuf.StringValue item_type = 5;
@@ -26,7 +26,7 @@ message LogFilter {
 message SecurityRuleFilter {
   // This is defined on security rule level
   repeated google.protobuf.UInt32Value severity = 1;
-  repeated google.protobuf.StringValue name = 2;
+  repeated google.protobuf.StringValue test_name = 2;
 }
 
 message CustomFilterValueCounts {
