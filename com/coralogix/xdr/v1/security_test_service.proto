@@ -5,7 +5,7 @@ package com.coralogix.xdr.v1;
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "com/coralogix/xdr/v1/security_test_breakdown.proto";
 import "com/coralogix/xdr/v1/security_tests_overview.proto";
-import "com/coralogix/xdr/v1/security_test_resource.proto";
+import "com/coralogix/xdr/v1/security_test_result.proto";
 import "com/coralogix/xdr/v1/security_test_filter.proto";
 
 import "google/protobuf/wrappers.proto";
@@ -30,18 +30,18 @@ service SecurityTestService {
     };
   }
 
-  rpc GetSecurityTestResources(GetSecurityTestResourcesRequest) returns (GetSecurityTestResourcesResponse) {
-    option (audit_log_description).description = "get security test resources";
+  rpc GetSecurityTestResults(GetSecurityTestResultsRequest) returns (GetSecurityTestResultsResponse) {
+    option (audit_log_description).description = "get security test results";
     option (google.api.http) = {
-      post: "/xdr/v1/test/resources/{execution_id}"
+      post: "/xdr/v1/test/results/{execution_id}"
       body: "*"
     };
   }
 
-  rpc GetTestedResource(GetTestedResourceRequest) returns (GetTestedResourceResponse) {
-    option (audit_log_description).description = "get tested resource with details";
+  rpc GetTestSubject(GetTestSubjectRequest) returns (GetTestSubjectResponse) {
+    option (audit_log_description).description = "get test subject details";
     option (google.api.http) = {
-      get: "/xdr/v1/test/resource/{execution_id}/{security_rule_id}"
+      get: "/xdr/v1/test/subject/{id}"
     };
   }
 
@@ -79,25 +79,25 @@ message GetSecurityTestBreakdownResponse {
   SecurityTestBreakdown test_breakdown = 1;
 }
 
-message GetSecurityTestResourcesRequest {
+message GetSecurityTestResultsRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional google.protobuf.StringValue test_identity = 2;
   optional SecurityTestFilter filter = 3;
 }
 
-message GetSecurityTestResourcesResponse {
+message GetSecurityTestResultsResponse {
   google.protobuf.StringValue execution_id = 1; // UUID
   SecurityTestItem security_test_item = 2;
   // This should be optimized with paginated events maybe - leaving that as it's for now
-  repeated SecurityTestResource resources = 3;
+  repeated SecurityTestResult results = 3;
 }
 
-message GetTestedResourceRequest {
+message GetTestSubjectRequest {
   optional google.protobuf.StringValue id = 1;
 }
 
-message GetTestedResourceResponse {
-  TestedResource resource = 1;
+message GetTestSubjectResponse {
+  TestSubjectDetails subject_details = 1;
 }
 
 message GetSecurityTestFilterAggsRequest {

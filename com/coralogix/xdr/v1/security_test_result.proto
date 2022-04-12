@@ -6,7 +6,7 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 
-message TestedResource {
+message TestSubjectDetails {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue provider = 3;
@@ -21,7 +21,7 @@ enum SecurityTestResultStatus {
   FAILED = 1;
 }
 
-message SecurityTestResource {
-  TestedResource resource = 1;
+message SecurityTestResult {
+  TestSubjectDetails subject_details = 1;
   SecurityTestResultStatus result_status = 2;
 }
