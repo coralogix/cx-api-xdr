@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package com.coralogix.xdr.v1;
 
-import "com/coralogix/xdr/v1/security_policy.proto";
-
 import "google/protobuf/wrappers.proto";
 
 // This is supposed to be provided from backoffice
