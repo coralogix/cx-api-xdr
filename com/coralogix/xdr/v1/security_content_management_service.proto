@@ -51,7 +51,7 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue item_type = 12;
   }
 
-  repeated PolicyWithCategories policy_with_categories = 1;
+  repeated PolicyWithCategories policies_with_categories = 1;
   repeated SecurityRuleContent rules = 2;
 }
 
