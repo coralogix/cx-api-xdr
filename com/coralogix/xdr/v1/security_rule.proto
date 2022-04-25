@@ -4,6 +4,13 @@ package com.coralogix.xdr.v1;
 
 import "google/protobuf/wrappers.proto";
 
+message DynamicAttribute {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue security_rule_id = 2;
+  google.protobuf.StringValue json_path = 3;
+  google.protobuf.StringValue title = 4;
+}
+
 // This is supposed to be provided from backoffice
 message SecurityRule {
   google.protobuf.StringValue id = 1;
@@ -19,4 +26,5 @@ message SecurityRule {
   google.protobuf.StringValue recommendation_message = 11;
   google.protobuf.StringValue service = 12;
   google.protobuf.StringValue item_type = 13;
+  repeated DynamicAttribute dynamic_attributes = 14;
 }

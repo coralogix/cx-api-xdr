@@ -53,6 +53,32 @@ service SecurityRuleManagementService {
     };
   }
 
+  rpc CreateDynamicAttribute(CreateSecurityRuleRequest) returns (CreateSecurityRuleResponse) {
+    option (audit_log_description).description = "create dynamic attribute for security rule";
+    option (google.api.http) = {
+      post: "/xdr/management/v1/dynamic_attribute"
+      body: "*"
+      response_body: "dynamic_attribute"
+    };
+  }
+
+  rpc UpdateDynamicAttribute(UpdateDynamicAttributeRequest) returns (UpdateDynamicAttributeResponse) {
+    option (audit_log_description).description = "update dynamic attribute for security rule";
+    option (google.api.http) = {
+      put: "/xdr/management/v1/dynamic_attribute"
+      body: "*"
+      response_body: "dynamic_attribute"
+    };
+  }
+
+  rpc DeleteDynamicAttribute(DeleteDynamicAttributeRequest) returns (DeleteDynamicAttributeResponse) {
+    option (audit_log_description).description = "delete dynamic attribute";
+    option (google.api.http) = {
+      delete: "/xdr/management/v1/dynamic_attribute/{id}"
+      body: "*"
+    };
+  }
+
   rpc AssignSecurityRuleToSecurityPolicyCategory(AssignSecurityRuleToSecurityPolicyCategoryRequest) returns (AssignSecurityRuleToSecurityPolicyCategoryResponse) {
     option (audit_log_description).description = "assign security rule to security policy category";
     option (google.api.http) = {
@@ -148,6 +174,34 @@ message DeleteSecurityRuleRequest {
 }
 
 message DeleteSecurityRuleResponse {
+  // Empty
+}
+
+message CreateDynamicAttributeRequest {
+  google.protobuf.StringValue security_rule_id = 1;
+  google.protobuf.StringValue json_path = 2;
+  google.protobuf.StringValue title = 3;
+}
+
+message CreateDynamicAttributeResponse {
+  DynamicAttribute dynamic_attribute = 1;
+}
+
+message UpdateDynamicAttributeRequest {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue json_path = 2;
+  google.protobuf.StringValue title = 3;
+}
+
+message UpdateDynamicAttributeResponse {
+  DynamicAttribute dynamic_attribute = 1;
+}
+
+message DeleteDynamicAttributeRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message DeleteDynamicAttributeResponse {
   // Empty
 }
 
