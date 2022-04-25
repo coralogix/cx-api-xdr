@@ -43,12 +43,8 @@ message ReplaceSecurityDataRequest {
     google.protobuf.UInt32Value severity = 4;
     google.protobuf.StringValue cloud_platform = 5;
     google.protobuf.StringValue source = 6;
-    google.protobuf.StringValue current_configuration = 7;
-    google.protobuf.StringValue expected_configuration = 8;
-    google.protobuf.StringValue configuration_link = 9;
-    google.protobuf.StringValue recommendation_message = 10;
-    google.protobuf.StringValue service = 11;
-    google.protobuf.StringValue item_type = 12;
+    google.protobuf.StringValue service = 7;
+    google.protobuf.StringValue item_type = 8;
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
