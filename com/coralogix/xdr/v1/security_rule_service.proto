@@ -186,8 +186,9 @@ message DeleteSecurityRuleResponse {
 
 message CreateDynamicAttributeRequest {
   google.protobuf.StringValue security_rule_id = 1;
-  google.protobuf.StringValue json_path = 2;
+  repeated google.protobuf.StringValue json_paths = 2;
   google.protobuf.StringValue title = 3;
+  google.protobuf.UInt32Value column_index = 4;
 }
 
 message CreateDynamicAttributeResponse {
@@ -204,8 +205,9 @@ message GetDynamicAttributeResponse {
 
 message UpdateDynamicAttributeRequest {
   google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue json_path = 2;
+  repeated google.protobuf.StringValue json_paths = 2;
   google.protobuf.StringValue title = 3;
+  google.protobuf.UInt32Value column_index = 4;
 }
 
 message UpdateDynamicAttributeResponse {

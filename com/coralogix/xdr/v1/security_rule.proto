@@ -9,6 +9,7 @@ message DynamicAttribute {
   google.protobuf.StringValue security_rule_id = 2;
   repeated google.protobuf.StringValue json_paths = 3;
   google.protobuf.StringValue title = 4;
+  google.protobuf.UInt32Value column_index = 5;
 }
 
 // This is supposed to be provided from backoffice
