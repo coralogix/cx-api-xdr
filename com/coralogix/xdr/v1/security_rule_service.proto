@@ -17,14 +17,6 @@ service SecurityRuleService {
     };
   }
 
-  // Not sure if this is necessary as they're already contained in the security rule type
-  rpc GetSecurityRuleDynamicAttributes(GetSecurityRuleDynamicAttributesRequest) returns (GetSecurityRuleDynamicAttributesResponse) {
-    option (audit_log_description).description = "get security rule dynamic attributes";
-    option (google.api.http) = {
-      get: "/xdr/v1/security_rule/{id}/dynamic_attributes"
-    };
-  }
-
   rpc GetSecurityRules(GetSecurityRulesRequest) returns (GetSecurityRulesResponse) {
     option (audit_log_description).description = "get security rules";
     option (google.api.http) = {
@@ -61,7 +53,7 @@ service SecurityRuleManagementService {
     };
   }
 
-  rpc CreateDynamicAttribute(CreateSecurityRuleRequest) returns (CreateSecurityRuleResponse) {
+  rpc CreateDynamicAttribute(CreateDynamicAttributeRequest) returns (CreateDynamicAttributeResponse) {
     option (audit_log_description).description = "create dynamic attribute for security rule";
     option (google.api.http) = {
       post: "/xdr/management/v1/dynamic_attribute"
@@ -117,14 +109,6 @@ message GetSecurityRuleRequest {
 
 message GetSecurityRuleResponse {
   optional SecurityRule rule = 1;
-}
-
-message GetSecurityRuleDynamicAttributesRequest {
-  google.protobuf.StringValue security_rule_id = 1;
-}
-
-message GetSecurityRuleDynamicAttributesResponse {
-  repeated DynamicAttribute dynamic_attributes = 1;
 }
 
 message GetSecurityRulesRequest {
