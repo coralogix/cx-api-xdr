@@ -7,7 +7,7 @@ import "google/protobuf/wrappers.proto";
 message DynamicAttribute {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue security_rule_id = 2;
-  google.protobuf.StringValue json_path = 3;
+  repeated google.protobuf.StringValue json_paths = 3;
   google.protobuf.StringValue title = 4;
 }
 
