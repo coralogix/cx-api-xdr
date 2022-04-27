@@ -3,8 +3,6 @@ syntax = "proto3";
 package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
-import "com/coralogix/xdr/v1/security_policy.proto";
-import "com/coralogix/xdr/v1/security_rule.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -21,15 +19,37 @@ service SecurityContentManagementService {
 }
 
 message ReplaceSecurityDataRequest {
-  message RuleToCategoryAssociation {
-    google.protobuf.StringValue security_rule_id = 1;
-    google.protobuf.StringValue security_policy_category_id = 2;
+  message SecurityPolicyContent {
+    google.protobuf.StringValue name = 1;
+    google.protobuf.StringValue description = 2;
   }
 
-  repeated SecurityPolicy policies = 1;
-  repeated SecurityPolicyCategory categories = 2;
-  repeated SecurityRule rules = 3;
-  repeated RuleToCategoryAssociation rule_to_categories = 4;
+  message SecurityPolicyCategoryContent {
+    google.protobuf.StringValue name = 1;
+    google.protobuf.StringValue description = 2;
+    repeated google.protobuf.StringValue referenced_paragraphs = 3;
+    repeated google.protobuf.StringValue test_identities = 4;
+  }
+
+  message PolicyWithCategories {
+    SecurityPolicyContent policy = 1;
+    repeated SecurityPolicyCategoryContent categories = 2;
+  }
+
+  message SecurityRuleContent {
+    google.protobuf.StringValue test_identity = 1;
+    google.protobuf.StringValue title = 2;
+    google.protobuf.StringValue rule_type = 3;
+    google.protobuf.UInt32Value severity = 4;
+    google.protobuf.StringValue cloud_platform = 5;
+    google.protobuf.StringValue source = 6;
+    google.protobuf.StringValue recommendation_message = 7;
+    google.protobuf.StringValue service = 8;
+    google.protobuf.StringValue item_type = 9;
+  }
+
+  repeated PolicyWithCategories policies_with_categories = 1;
+  repeated SecurityRuleContent rules = 2;
 }
 
 message ReplaceSecurityDataResponse {
