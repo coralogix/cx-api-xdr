@@ -146,8 +146,7 @@ message UpdateSecurityRuleResponse {
 }
 
 message DeleteSecurityRuleRequest {
-  option (scalapb.message).no_box = true;
-  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue id = 1 [(scalapb.field).no_box = true];
 }
 
 message DeleteSecurityRuleResponse {
@@ -164,9 +163,8 @@ message AssignSecurityRuleToSecurityPolicyCategoryResponse {
 }
 
 message UnassignSecurityRuleToSecurityPolicyCategoryRequest {
-  option (scalapb.message).no_box = true;
-  google.protobuf.StringValue security_rule_id = 1;
-  google.protobuf.StringValue security_policy_category_id = 2;
+  google.protobuf.StringValue security_rule_id = 1 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue security_policy_category_id = 2 [(scalapb.field).no_box = true];
 }
 
 message UnassignSecurityRuleToSecurityPolicyCategoryResponse {

@@ -10,18 +10,16 @@ import "com/coralogix/xdr/v1/security_rule.proto";
 import "scalapb/scalapb.proto";
 
 message CountBySeverity {
-  option (scalapb.message).no_box = true;
-  google.protobuf.UInt32Value low = 1;
-  google.protobuf.UInt32Value medium = 2;
-  google.protobuf.UInt32Value high = 3;
-  google.protobuf.UInt32Value critical = 4;
+  google.protobuf.UInt32Value low = 1 [(scalapb.field).no_box = true];
+  google.protobuf.UInt32Value medium = 2 [(scalapb.field).no_box = true];
+  google.protobuf.UInt32Value high = 3 [(scalapb.field).no_box = true];
+  google.protobuf.UInt32Value critical = 4 [(scalapb.field).no_box = true];
 }
 
 message SecurityTestItem {
-  option (scalapb.message).no_box = true;
-  SecurityRule rule = 1;
-  google.protobuf.UInt32Value passed_count = 2;
-  google.protobuf.UInt32Value failed_count = 3;
+  SecurityRule rule = 1 [(scalapb.field).no_box = true];
+  google.protobuf.UInt32Value passed_count = 2 [(scalapb.field).no_box = true];
+  google.protobuf.UInt32Value failed_count = 3 [(scalapb.field).no_box = true];
 }
 
 message SecurityTestBreakdown {
