@@ -66,7 +66,7 @@ message GetSecurityPolicyCategoryResponse {
 }
 
 message GetSecurityPolicyCategoriesRequest {
-  google.protobuf.StringValue security_policy_id = 1 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue security_policy_id = 1;
 }
 
 message GetSecurityPolicyCategoriesResponse {
@@ -81,7 +81,7 @@ message CreateSecurityPolicyCategoryRequest {
 }
 
 message CreateSecurityPolicyCategoryResponse {
-  SecurityPolicyCategory security_policy_category = 1 [(scalapb.field).no_box = true];
+  SecurityPolicyCategory security_policy_category = 1;
 }
 
 message UpdateSecurityPolicyCategoryRequest {
@@ -93,7 +93,7 @@ message UpdateSecurityPolicyCategoryRequest {
 }
 
 message UpdateSecurityPolicyCategoryResponse {
-  SecurityPolicyCategory security_policy_category = 1 [(scalapb.field).no_box = true];
+  SecurityPolicyCategory security_policy_category = 1;
 }
 
 message DeleteSecurityPolicyCategoryRequest {

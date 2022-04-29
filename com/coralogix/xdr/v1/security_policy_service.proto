@@ -104,7 +104,7 @@ message CreateSecurityPolicyRequest {
 }
 
 message CreateSecurityPolicyResponse {
-  SecurityPolicy security_policy = 1 [(scalapb.field).no_box = true];
+  SecurityPolicy security_policy = 1;
 }
 
 message UpdateSecurityPolicyRequest {
@@ -114,7 +114,7 @@ message UpdateSecurityPolicyRequest {
 }
 
 message UpdateSecurityPolicyResponse {
-  SecurityPolicy security_policy = 1 [(scalapb.field).no_box = true];
+  SecurityPolicy security_policy = 1;
 }
 
 message DeleteSecurityPolicyRequest {
