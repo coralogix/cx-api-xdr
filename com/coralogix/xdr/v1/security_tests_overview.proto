@@ -5,6 +5,8 @@ package com.coralogix.xdr.v1;
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 
+import "scalapb/scalapb.proto";
+
 message TestExecution{
   option (scalapb.message).no_box = true;
   google.protobuf.StringValue execution_id = 1; // UUID
