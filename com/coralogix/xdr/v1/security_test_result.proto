@@ -6,14 +6,16 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 
+import "scalapb/scalapb.proto";
+
 message TestSubjectDetails {
-  google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue name = 2;
-  google.protobuf.StringValue provider = 3;
-  google.protobuf.StringValue service = 4;
-  google.protobuf.StringValue item_type = 5;
-  optional google.protobuf.Timestamp creation_date = 6;
-  google.protobuf.Struct additional_data = 7;
+  google.protobuf.StringValue id = 1 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue name = 2 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue provider = 3 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue service = 4 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue item_type = 5 [(scalapb.field).no_box = true];
+  google.protobuf.Timestamp creation_date = 6;
+  google.protobuf.Struct additional_data = 7 [(scalapb.field).no_box = true];
 }
 
 enum SecurityTestResultStatus {

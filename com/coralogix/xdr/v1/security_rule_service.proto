@@ -9,6 +9,8 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 
+import "scalapb/scalapb.proto";
+
 service SecurityRuleService {
   rpc GetSecurityRule(GetSecurityRuleRequest) returns (GetSecurityRuleResponse) {
     option (audit_log_description).description = "get security rule";
@@ -71,11 +73,11 @@ service SecurityRuleManagementService {
 }
 
 message GetSecurityRuleRequest {
-  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue id = 1 [(scalapb.field).no_box = true];
 }
 
 message GetSecurityRuleResponse {
-  optional SecurityRule rule = 1;
+  SecurityRule rule = 1;
 }
 
 message GetSecurityRulesRequest {
@@ -91,8 +93,8 @@ message GetSecurityRulesRequest {
       repeated SortModel sort_model = 1;
     }
 
-    google.protobuf.UInt32Value page_index = 1;
-    google.protobuf.UInt32Value page_size = 2;
+    google.protobuf.UInt32Value page_index = 1 [(scalapb.field).no_box = true];
+    google.protobuf.UInt32Value page_size = 2 [(scalapb.field).no_box = true];
     QueryParams query_params = 3;
   }
 
@@ -105,18 +107,18 @@ message GetSecurityRulesResponse {
 }
 
 message CreateSecurityRuleRequest {
-  google.protobuf.StringValue test_identity = 1;
-  google.protobuf.StringValue title = 2;
-  google.protobuf.StringValue rule_type = 3;
-  google.protobuf.UInt32Value severity = 4;
+  google.protobuf.StringValue test_identity = 1 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue title = 2 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue rule_type = 3 [(scalapb.field).no_box = true];
+  google.protobuf.UInt32Value severity = 4 [(scalapb.field).no_box = true];
   google.protobuf.StringValue cloud_platform = 5;
   google.protobuf.StringValue source = 6;
-  optional google.protobuf.StringValue current_configuration = 7;
-  optional google.protobuf.StringValue expected_configuration = 8;
-  optional google.protobuf.StringValue configuration_link = 9;
-  optional google.protobuf.StringValue recommendation_message = 10;
-  optional google.protobuf.StringValue service = 11;
-  optional google.protobuf.StringValue item_type = 12;
+  google.protobuf.StringValue current_configuration = 7;
+  google.protobuf.StringValue expected_configuration = 8;
+  google.protobuf.StringValue configuration_link = 9;
+  google.protobuf.StringValue recommendation_message = 10;
+  google.protobuf.StringValue service = 11;
+  google.protobuf.StringValue item_type = 12;
 }
 
 message CreateSecurityRuleResponse {
@@ -124,19 +126,19 @@ message CreateSecurityRuleResponse {
 }
 
 message UpdateSecurityRuleRequest {
-  google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue test_identity = 2;
-  google.protobuf.StringValue title = 3;
-  google.protobuf.StringValue rule_type = 4;
-  google.protobuf.UInt32Value severity = 5;
+  google.protobuf.StringValue id = 1 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue test_identity = 2 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue title = 3 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue rule_type = 4 [(scalapb.field).no_box = true];
+  google.protobuf.UInt32Value severity = 5 [(scalapb.field).no_box = true];
   google.protobuf.StringValue cloud_platform = 6;
   google.protobuf.StringValue source = 7;
-  optional google.protobuf.StringValue current_configuration = 8;
-  optional google.protobuf.StringValue expected_configuration = 9;
-  optional google.protobuf.StringValue configuration_link = 10;
-  optional google.protobuf.StringValue recommendation_message = 11;
-  optional google.protobuf.StringValue service = 12;
-  optional google.protobuf.StringValue item_type = 13;
+  google.protobuf.StringValue current_configuration = 8;
+  google.protobuf.StringValue expected_configuration = 9;
+  google.protobuf.StringValue configuration_link = 10;
+  google.protobuf.StringValue recommendation_message = 11;
+  google.protobuf.StringValue service = 12;
+  google.protobuf.StringValue item_type = 13;
 }
 
 message UpdateSecurityRuleResponse {
@@ -144,6 +146,7 @@ message UpdateSecurityRuleResponse {
 }
 
 message DeleteSecurityRuleRequest {
+  option (scalapb.message).no_box = true;
   google.protobuf.StringValue id = 1;
 }
 
@@ -152,8 +155,8 @@ message DeleteSecurityRuleResponse {
 }
 
 message AssignSecurityRuleToSecurityPolicyCategoryRequest {
-  google.protobuf.StringValue security_rule_id = 1;
-  google.protobuf.StringValue security_policy_category_id = 2;
+  google.protobuf.StringValue security_rule_id = 1 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue security_policy_category_id = 2 [(scalapb.field).no_box = true];
 }
 
 message AssignSecurityRuleToSecurityPolicyCategoryResponse {
@@ -161,6 +164,7 @@ message AssignSecurityRuleToSecurityPolicyCategoryResponse {
 }
 
 message UnassignSecurityRuleToSecurityPolicyCategoryRequest {
+  option (scalapb.message).no_box = true;
   google.protobuf.StringValue security_rule_id = 1;
   google.protobuf.StringValue security_policy_category_id = 2;
 }

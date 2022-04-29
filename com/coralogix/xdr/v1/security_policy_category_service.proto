@@ -8,6 +8,7 @@ import "com/coralogix/xdr/v1/security_policy.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
+import "scalapb/scalapb.proto";
 
 service SecurityPolicyCategoryService {
   rpc GetSecurityPolicyCategory(GetSecurityPolicyCategoryRequest) returns (GetSecurityPolicyCategoryResponse) {
@@ -57,15 +58,16 @@ service SecurityPolicyCategoryManagementService {
 }
 
 message GetSecurityPolicyCategoryRequest {
-  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue id = 1 [(scalapb.field).no_box = true];
 }
 
 message GetSecurityPolicyCategoryResponse {
+  option (scalapb.message).no_box = true;
   SecurityPolicyCategory security_policy_category = 1;
 }
 
 message GetSecurityPolicyCategoriesRequest {
-  google.protobuf.StringValue security_policy_id = 1;
+  google.protobuf.StringValue security_policy_id = 1 [(scalapb.field).no_box = true];
 }
 
 message GetSecurityPolicyCategoriesResponse {
@@ -81,6 +83,7 @@ message CreateSecurityPolicyCategoryRequest {
 }
 
 message CreateSecurityPolicyCategoryResponse {
+  option (scalapb.message).no_box = true;
   SecurityPolicyCategory security_policy_category = 1;
 }
 
@@ -93,6 +96,7 @@ message UpdateSecurityPolicyCategoryRequest {
 }
 
 message UpdateSecurityPolicyCategoryResponse {
+  option (scalapb.message).no_box = true;
   SecurityPolicyCategory security_policy_category = 1;
 }
 

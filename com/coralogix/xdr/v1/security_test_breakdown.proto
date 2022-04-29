@@ -7,7 +7,10 @@ import "google/protobuf/timestamp.proto";
 
 import "com/coralogix/xdr/v1/security_rule.proto";
 
+import "scalapb/scalapb.proto";
+
 message CountBySeverity {
+  option (scalapb.message).no_box = true;
   google.protobuf.UInt32Value low = 1;
   google.protobuf.UInt32Value medium = 2;
   google.protobuf.UInt32Value high = 3;
@@ -15,15 +18,16 @@ message CountBySeverity {
 }
 
 message SecurityTestItem {
+  option (scalapb.message).no_box = true;
   SecurityRule rule = 1;
   google.protobuf.UInt32Value passed_count = 2;
   google.protobuf.UInt32Value failed_count = 3;
 }
 
 message SecurityTestBreakdown {
-  google.protobuf.StringValue execution_id = 1; // UUID
+  google.protobuf.StringValue execution_id = 1 [(scalapb.field).no_box = true]; // UUID
   repeated SecurityTestItem security_test_items = 2;
-  google.protobuf.Timestamp executed_at = 3;
+  google.protobuf.Timestamp executed_at = 3 [(scalapb.field).no_box = true];
   google.protobuf.UInt32Value all_count = 4;
-  CountBySeverity count_by_severity = 5;
+  CountBySeverity count_by_severity = 5 [(scalapb.field).no_box = true];
 }

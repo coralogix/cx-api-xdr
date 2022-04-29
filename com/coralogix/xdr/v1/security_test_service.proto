@@ -12,6 +12,8 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 
+import "scalapb/scalapb.proto";
+
 service SecurityTestService {
   // Maybe it would be better to be a post in the future - if we decide to support pagination
   rpc GetSecurityTestOverview(GetSecurityTestsOverviewRequest) returns (GetSecurityTestsOverviewResponse) {
@@ -62,38 +64,38 @@ service SecurityTestService {
 }
 
 message GetSecurityTestsOverviewRequest {
-  optional SecurityTestFilter filter = 1;
+  SecurityTestFilter filter = 1;
 }
 
 message GetSecurityTestsOverviewResponse {
-  SecurityTestsOverview overview = 1;
+  SecurityTestsOverview overview = 1 [(scalapb.field).no_box = true];
 }
 
 message GetSecurityTestBreakdownRequest {
   // Defaults to latest
-  optional google.protobuf.StringValue execution_id = 1;
-  optional SecurityTestFilter filter = 2;
+  google.protobuf.StringValue execution_id = 1;
+  SecurityTestFilter filter = 2;
 }
 
 message GetSecurityTestBreakdownResponse {
-  SecurityTestBreakdown test_breakdown = 1;
+  SecurityTestBreakdown test_breakdown = 1 [(scalapb.field).no_box = true];
 }
 
 message GetSecurityTestResultsRequest {
-  optional google.protobuf.StringValue execution_id = 1;
-  optional google.protobuf.StringValue test_identity = 2;
-  optional SecurityTestFilter filter = 3;
+  google.protobuf.StringValue execution_id = 1 [(scalapb.field).no_box = true];
+  google.protobuf.StringValue test_identity = 2 [(scalapb.field).no_box = true];
+  SecurityTestFilter filter = 3;
 }
 
 message GetSecurityTestResultsResponse {
-  google.protobuf.StringValue execution_id = 1; // UUID
-  SecurityTestItem security_test_item = 2;
+  google.protobuf.StringValue execution_id = 1 [(scalapb.field).no_box = true]; // UUID
+  SecurityTestItem security_test_item = 2 [(scalapb.field).no_box = true];
   // This should be optimized with paginated events maybe - leaving that as it's for now
   repeated SecurityTestResult results = 3;
 }
 
 message GetTestSubjectRequest {
-  optional google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue id = 1;
 }
 
 message GetTestSubjectResponse {

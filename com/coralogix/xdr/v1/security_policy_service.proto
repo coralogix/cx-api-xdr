@@ -10,6 +10,8 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 
+import "scalapb/scalapb.proto";
+
 service SecurityPolicyService {
   rpc GetSecurityPolicy(GetSecurityPolicyRequest) returns (GetSecurityPolicyResponse) {
     option (audit_log_description).description = "get security policy";
@@ -65,11 +67,12 @@ service SecurityPolicyManagementService {
 }
 
 message GetSecurityPolicyRequest {
+  option (scalapb.message).no_box = true;
   google.protobuf.StringValue id = 1;
 }
 
 message GetSecurityPolicyResponse {
-  optional SecurityPolicy security_policy = 1;
+  SecurityPolicy security_policy = 1;
 }
 
 message GetSecurityPoliciesRequest {
@@ -87,35 +90,41 @@ message GetSecurityPoliciesWithTestResultsSummaryRequest {
 
 message GetSecurityPoliciesWithTestResultsSummaryResponse {
   message SecurityPolicyWithTestResultsSummary {
+    option (scalapb.message).no_box = true;
     SecurityPolicy security_policy = 1;
     google.protobuf.UInt32Value passed_count = 2;
     google.protobuf.UInt32Value failed_count = 3;
     google.protobuf.UInt32Value insights_count = 4;
   }
-  google.protobuf.StringValue execution_id = 1;
+  google.protobuf.StringValue execution_id = 1 [(scalapb.field).no_box = true];
   repeated SecurityPolicyWithTestResultsSummary summaries = 2;
 }
 
 message CreateSecurityPolicyRequest {
+  option (scalapb.message).no_box = true;
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue description = 2;
 }
 
 message CreateSecurityPolicyResponse {
+  option (scalapb.message).no_box = true;
   SecurityPolicy security_policy = 1;
 }
 
 message UpdateSecurityPolicyRequest {
+  option (scalapb.message).no_box = true;
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
 }
 
 message UpdateSecurityPolicyResponse {
+  option (scalapb.message).no_box = true;
   SecurityPolicy security_policy = 1;
 }
 
 message DeleteSecurityPolicyRequest {
+  option (scalapb.message).no_box = true;
   google.protobuf.StringValue id = 1;
 }
 
