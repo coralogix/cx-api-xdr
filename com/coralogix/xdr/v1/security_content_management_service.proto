@@ -36,6 +36,12 @@ message ReplaceSecurityDataRequest {
     repeated SecurityPolicyCategoryContent categories = 2;
   }
 
+  message DynamicAttributeContent {
+    repeated google.protobuf.StringValue json_paths = 1;
+    google.protobuf.StringValue title = 2;
+    google.protobuf.UInt32Value column_index = 3;
+  }
+
   message SecurityRuleContent {
     google.protobuf.StringValue test_identity = 1;
     google.protobuf.StringValue title = 2;
@@ -46,6 +52,7 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue recommendation_message = 7;
     google.protobuf.StringValue service = 8;
     google.protobuf.StringValue item_type = 9;
+    repeated DynamicAttributeContent dynamic_attributes = 10;
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
