@@ -12,6 +12,11 @@ message DynamicAttribute {
   google.protobuf.UInt32Value column_index = 5;
 }
 
+message RuleCategory {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue title = 2;
+}
+
 // This is supposed to be provided from backoffice
 message SecurityRule {
   google.protobuf.StringValue id = 1;
@@ -28,4 +33,5 @@ message SecurityRule {
   google.protobuf.StringValue service = 12;
   google.protobuf.StringValue item_type = 13;
   repeated DynamicAttribute dynamic_attributes = 14;
+  RuleCategory category = 15;
 }
