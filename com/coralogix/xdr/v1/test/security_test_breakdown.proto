@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package com.coralogix.xdr.v1;
+package com.coralogix.xdr.v1.test;
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 
-import "com/coralogix/xdr/v1/security_rule.proto";
+import "com/coralogix/xdr/v1/rule/security_rule.proto";
 
 message CountBySeverity {
   google.protobuf.UInt32Value low = 1;
@@ -15,7 +15,7 @@ message CountBySeverity {
 }
 
 message SecurityTestItem {
-  SecurityRule rule = 1;
+  com.coralogix.xdr.v1.rule.SecurityRule rule = 1;
   google.protobuf.UInt32Value passed_count = 2;
   google.protobuf.UInt32Value failed_count = 3;
 }
