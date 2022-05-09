@@ -62,7 +62,6 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue service = 8;
     google.protobuf.StringValue item_type = 9;
     repeated DynamicAttributeContent dynamic_attributes = 10;
-    SecurityRuleCategoryContent category = 11;
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
