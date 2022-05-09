@@ -31,7 +31,7 @@ message ReplaceSecurityDataRequest {
   }
 
   message RuleCategoryWithRules {
-    SecurityRuleCategoryContent ruleCategory = 1;
+    SecurityRuleCategoryContent rule_category = 1;
     repeated SecurityRuleContent rules = 2;
   }
 
