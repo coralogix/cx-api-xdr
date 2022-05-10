@@ -30,7 +30,7 @@ message ReplaceSecurityDataRequest {
     repeated SecurityPolicyCategoryContent categories = 2;
   }
 
-  message RuleGroupsWithRules {
+  message RuleGroupWithRules {
     SecurityRuleGroupContent rule_group = 1;
     repeated SecurityRuleContent rules = 2;
   }
@@ -65,7 +65,7 @@ message ReplaceSecurityDataRequest {
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
-  repeated RuleGroupsWithRules rule_groups_with_rules = 2;
+  repeated RuleGroupWithRules rule_groups_with_rules = 2;
 }
 
 message ReplaceSecurityDataResponse {
