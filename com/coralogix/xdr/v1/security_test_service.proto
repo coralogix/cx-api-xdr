@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.xdr.v1;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/security_rule.proto";
 import "com/coralogix/xdr/v1/security_test_breakdown.proto";
 import "com/coralogix/xdr/v1/security_tests_overview.proto";
 import "com/coralogix/xdr/v1/security_test_result.proto";
@@ -115,13 +116,11 @@ message GetFilterableFieldsRequest {
 
 message GetFilterableFieldsResponse {
 
-  message PossibleValues {
-    repeated google.protobuf.StringValue values = 1;
+  message DynamicAttributes {
+    repeated DynamicAttribute dynamic_attributes = 1;
   }
 
-  map<string, PossibleValues> provider_filters = 1;
-  map<string, PossibleValues> service_filters = 2;
-  map<string, PossibleValues> security_rule_filters = 3;
-
-
+  map<string, DynamicAttributes> provider_filters = 1;
+  map<string, DynamicAttributes> service_filters = 2;
+  map<string, DynamicAttributes> security_rule_filters = 3;
 }
