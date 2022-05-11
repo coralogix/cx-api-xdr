@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.test;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+message TestSubjectDetails {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue provider = 3;
+  google.protobuf.StringValue service = 4;
+  google.protobuf.StringValue item_type = 5;
+  optional google.protobuf.Timestamp creation_date = 6;
+  google.protobuf.Struct additional_data = 7;
+  google.protobuf.Struct dynamic_attributes_data = 8;
+}
+
+enum SecurityTestResultStatus {
+  SUCCESSFUL = 0;
+  FAILED = 1;
+}
+
+message SecurityTestResult {
+  TestSubjectDetails subject_details = 1;
+  SecurityTestResultStatus result_status = 2;
+}

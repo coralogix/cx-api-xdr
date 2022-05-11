@@ -1,0 +1,126 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.test;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/rule/security_rule.proto";
+import "com/coralogix/xdr/v1/test/security_test_breakdown.proto";
+import "com/coralogix/xdr/v1/test/security_tests_overview.proto";
+import "com/coralogix/xdr/v1/test/security_test_result.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
+service SecurityTestService {
+  // Maybe it would be better to be a post in the future - if we decide to support pagination
+  rpc GetSecurityTestOverview(GetSecurityTestsOverviewRequest) returns (GetSecurityTestsOverviewResponse) {
+    option (audit_log_description).description = "get security tests overview - stats grouped by day";
+    option (google.api.http) = {
+      post: "/xdr/v1/test/overview/{execution_id}"
+      body: "*"
+    };
+  }
+
+  rpc GetSecurityTestBreakdown(GetSecurityTestBreakdownRequest) returns (GetSecurityTestBreakdownResponse) {
+    option (audit_log_description).description = "get security test breakdown";
+    option (google.api.http) = {
+      post: "/xdr/v1/test/breakdown/{execution_id}"
+      body: "*"
+    };
+  }
+
+  rpc GetSecurityTestResults(GetSecurityTestResultsRequest) returns (GetSecurityTestResultsResponse) {
+    option (audit_log_description).description = "get security test results";
+    option (google.api.http) = {
+      post: "/xdr/v1/test/results/{execution_id}"
+      body: "*"
+    };
+  }
+
+  rpc GetTestSubject(GetTestSubjectRequest) returns (GetTestSubjectResponse) {
+    option (audit_log_description).description = "get test subject details";
+    option (google.api.http) = {
+      get: "/xdr/v1/test/subject/{id}"
+    };
+  }
+
+  rpc GetSecurityTestFilterAggs(GetSecurityTestFilterAggsRequest) returns (GetSecurityTestFilterAggsResponse) {
+    option (audit_log_description).description = "get security test filter aggregations - value counts";
+    option (google.api.http) = {
+      post: "/xdr/v1/security-test/{execution_id}/filter-aggregations"
+      body: "*"
+    };
+  }
+
+  rpc GetFilterableFields(GetFilterableFieldsRequest) returns (GetFilterableFieldsResponse){
+    option (audit_log_description).description = "get list of fields to use in filtering";
+    option (google.api.http) = {
+      post: "/xdr/v1/security-test/filters"
+    };
+  }
+}
+
+message GetSecurityTestsOverviewRequest {
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 1;
+}
+
+message GetSecurityTestsOverviewResponse {
+  SecurityTestsOverview overview = 1;
+}
+
+message GetSecurityTestBreakdownRequest {
+  // Defaults to latest
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetSecurityTestBreakdownResponse {
+  SecurityTestBreakdown test_breakdown = 1;
+}
+
+message GetSecurityTestResultsRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional google.protobuf.StringValue test_identity = 2;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 3;
+}
+
+message GetSecurityTestResultsResponse {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  SecurityTestItem security_test_item = 2;
+  // This should be optimized with paginated events maybe - leaving that as it's for now
+  repeated SecurityTestResult results = 3;
+}
+
+message GetTestSubjectRequest {
+  optional google.protobuf.StringValue id = 1;
+}
+
+message GetTestSubjectResponse {
+  TestSubjectDetails subject_details = 1;
+}
+
+message GetSecurityTestFilterAggsRequest {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetSecurityTestFilterAggsResponse {
+  com.coralogix.xdr.v1.filter.LogFilterCounts log_filter = 1;
+  com.coralogix.xdr.v1.filter.SecurityRuleFilterCounts security_rule_filter = 2;
+}
+
+message GetFilterableFieldsRequest {
+}
+
+message GetFilterableFieldsResponse {
+
+  message DynamicAttributes {
+    repeated com.coralogix.xdr.v1.rule.DynamicAttribute dynamic_attributes = 1;
+  }
+
+  map<string, DynamicAttributes> provider_filters = 1;
+  map<string, DynamicAttributes> service_filters = 2;
+  map<string, DynamicAttributes> security_rule_filters = 3;
+}

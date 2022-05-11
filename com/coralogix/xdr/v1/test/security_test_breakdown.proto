@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.test;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+import "com/coralogix/xdr/v1/rule/security_rule.proto";
+
+message CountBySeverity {
+  google.protobuf.UInt32Value low = 1;
+  google.protobuf.UInt32Value medium = 2;
+  google.protobuf.UInt32Value high = 3;
+  google.protobuf.UInt32Value critical = 4;
+}
+
+message SecurityTestItem {
+  com.coralogix.xdr.v1.rule.SecurityRule rule = 1;
+  google.protobuf.UInt32Value passed_count = 2;
+  google.protobuf.UInt32Value failed_count = 3;
+}
+
+message SecurityTestBreakdown {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  repeated SecurityTestItem security_test_items = 2;
+  google.protobuf.Timestamp executed_at = 3;
+  google.protobuf.UInt32Value all_count = 4;
+  CountBySeverity count_by_severity = 5;
+}

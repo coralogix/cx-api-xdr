@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.rule;
+
+import "google/protobuf/wrappers.proto";
+
+message DynamicAttribute {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue security_rule_id = 2;
+  repeated google.protobuf.StringValue json_paths = 3;
+  google.protobuf.StringValue title = 4;
+  google.protobuf.UInt32Value column_index = 5;
+}
+
+// This is supposed to be provided from backoffice
+message SecurityRule {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue test_identity = 2;
+  google.protobuf.StringValue title = 3;
+  google.protobuf.StringValue rule_type = 4;
+  google.protobuf.UInt32Value severity = 5;
+  google.protobuf.StringValue cloud_platform = 6;
+  google.protobuf.StringValue source = 7;
+  google.protobuf.StringValue current_configuration = 8;
+  google.protobuf.StringValue expected_configuration = 9;
+  google.protobuf.StringValue configuration_link = 10;
+  google.protobuf.StringValue recommendation_message = 11;
+  google.protobuf.StringValue service = 12;
+  google.protobuf.StringValue item_type = 13;
+  repeated DynamicAttribute dynamic_attributes = 14;
+}

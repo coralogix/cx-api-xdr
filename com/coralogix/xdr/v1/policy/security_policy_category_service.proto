@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.policy;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/policy/security_policy.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
+service SecurityPolicyCategoryService {
+  rpc GetSecurityPolicyCategory(GetSecurityPolicyCategoryRequest) returns (GetSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "get security policy category";
+    option (google.api.http) = {
+      get: "/xdr/v1/security_policy_category/{id}"
+      response_body: "security_policy_category"
+    };
+  }
+
+  rpc GetSecurityPolicyCategories(GetSecurityPolicyCategoriesRequest) returns (GetSecurityPolicyCategoriesResponse) {
+    option (audit_log_description).description = "get security policy categories";
+    option (google.api.http) = {
+      post: "/xdr/v1/get_security_policy_categories"
+      body: "*"
+    };
+  }
+}
+
+service SecurityPolicyCategoryManagementService {
+  rpc CreateSecurityPolicyCategory(CreateSecurityPolicyCategoryRequest) returns (CreateSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "create security policy category";
+    option (google.api.http) = {
+      post: "/xdr/management/v1/security_policy_category"
+      body: "*"
+      response_body: "security_policy_category"
+    };
+  }
+
+  rpc UpdateSecurityPolicyCategory(UpdateSecurityPolicyCategoryRequest) returns (UpdateSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "update security policy category";
+    option (google.api.http) = {
+      put: "/xdr/management/v1/security_policy_category"
+      body: "*"
+      response_body: "security_policy_category"
+    };
+  }
+
+  rpc DeleteSecurityPolicyCategory(DeleteSecurityPolicyCategoryRequest) returns (DeleteSecurityPolicyCategoryResponse) {
+    option (audit_log_description).description = "delete security policy category";
+    option (google.api.http) = {
+      delete: "/xdr/management/v1/security_policy_category/{id}"
+      body: "*"
+    };
+  }
+
+}
+
+message GetSecurityPolicyCategoryRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message GetSecurityPolicyCategoryResponse {
+  SecurityPolicyCategory security_policy_category = 1;
+}
+
+message GetSecurityPolicyCategoriesRequest {
+  google.protobuf.StringValue security_policy_id = 1;
+}
+
+message GetSecurityPolicyCategoriesResponse {
+  repeated SecurityPolicyCategory data = 1;
+}
+
+message CreateSecurityPolicyCategoryRequest {
+  google.protobuf.StringValue name = 1;
+  google.protobuf.StringValue description = 2;
+  repeated google.protobuf.StringValue referenced_paragraphs = 3;
+  google.protobuf.StringValue security_policy_id = 4;
+}
+
+message CreateSecurityPolicyCategoryResponse {
+  SecurityPolicyCategory security_policy_category = 1;
+}
+
+message UpdateSecurityPolicyCategoryRequest {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
+  repeated google.protobuf.StringValue referenced_paragraphs = 4;
+  google.protobuf.StringValue security_policy_id = 5;
+}
+
+message UpdateSecurityPolicyCategoryResponse {
+  SecurityPolicyCategory security_policy_category = 1;
+}
+
+message DeleteSecurityPolicyCategoryRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message DeleteSecurityPolicyCategoryResponse {
+  // Empty
+}
