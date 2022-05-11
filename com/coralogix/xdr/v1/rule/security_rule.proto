@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.coralogix.xdr.v1;
+package com.coralogix.xdr.v1.rule;
 
 import "google/protobuf/wrappers.proto";
 

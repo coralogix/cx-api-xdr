@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package com.coralogix.xdr.v1;
+package com.coralogix.xdr.v1.policy;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
-import "com/coralogix/xdr/v1/security_policy.proto";
-import "com/coralogix/xdr/v1/security_test_filter.proto";
+import "com/coralogix/xdr/v1/policy/security_policy.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -82,7 +82,7 @@ message GetSecurityPoliciesResponse {
 
 message GetSecurityPoliciesWithTestResultsSummaryRequest {
   optional google.protobuf.StringValue execution_id = 1;
-  optional SecurityTestFilter filter = 2;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
 message GetSecurityPoliciesWithTestResultsSummaryResponse {

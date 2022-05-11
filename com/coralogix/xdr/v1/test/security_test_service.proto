@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package com.coralogix.xdr.v1;
+package com.coralogix.xdr.v1.test;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
-import "com/coralogix/xdr/v1/security_rule.proto";
-import "com/coralogix/xdr/v1/security_test_breakdown.proto";
-import "com/coralogix/xdr/v1/security_tests_overview.proto";
-import "com/coralogix/xdr/v1/security_test_result.proto";
-import "com/coralogix/xdr/v1/security_test_filter.proto";
+import "com/coralogix/xdr/v1/rule/security_rule.proto";
+import "com/coralogix/xdr/v1/test/security_test_breakdown.proto";
+import "com/coralogix/xdr/v1/test/security_tests_overview.proto";
+import "com/coralogix/xdr/v1/test/security_test_result.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -63,7 +63,7 @@ service SecurityTestService {
 }
 
 message GetSecurityTestsOverviewRequest {
-  optional SecurityTestFilter filter = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 1;
 }
 
 message GetSecurityTestsOverviewResponse {
@@ -73,7 +73,7 @@ message GetSecurityTestsOverviewResponse {
 message GetSecurityTestBreakdownRequest {
   // Defaults to latest
   optional google.protobuf.StringValue execution_id = 1;
-  optional SecurityTestFilter filter = 2;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
 message GetSecurityTestBreakdownResponse {
@@ -83,7 +83,7 @@ message GetSecurityTestBreakdownResponse {
 message GetSecurityTestResultsRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional google.protobuf.StringValue test_identity = 2;
-  optional SecurityTestFilter filter = 3;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 3;
 }
 
 message GetSecurityTestResultsResponse {
@@ -103,12 +103,12 @@ message GetTestSubjectResponse {
 
 message GetSecurityTestFilterAggsRequest {
   google.protobuf.StringValue execution_id = 1; // UUID
-  SecurityTestFilter filter = 2;
+  com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
 message GetSecurityTestFilterAggsResponse {
-  LogFilterCounts log_filter = 1;
-  SecurityRuleFilterCounts security_rule_filter = 2;
+  com.coralogix.xdr.v1.filter.LogFilterCounts log_filter = 1;
+  com.coralogix.xdr.v1.filter.SecurityRuleFilterCounts security_rule_filter = 2;
 }
 
 message GetFilterableFieldsRequest {
@@ -117,7 +117,7 @@ message GetFilterableFieldsRequest {
 message GetFilterableFieldsResponse {
 
   message DynamicAttributes {
-    repeated DynamicAttribute dynamic_attributes = 1;
+    repeated com.coralogix.xdr.v1.rule.DynamicAttribute dynamic_attributes = 1;
   }
 
   map<string, DynamicAttributes> provider_filters = 1;
