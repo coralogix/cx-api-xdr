@@ -28,4 +28,5 @@ message SecurityRule {
   google.protobuf.StringValue service = 12;
   google.protobuf.StringValue item_type = 13;
   repeated DynamicAttribute dynamic_attributes = 14;
+  google.protobuf.StringValue description = 15;
 }
