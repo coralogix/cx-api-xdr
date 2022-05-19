@@ -30,8 +30,8 @@ message ReplaceSecurityDataRequest {
     repeated SecurityPolicyCategoryContent categories = 2;
   }
 
-  message RuleGroupWithRules {
-    SecurityRuleGroupContent rule_group = 1;
+  message RuleCategoryWithRules {
+    SecurityRuleCategoryContent rule_category = 1;
     repeated SecurityRuleContent rules = 2;
   }
 
@@ -47,7 +47,7 @@ message ReplaceSecurityDataRequest {
     repeated google.protobuf.StringValue test_identities = 4;
   }
 
-  message SecurityRuleGroupContent {
+  message SecurityRuleCategoryContent {
     google.protobuf.StringValue title = 1;
   }
 
@@ -66,7 +66,7 @@ message ReplaceSecurityDataRequest {
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
-  repeated RuleGroupWithRules rule_groups_with_rules = 2;
+  repeated RuleCategoryWithRules rule_categories_with_rules = 2;
 }
 
 message ReplaceSecurityDataResponse {
