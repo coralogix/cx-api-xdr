@@ -94,7 +94,7 @@ message GetSecurityPolicyCategoriesWithTestResultsResponse {
   }
   message Element {
     oneof value {
-      SecurityTestItem security_test_item = 1;
+      com.coralogix.xdr.v1.test.SecurityTestItem security_test_item = 1;
       CategoryNode category = 2;
     }
   }
