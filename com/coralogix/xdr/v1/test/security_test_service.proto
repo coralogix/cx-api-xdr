@@ -164,14 +164,9 @@ message GetSecurityTestResultsByPolicyCategoryRequest {
 
 message GetSecurityTestResultsByPolicyCategoryResponse {
   message CategoryNode {
-    repeated Element children = 1;
-    com.coralogix.xdr.v1.policy.SecurityPolicyCategory policy_category = 2;
-  }
-  message Element {
-    oneof value {
-      com.coralogix.xdr.v1.test.SecurityTestItem security_test_item = 1;
-      CategoryNode category = 2;
-    }
+    repeated com.coralogix.xdr.v1.test.SecurityTestItem security_test_items = 1;
+    repeated CategoryNode child_categories = 2;
+    com.coralogix.xdr.v1.policy.SecurityPolicyCategory category = 3;
   }
 
   repeated CategoryNode root_categories = 1;
