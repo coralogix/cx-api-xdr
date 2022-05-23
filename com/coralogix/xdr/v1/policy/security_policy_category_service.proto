@@ -3,9 +3,7 @@ syntax = "proto3";
 package com.coralogix.xdr.v1.policy;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
-import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 import "com/coralogix/xdr/v1/policy/security_policy.proto";
-import "com/coralogix/xdr/v1/test/security_test_breakdown.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -24,14 +22,6 @@ service SecurityPolicyCategoryService {
     option (audit_log_description).description = "get security policy categories";
     option (google.api.http) = {
       post: "/xdr/v1/get_security_policy_categories"
-      body: "*"
-    };
-  }
-
-  rpc GetSecurityPolicyCategoriesWithTestResults(GetSecurityPolicyCategoriesWithTestResultsRequest) returns (GetSecurityPolicyCategoriesWithTestResultsResponse) {
-    option (audit_log_description).description = "get security policy categories with test results";
-    option (google.api.http) = {
-      post: "/xdr/v1/get_security_policy_categories_with_test_results"
       body: "*"
     };
   }
@@ -80,26 +70,6 @@ message GetSecurityPolicyCategoriesRequest {
 
 message GetSecurityPolicyCategoriesResponse {
   repeated SecurityPolicyCategory data = 1;
-}
-
-message GetSecurityPolicyCategoriesWithTestResultsRequest {
-  optional google.protobuf.StringValue execution_id = 1;
-  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
-}
-
-message GetSecurityPolicyCategoriesWithTestResultsResponse {
-  message CategoryNode {
-    repeated Element children = 1;
-    SecurityPolicyCategory category = 2;
-  }
-  message Element {
-    oneof value {
-      com.coralogix.xdr.v1.test.SecurityTestItem security_test_item = 1;
-      CategoryNode category = 2;
-    }
-  }
-
-  repeated CategoryNode root_categories = 1;
 }
 
 message CreateSecurityPolicyCategoryRequest {
