@@ -60,6 +60,14 @@ service SecurityTestService {
       post: "/xdr/v1/security-test/filters"
     };
   }
+
+  rpc GetSecurityTestResultsByRuleCategory(GetSecurityTestResultsByRuleCategoryRequest) returns (GetSecurityTestResultsByRuleCategoryResponse) {
+    option (audit_log_description).description = "get security test results grouped by rule category";
+    option (google.api.http) = {
+      post: "/xdr/v1/security-test/group-by-rule-category"
+      body: "*"
+    };
+  }
 }
 
 message GetSecurityTestsOverviewRequest {
@@ -123,4 +131,19 @@ message GetFilterableFieldsResponse {
   map<string, DynamicAttributes> provider_filters = 1;
   map<string, DynamicAttributes> service_filters = 2;
   map<string, DynamicAttributes> security_rule_filters = 3;
+}
+
+message GetSecurityTestResultsByRuleCategoryRequest {
+  // Defaults to latest
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetSecurityTestResultsByRuleCategoryResponse {
+  message RuleCategoryWithTestResults {
+    com.coralogix.xdr.v1.rule.SecurityRuleCategory rule_category = 1;
+    repeated SecurityTestItem security_test_items = 2;
+  }
+  google.protobuf.StringValue execution_id = 1;
+  repeated RuleCategoryWithTestResults results = 2;
 }
