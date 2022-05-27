@@ -30,3 +30,8 @@ message SecurityRule {
   repeated DynamicAttribute dynamic_attributes = 14;
   google.protobuf.StringValue description = 15;
 }
+
+message SecurityRuleCategory {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue title = 2;
+}
