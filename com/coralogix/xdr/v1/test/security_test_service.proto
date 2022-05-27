@@ -169,5 +169,6 @@ message GetSecurityTestResultsByPolicyCategoryResponse {
     com.coralogix.xdr.v1.policy.SecurityPolicyCategory category = 3;
   }
 
-  repeated CategoryNode root_categories = 1;
+  google.protobuf.StringValue execution_id = 1;
+  repeated CategoryNode root_categories = 2;
 }
