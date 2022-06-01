@@ -30,6 +30,11 @@ message ReplaceSecurityDataRequest {
     repeated SecurityPolicyCategoryContent categories = 2;
   }
 
+  message RuleCategoryWithRules {
+    SecurityRuleCategoryContent rule_category = 1;
+    repeated SecurityRuleContent rules = 2;
+  }
+
   message SecurityPolicyContent {
     google.protobuf.StringValue name = 1;
     google.protobuf.StringValue description = 2;
@@ -43,6 +48,10 @@ message ReplaceSecurityDataRequest {
     repeated google.protobuf.StringValue test_identities = 4;
   }
 
+  message SecurityRuleCategoryContent {
+    google.protobuf.StringValue title = 1;
+  }
+
   message SecurityRuleContent {
     google.protobuf.StringValue test_identity = 1;
     google.protobuf.StringValue title = 2;
@@ -54,10 +63,11 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue service = 8;
     google.protobuf.StringValue item_type = 9;
     repeated DynamicAttributeContent dynamic_attributes = 10;
+    google.protobuf.StringValue description = 11;
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
-  repeated SecurityRuleContent rules = 2;
+  repeated RuleCategoryWithRules rule_categories_with_rules = 2;
 }
 
 message ReplaceSecurityDataResponse {

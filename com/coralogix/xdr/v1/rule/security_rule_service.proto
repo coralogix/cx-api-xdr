@@ -164,6 +164,8 @@ message CreateSecurityRuleRequest {
   optional google.protobuf.StringValue recommendation_message = 10;
   optional google.protobuf.StringValue service = 11;
   optional google.protobuf.StringValue item_type = 12;
+  google.protobuf.StringValue rule_category_id = 13;
+  optional google.protobuf.StringValue description = 14;
 }
 
 message CreateSecurityRuleResponse {
@@ -184,6 +186,7 @@ message UpdateSecurityRuleRequest {
   optional google.protobuf.StringValue recommendation_message = 11;
   optional google.protobuf.StringValue service = 12;
   optional google.protobuf.StringValue item_type = 13;
+  optional google.protobuf.StringValue description = 14;
 }
 
 message UpdateSecurityRuleResponse {
