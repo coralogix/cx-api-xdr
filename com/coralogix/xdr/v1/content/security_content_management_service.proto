@@ -33,6 +33,7 @@ message ReplaceSecurityDataRequest {
   message SecurityPolicyContent {
     google.protobuf.StringValue name = 1;
     google.protobuf.StringValue description = 2;
+    google.protobuf.StringValue title = 3;
   }
 
   message SecurityPolicyCategoryContent {
