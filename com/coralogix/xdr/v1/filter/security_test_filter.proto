@@ -26,6 +26,7 @@ message LogFilter {
 message SecurityRuleFilter {
   // This is defined on security rule level
   repeated google.protobuf.UInt32Value severity = 1;
+  repeated string policy = 2;
 }
 
 message CustomFilterValueCounts {
@@ -45,5 +46,6 @@ message LogFilterCounts {
 message SecurityRuleFilterCounts {
   // This is defined on security rule level
   map<string, google.protobuf.UInt32Value> severity = 1;
+  map<string, google.protobuf.UInt32Value> policy = 2;
 }
 
