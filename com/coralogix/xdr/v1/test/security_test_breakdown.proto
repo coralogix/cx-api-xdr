@@ -12,6 +12,7 @@ message CountBySeverity {
   google.protobuf.UInt32Value medium = 2;
   google.protobuf.UInt32Value high = 3;
   google.protobuf.UInt32Value critical = 4;
+  google.protobuf.UInt32Value passed = 5;
 }
 
 message SecurityTestItem {
