@@ -99,6 +99,7 @@ message GetSecurityPoliciesWithTestResultsSummaryResponse {
 message CreateSecurityPolicyRequest {
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue description = 2;
+  google.protobuf.StringValue title = 3;
 }
 
 message CreateSecurityPolicyResponse {
@@ -109,6 +110,7 @@ message UpdateSecurityPolicyRequest {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
+  google.protobuf.StringValue title = 4;
 }
 
 message UpdateSecurityPolicyResponse {
