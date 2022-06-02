@@ -7,12 +7,18 @@ import "google/protobuf/timestamp.proto";
 
 import "com/coralogix/xdr/v1/rule/security_rule.proto";
 
-message CountBySeverity {
-  google.protobuf.UInt32Value low = 1;
-  google.protobuf.UInt32Value medium = 2;
-  google.protobuf.UInt32Value high = 3;
-  google.protobuf.UInt32Value critical = 4;
-  google.protobuf.UInt32Value passed = 5;
+message CountByResult {
+
+  message FailedSeveritiesCount{
+    google.protobuf.UInt32Value low = 1;
+    google.protobuf.UInt32Value medium = 2;
+    google.protobuf.UInt32Value high = 3;
+    google.protobuf.UInt32Value critical = 4;
+  }
+
+  google.protobuf.UInt32Value passed = 1;
+  google.protobuf.UInt32Value failed = 2;
+  optional FailedSeveritiesCount failed_severities = 3;
 }
 
 message SecurityTestItem {
@@ -22,9 +28,11 @@ message SecurityTestItem {
 }
 
 message SecurityTestBreakdown {
+  reserved 5;
+  reserved "count_by_severity";
   google.protobuf.StringValue execution_id = 1; // UUID
   repeated SecurityTestItem security_test_items = 2;
   google.protobuf.Timestamp executed_at = 3;
   google.protobuf.UInt32Value all_count = 4;
-  CountBySeverity count_by_severity = 5;
+  CountByResult security_rule_result = 6;
 }
