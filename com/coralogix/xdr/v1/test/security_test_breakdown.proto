@@ -9,7 +9,7 @@ import "com/coralogix/xdr/v1/rule/security_rule.proto";
 
 message CountByResult {
 
-  message FailedSeveritiesCount{
+  message SeveritiesCount{
     google.protobuf.UInt32Value low = 1;
     google.protobuf.UInt32Value medium = 2;
     google.protobuf.UInt32Value high = 3;
@@ -18,7 +18,7 @@ message CountByResult {
 
   google.protobuf.UInt32Value passed = 1;
   google.protobuf.UInt32Value failed = 2;
-  optional FailedSeveritiesCount failed_severities = 3;
+  optional SeveritiesCount failed_severities = 3;
 }
 
 message SecurityTestItem {
