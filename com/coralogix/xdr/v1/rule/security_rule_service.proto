@@ -166,6 +166,7 @@ message CreateSecurityRuleRequest {
   optional google.protobuf.StringValue item_type = 12;
   google.protobuf.StringValue rule_category_id = 13;
   optional google.protobuf.StringValue description = 14;
+  google.protobuf.StringValue provider_id = 15;
 }
 
 message CreateSecurityRuleResponse {
