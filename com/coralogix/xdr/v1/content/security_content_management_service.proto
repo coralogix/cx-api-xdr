@@ -37,7 +37,8 @@ message ReplaceSecurityDataRequest {
     }
 
     google.protobuf.StringValue name = 1;
-    ProviderType provider_type = 2;
+    google.protobuf.StringValue title = 2;
+    ProviderType provider_type = 3;
   }
 
   message SecurityPolicyContent {
