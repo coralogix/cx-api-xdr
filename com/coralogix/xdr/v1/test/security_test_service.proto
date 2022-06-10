@@ -160,7 +160,6 @@ message GetSecurityTestResultsByRuleCategoryResponse {
 message GetSecurityTestResultsByPolicyCategoryRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
-  google.protobuf.StringValue security_policy_id = 3;
 }
 
 message GetSecurityTestResultsByPolicyCategoryResponse {
