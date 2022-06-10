@@ -55,7 +55,7 @@ message ReplaceSecurityDataRequest {
   }
 
   message SecurityRuleCategoryContent {
-    google.protobuf.StringValue title = 1;
+    google.protobuf.StringValue name = 1;
   }
 
   message SecurityRuleContent {
@@ -70,7 +70,7 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue item_type = 9;
     repeated DynamicAttributeContent dynamic_attributes = 10;
     google.protobuf.StringValue description = 11;
-    google.protobuf.StringValue security_category_name = 12;
+    google.protobuf.StringValue rule_category_name = 12;
     google.protobuf.StringValue provider_name = 13;
   }
 
