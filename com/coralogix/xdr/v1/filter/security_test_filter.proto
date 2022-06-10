@@ -49,3 +49,6 @@ message SecurityRuleFilterCounts {
   map<string, google.protobuf.UInt32Value> policy = 2;
 }
 
+message ProviderFilter {
+  repeated google.protobuf.StringValue type = 3;
+}

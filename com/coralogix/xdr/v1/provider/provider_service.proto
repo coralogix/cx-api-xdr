@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.provider;
+
+import "com/coralogix/xdr/v1/rule/security_rule.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+
+service ProviderService {
+  rpc GetProviderSummary (GetProviderSummaryRequest) returns (GetProviderSummaryResponse) {
+    option (audit_log_description).description = "get platform summary";
+    option (google.api.http) = {
+      get: "/xdr/v1/get_platform_summary"
+      response_body: "platform_summary"
+    };
+  }
+}
+
+message GetProviderSummaryRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetProviderSummaryResponse {
+  repeated ProviderSummary summaries = 1;
+  google.protobuf.StringValue execution_id = 2;
+}
+
+message ProviderSummary {
+  google.protobuf.StringValue title = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue provider_type = 3;
+  ProviderStatus status = 4;
+}
+
+message ProviderStatus {
+  google.protobuf.UInt64Value total = 1;
+  google.protobuf.UInt64Value passed = 2;
+  google.protobuf.UInt64Value failed = 3;
+}
