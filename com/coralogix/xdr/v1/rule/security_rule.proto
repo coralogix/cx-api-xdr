@@ -19,7 +19,7 @@ message SecurityRule {
   google.protobuf.StringValue title = 3;
   google.protobuf.StringValue rule_type = 4;
   google.protobuf.UInt32Value severity = 5;
-  optional google.protobuf.StringValue cloud_platform = 6; // Deprecated, please use `provider_name`
+  optional google.protobuf.StringValue cloud_platform = 6 [deprecated = true]; // Deprecated, please use `provider_name`
   google.protobuf.StringValue source = 7;
   google.protobuf.StringValue current_configuration = 8;
   google.protobuf.StringValue expected_configuration = 9;
