@@ -14,6 +14,10 @@ message DynamicAttribute {
 
 // This is supposed to be provided from backoffice
 message SecurityRule {
+  message Provider {
+    google.protobuf.StringValue name = 1;  
+  }
+  
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue test_identity = 2;
   google.protobuf.StringValue title = 3;
@@ -29,7 +33,7 @@ message SecurityRule {
   google.protobuf.StringValue item_type = 13;
   repeated DynamicAttribute dynamic_attributes = 14;
   google.protobuf.StringValue description = 15;
-  google.protobuf.StringValue provider_name = 16;
+  Provider provider = 16;
 }
 
 message SecurityRuleCategory {
