@@ -24,19 +24,12 @@ message GetProviderSummaryRequest {
 }
 
 message GetProviderSummaryResponse {
-  repeated ProviderSummary summaries = 1;
+  message ProviderWithSummary {
+    Provider provider = 1;
+    google.protobuf.UInt64Value failed_count = 2;
+    google.protobuf.UInt64Value passed_count = 3;
+    google.protobuf.UInt64Value insights_count = 4;
+  }
+  repeated ProviderWithSummary summaries = 1;
   google.protobuf.StringValue execution_id = 2;
-}
-
-message ProviderSummary {
-  google.protobuf.StringValue title = 1;
-  google.protobuf.StringValue name = 2;
-  google.protobuf.StringValue provider_type = 3;
-  ProviderStatus status = 4;
-}
-
-message ProviderStatus {
-  google.protobuf.UInt64Value total = 1;
-  google.protobuf.UInt64Value passed = 2;
-  google.protobuf.UInt64Value failed = 3;
 }
