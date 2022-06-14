@@ -13,8 +13,8 @@ service ProviderService {
   rpc GetProviderSummary (GetProviderSummaryRequest) returns (GetProviderSummaryResponse) {
     option (audit_log_description).description = "get platform summary";
     option (google.api.http) = {
-      get: "/xdr/v1/get_platform_summary"
-      response_body: "platform_summary"
+      get: "/xdr/v1/get_provider_summary"
+      response_body: "provider_summary"
     };
   }
 }
