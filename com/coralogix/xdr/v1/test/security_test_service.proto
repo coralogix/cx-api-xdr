@@ -117,6 +117,7 @@ message GetSecurityTestFilterAggsRequest {
 message GetSecurityTestFilterAggsResponse {
   com.coralogix.xdr.v1.filter.LogFilterCounts log_filter = 1;
   com.coralogix.xdr.v1.filter.SecurityRuleFilterCounts security_rule_filter = 2;
+  com.coralogix.xdr.v1.filter.ProviderFilterCounts provider_filter = 3;
 }
 
 message GetFilterableFieldsRequest {

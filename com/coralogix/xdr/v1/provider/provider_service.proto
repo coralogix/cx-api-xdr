@@ -31,7 +31,7 @@ message GetProviderSummaryResponse {
     Provider provider = 1;
     google.protobuf.UInt64Value failed_count = 2;
     google.protobuf.UInt64Value passed_count = 3;
-    google.protobuf.UInt64Value insights_count = 4;
+    google.protobuf.UInt64Value total_count = 4;
   }
   repeated ProviderWithSummary summaries = 1;
   google.protobuf.StringValue execution_id = 2;
