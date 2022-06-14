@@ -4,6 +4,7 @@ package com.coralogix.xdr.v1.provider;
 
 import "com/coralogix/xdr/v1/rule/security_rule.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+import "com/coralogix/xdr/v1/provider/provider.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
