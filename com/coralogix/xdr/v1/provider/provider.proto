@@ -12,6 +12,6 @@ message Provider {
 }
 
 enum ProviderType {
-  PLATFORM = 0;
+  PAAS = 0;
   SAAS = 1;
 }

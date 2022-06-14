@@ -7,6 +7,7 @@ import "google/protobuf/wrappers.proto";
 message SecurityTestFilter {
   LogFilter log_filter = 1;
   SecurityRuleFilter security_rule_filter = 2;
+  ProviderFilter provider_filter = 3;
 }
 
 message CustomFilterValue {
@@ -47,6 +48,11 @@ message SecurityRuleFilterCounts {
   // This is defined on security rule level
   map<string, google.protobuf.UInt32Value> severity = 1;
   map<string, google.protobuf.UInt32Value> policy = 2;
+}
+
+message ProviderFilterCounts {
+  map<string, google.protobuf.UInt32Value> paas = 3;
+  map<string, google.protobuf.UInt32Value> saas = 4;
 }
 
 message ProviderFilter {
