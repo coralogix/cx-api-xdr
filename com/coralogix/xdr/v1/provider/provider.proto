@@ -3,7 +3,6 @@ syntax = "proto3";
 package com.coralogix.xdr.v1.provider;
 
 import "google/protobuf/wrappers.proto";
-import "google/protobuf/descriptor.proto";
 
 message Provider {
   google.protobuf.StringValue id = 1;
