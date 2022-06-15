@@ -32,7 +32,7 @@ message ReplaceSecurityDataRequest {
 
   message ProviderContent {
     enum ProviderType {
-      PLATFORM = 0;
+      PAAS = 0;
       SAAS = 1;
     }
 
