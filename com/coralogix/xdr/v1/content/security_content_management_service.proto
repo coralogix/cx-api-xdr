@@ -30,9 +30,15 @@ message ReplaceSecurityDataRequest {
     repeated SecurityPolicyCategoryContent categories = 2;
   }
 
-  message RuleCategoryWithRules {
-    SecurityRuleCategoryContent rule_category = 1;
-    repeated SecurityRuleContent rules = 2;
+  message ProviderContent {
+    enum ProviderType {
+      PAAS = 0;
+      SAAS = 1;
+    }
+
+    google.protobuf.StringValue name = 1;
+    google.protobuf.StringValue title = 2;
+    ProviderType provider_type = 3;
   }
 
   message SecurityPolicyContent {
@@ -49,7 +55,7 @@ message ReplaceSecurityDataRequest {
   }
 
   message SecurityRuleCategoryContent {
-    google.protobuf.StringValue title = 1;
+    google.protobuf.StringValue name = 1;
   }
 
   message SecurityRuleContent {
@@ -64,10 +70,14 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue item_type = 9;
     repeated DynamicAttributeContent dynamic_attributes = 10;
     google.protobuf.StringValue description = 11;
+    google.protobuf.StringValue rule_category_name = 12;
+    google.protobuf.StringValue provider_name = 13;
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
-  repeated RuleCategoryWithRules rule_categories_with_rules = 2;
+  repeated SecurityRuleContent security_rules = 2;
+  repeated SecurityRuleCategoryContent security_rule_categories = 3;
+  repeated ProviderContent providers = 4;
 }
 
 message ReplaceSecurityDataResponse {

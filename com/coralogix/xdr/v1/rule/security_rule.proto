@@ -14,12 +14,16 @@ message DynamicAttribute {
 
 // This is supposed to be provided from backoffice
 message SecurityRule {
+  message Provider {
+    google.protobuf.StringValue name = 1;  
+  }
+  
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue test_identity = 2;
   google.protobuf.StringValue title = 3;
   google.protobuf.StringValue rule_type = 4;
   google.protobuf.UInt32Value severity = 5;
-  google.protobuf.StringValue cloud_platform = 6;
+  optional google.protobuf.StringValue cloud_platform = 6 [deprecated = true]; // Deprecated, please use `provider_name`
   google.protobuf.StringValue source = 7;
   google.protobuf.StringValue current_configuration = 8;
   google.protobuf.StringValue expected_configuration = 9;
@@ -29,6 +33,7 @@ message SecurityRule {
   google.protobuf.StringValue item_type = 13;
   repeated DynamicAttribute dynamic_attributes = 14;
   google.protobuf.StringValue description = 15;
+  Provider provider = 16;
 }
 
 message SecurityRuleCategory {
