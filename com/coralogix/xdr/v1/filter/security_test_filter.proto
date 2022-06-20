@@ -56,5 +56,5 @@ message ProviderFilterCounts {
 }
 
 message ProviderFilter {
-  repeated google.protobuf.StringValue type = 3;
+  repeated google.protobuf.StringValue name = 3;
 }
