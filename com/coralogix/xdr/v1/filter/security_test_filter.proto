@@ -56,3 +56,8 @@ message ProviderFilterCounts {
   map<string, google.protobuf.UInt32Value> name = 1;
   map<string, google.protobuf.UInt32Value> type = 2;
 }
+
+message ProviderFilter {
+  repeated google.protobuf.StringValue name = 1;
+  repeated provider.ProviderType type = 2;
+}
