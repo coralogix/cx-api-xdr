@@ -53,16 +53,16 @@ message SecurityRuleFilterCounts {
 }
 
 message ProviderFilterCounts {
-  map<string, google.protobuf.UInt32Value> counts_per_provider = 1;
-  repeated ProviderWithServices services = 2;
+  message ProviderWithServices {
+    provider.ProviderType type = 1;
+    repeated google.protobuf.StringValue services = 2;
+  }
+
+  map<string, google.protobuf.UInt32Value> counts_by_service = 1;
+  repeated ProviderWithServices services_by_provider = 2;
 }
 
 message ProviderFilter {
   repeated google.protobuf.StringValue name = 1;
   repeated provider.ProviderType type = 2;
-}
-
-message ProviderWithServices {
-  provider.ProviderType type = 1;
-  repeated google.protobuf.StringValue services = 2;
 }
