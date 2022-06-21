@@ -9,7 +9,6 @@ import "com/coralogix/xdr/v1/test/security_test_breakdown.proto";
 import "com/coralogix/xdr/v1/test/security_tests_overview.proto";
 import "com/coralogix/xdr/v1/test/security_test_result.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
-import "com/coralogix/xdr/v1/policy/security_policy.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
