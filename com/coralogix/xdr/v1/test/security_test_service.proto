@@ -8,6 +8,7 @@ import "com/coralogix/xdr/v1/test/security_test_breakdown.proto";
 import "com/coralogix/xdr/v1/test/security_tests_overview.proto";
 import "com/coralogix/xdr/v1/test/security_test_result.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+import "com/coralogix/xdr/v1/policy/security_policy.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
@@ -101,6 +102,7 @@ message GetSecurityTestResultsResponse {
   // This should be optimized with paginated events maybe - leaving that as it's for now
   repeated SecurityTestResult results = 3;
   google.protobuf.Timestamp executed_at = 4;
+  repeated com.coralogix.xdr.v1.policy.SecurityPolicy related_policies = 5;
 }
 
 message GetTestSubjectRequest {

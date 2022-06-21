@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package com.coralogix.xdr.v1.rule;
 
-import "com/coralogix/xdr/v1/policy/security_policy.proto";
-
 import "google/protobuf/wrappers.proto";
 
 message DynamicAttribute {
@@ -36,7 +34,6 @@ message SecurityRule {
   google.protobuf.StringValue description = 15;
   Provider provider = 16;
   SecurityRuleCategory category = 17;
-  repeated com.coralogix.xdr.v1.policy.SecurityPolicy related_policies = 18;
 }
 
 message SecurityRuleCategory {
