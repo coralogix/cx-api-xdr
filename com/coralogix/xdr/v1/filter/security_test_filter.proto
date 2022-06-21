@@ -9,7 +9,6 @@ import "google/protobuf/wrappers.proto";
 message SecurityTestFilter {
   LogFilter log_filter = 1;
   SecurityRuleFilter security_rule_filter = 2;
-  ProviderFilter provider_filter = 3;
 }
 
 message CustomFilterValue {
@@ -30,6 +29,13 @@ message SecurityRuleFilter {
   // This is defined on security rule level
   repeated google.protobuf.UInt32Value severity = 1;
   repeated google.protobuf.StringValue policy = 2;
+
+  message ProviderFilter {
+    repeated google.protobuf.StringValue name = 1;
+    repeated provider.ProviderType type = 2;
+  }
+
+  ProviderFilter provider = 3;
 }
 
 message CustomFilterValueCounts {
@@ -50,14 +56,10 @@ message SecurityRuleFilterCounts {
   // This is defined on security rule level
   map<string, google.protobuf.UInt32Value> severity = 1;
   map<string, google.protobuf.UInt32Value> policy = 2;
+  ProviderFilterCounts provider = 3;
 }
 
 message ProviderFilterCounts {
   map<string, google.protobuf.UInt32Value> name = 1;
   map<string, google.protobuf.UInt32Value> type = 2;
-}
-
-message ProviderFilter {
-  repeated google.protobuf.StringValue name = 1;
-  repeated provider.ProviderType type = 2;
 }
