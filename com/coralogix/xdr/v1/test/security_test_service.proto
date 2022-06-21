@@ -4,6 +4,7 @@ package com.coralogix.xdr.v1.test;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "com/coralogix/xdr/v1/rule/security_rule.proto";
+import "com/coralogix/xdr/v1/policy/security_policy.proto";
 import "com/coralogix/xdr/v1/test/security_test_breakdown.proto";
 import "com/coralogix/xdr/v1/test/security_tests_overview.proto";
 import "com/coralogix/xdr/v1/test/security_test_result.proto";
@@ -67,6 +68,14 @@ service SecurityTestService {
     option (audit_log_description).description = "get security test results grouped by rule category";
     option (google.api.http) = {
       post: "/xdr/v1/security-test/group-by-rule-category"
+      body: "*"
+    };
+  }
+
+  rpc GetSecurityTestResultsByPolicyCategory(GetSecurityTestResultsByPolicyCategoryRequest) returns (GetSecurityTestResultsByPolicyCategoryResponse) {
+    option (audit_log_description).description = "get security test results grouped by policy category";
+    option (google.api.http) = {
+      post: "/xdr/v1/security-test/group-by-policy-category"
       body: "*"
     };
   }
@@ -150,4 +159,20 @@ message GetSecurityTestResultsByRuleCategoryResponse {
   }
   google.protobuf.StringValue execution_id = 1;
   repeated RuleCategoryWithTestResults results = 2;
+}
+
+message GetSecurityTestResultsByPolicyCategoryRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetSecurityTestResultsByPolicyCategoryResponse {
+  message CategoryNode {
+    repeated com.coralogix.xdr.v1.test.SecurityTestItem security_test_items = 1;
+    repeated CategoryNode child_categories = 2;
+    com.coralogix.xdr.v1.policy.SecurityPolicyCategory category = 3;
+  }
+
+  google.protobuf.StringValue execution_id = 1;
+  repeated CategoryNode root_categories = 2;
 }
