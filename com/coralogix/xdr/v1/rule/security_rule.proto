@@ -12,12 +12,11 @@ message DynamicAttribute {
   google.protobuf.UInt32Value column_index = 5;
 }
 
-// This is supposed to be provided from backoffice
 message SecurityRule {
   message Provider {
-    google.protobuf.StringValue name = 1;  
+    google.protobuf.StringValue name = 1;
   }
-  
+
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue test_identity = 2;
   google.protobuf.StringValue title = 3;
@@ -34,6 +33,7 @@ message SecurityRule {
   repeated DynamicAttribute dynamic_attributes = 14;
   google.protobuf.StringValue description = 15;
   Provider provider = 16;
+  SecurityRuleCategory category = 17;
 }
 
 message SecurityRuleCategory {
