@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.xdr.v1.content;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/provider/provider.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
@@ -31,14 +32,9 @@ message ReplaceSecurityDataRequest {
   }
 
   message ProviderContent {
-    enum ProviderType {
-      PAAS = 0;
-      SAAS = 1;
-    }
-
     google.protobuf.StringValue name = 1;
     google.protobuf.StringValue title = 2;
-    ProviderType provider_type = 3;
+    provider.ProviderType provider_type = 3;
   }
 
   message SecurityPolicyContent {

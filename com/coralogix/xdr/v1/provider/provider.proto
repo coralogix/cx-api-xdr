@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.provider;
+
+import "google/protobuf/wrappers.proto";
+
+message Provider {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue title = 2;
+  google.protobuf.StringValue name = 3;
+  ProviderType provider_type = 4;
+}
+
+enum ProviderType {
+  PAAS = 0;
+  SAAS = 1;
+}
