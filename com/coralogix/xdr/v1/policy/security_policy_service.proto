@@ -100,7 +100,7 @@ message CreateSecurityPolicyRequest {
   google.protobuf.StringValue name = 1;
   google.protobuf.StringValue description = 2;
   google.protobuf.StringValue title = 3;
-  google.protobuf.UInt32Value index = 4;
+  google.protobuf.UInt32Value order_index = 4;
 }
 
 message CreateSecurityPolicyResponse {
@@ -112,7 +112,7 @@ message UpdateSecurityPolicyRequest {
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
   google.protobuf.StringValue title = 4;
-  google.protobuf.UInt32Value index = 5;
+  google.protobuf.UInt32Value order_index = 5;
 }
 
 message UpdateSecurityPolicyResponse {
