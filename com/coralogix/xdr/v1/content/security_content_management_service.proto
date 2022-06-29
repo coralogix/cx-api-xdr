@@ -35,12 +35,14 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue name = 1;
     google.protobuf.StringValue title = 2;
     provider.ProviderType provider_type = 3;
+    google.protobuf.UInt32Value order_index = 4;
   }
 
   message SecurityPolicyContent {
     google.protobuf.StringValue name = 1;
     google.protobuf.StringValue description = 2;
     google.protobuf.StringValue title = 3;
+    google.protobuf.UInt32Value order_index = 4;
   }
 
   message SecurityPolicyCategoryContent {
