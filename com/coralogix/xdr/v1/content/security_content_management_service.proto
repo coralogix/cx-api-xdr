@@ -57,11 +57,13 @@ message ReplaceSecurityDataRequest {
   }
 
   message SecurityRuleContent {
+    reserved 5;
+    reserved "cloud_platform";
+    
     google.protobuf.StringValue test_identity = 1;
     google.protobuf.StringValue title = 2;
     google.protobuf.StringValue rule_type = 3;
     google.protobuf.UInt32Value severity = 4;
-    google.protobuf.StringValue cloud_platform = 5;
     google.protobuf.StringValue source = 6;
     google.protobuf.StringValue recommendation_message = 7;
     google.protobuf.StringValue service = 8;

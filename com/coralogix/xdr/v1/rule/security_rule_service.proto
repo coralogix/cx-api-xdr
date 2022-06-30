@@ -152,11 +152,13 @@ message GetIdentityTitleMapResponse {
 }
 
 message CreateSecurityRuleRequest {
+  reserved 5;
+  reserved "cloud_platform";
+  
   google.protobuf.StringValue test_identity = 1;
   google.protobuf.StringValue title = 2;
   google.protobuf.StringValue rule_type = 3;
   google.protobuf.UInt32Value severity = 4;
-  google.protobuf.StringValue cloud_platform = 5;
   google.protobuf.StringValue source = 6;
   optional google.protobuf.StringValue current_configuration = 7;
   optional google.protobuf.StringValue expected_configuration = 8;
@@ -174,12 +176,14 @@ message CreateSecurityRuleResponse {
 }
 
 message UpdateSecurityRuleRequest {
+  reserved 6;
+  reserved "cloud_platform";
+  
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue test_identity = 2;
   google.protobuf.StringValue title = 3;
   google.protobuf.StringValue rule_type = 4;
   google.protobuf.UInt32Value severity = 5;
-  google.protobuf.StringValue cloud_platform = 6;
   google.protobuf.StringValue source = 7;
   optional google.protobuf.StringValue current_configuration = 8;
   optional google.protobuf.StringValue expected_configuration = 9;
