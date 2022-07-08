@@ -20,7 +20,7 @@ service ProviderService {
     };
   }
 
-  rpc GetProviderTypesWithNames (GetProviderSummaryRequest) returns (GetProviderTypesWithNamesResponse) {
+  rpc GetProviderTypesWithNames (GetProviderTypesWithNamesRequest) returns (GetProviderTypesWithNamesResponse) {
     option (audit_log_description).description = "get providers with provider names";
     option (google.api.http) = {
       post: "/xdr/v1/get_providertypes_with_names"
@@ -32,11 +32,11 @@ service ProviderService {
 message GetProviderTypesWithNamesRequest{}
 
 message GetProviderTypesWithNamesResponse {
-  message Response {
+  message ProviderTypeWithProviderName {
     ProviderType type = 1;
     google.protobuf.StringValue name = 2;
   }
-  repeated Response results = 1;
+  repeated ProviderTypeWithProviderName results = 1;
 }
 
 message GetProviderSummaryRequest {
