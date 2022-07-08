@@ -23,7 +23,7 @@ service ProviderService {
   rpc GetProviders (GetProvidersRequest) returns (GetProvidersResponse) {
     option (audit_log_description).description = "get all providers";
     option (google.api.http) = {
-      post: "/xdr/v1/providers"
+      get: "/xdr/v1/providers"
       body: "*"
     };
   }
