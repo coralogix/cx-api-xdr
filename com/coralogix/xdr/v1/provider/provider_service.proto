@@ -24,7 +24,6 @@ service ProviderService {
     option (audit_log_description).description = "get all providers";
     option (google.api.http) = {
       get: "/xdr/v1/providers"
-      body: "*"
     };
   }
 }
