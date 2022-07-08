@@ -9,7 +9,6 @@ import "com/coralogix/xdr/v1/audit_log.proto";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 
 service ProviderService {
@@ -21,7 +20,7 @@ service ProviderService {
     };
   }
 
-  rpc GetProviderTypesWithNames (google.protobuf.Empty) returns (GetProviderTypesWithNamesResponse) {
+  rpc GetProviderTypesWithNames (GetProviderSummaryRequest) returns (GetProviderTypesWithNamesResponse) {
     option (audit_log_description).description = "get providers with provider names";
     option (google.api.http) = {
       post: "/xdr/v1/get_providertypes_with_names"
@@ -29,6 +28,8 @@ service ProviderService {
     };
   }
 }
+
+message GetProviderTypesWithNamesRequest{}
 
 message GetProviderTypesWithNamesResponse {
   message Response {
