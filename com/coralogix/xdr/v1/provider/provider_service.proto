@@ -19,6 +19,19 @@ service ProviderService {
       body: "*"
     };
   }
+
+  rpc GetProviders (GetProvidersRequest) returns (GetProvidersResponse) {
+    option (audit_log_description).description = "get all providers";
+    option (google.api.http) = {
+      get: "/xdr/v1/providers"
+    };
+  }
+}
+
+message GetProvidersRequest{}
+
+message GetProvidersResponse {
+  repeated Provider data = 1;
 }
 
 message GetProviderSummaryRequest {
