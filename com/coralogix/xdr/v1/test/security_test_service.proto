@@ -78,6 +78,14 @@ service SecurityTestService {
       body: "*"
     };
   }
+  
+  rpc GetSecurityTestResultsByRuleCategoryAndAsset(GetSecurityTestResultsByRuleCategoryAndAssetRequest) returns (GetSecurityTestResultsByRuleCategoryAndAssetResponse) {
+    option (audit_log_description).description = "get security test results grouped by rule category and asset";
+    option (google.api.http) = {
+      post: "/xdr/v1/security-test/group-by-rule-category-and-asset"
+      body: "*"
+    };
+  }
 }
 
 message GetSecurityTestsOverviewRequest {
@@ -174,4 +182,25 @@ message GetSecurityTestResultsByPolicyCategoryResponse {
 
   google.protobuf.StringValue execution_id = 1;
   repeated CategoryNode root_categories = 2;
+}
+
+message GetSecurityTestResultsByRuleCategoryAndAssetRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetSecurityTestResultsByRuleCategoryAndAssetResponse {
+  message AssetResults {
+    google.protobuf.StringValue asset_title = 1;
+    google.protobuf.UInt32Value passed_count = 2;
+    google.protobuf.UInt32Value failed_count = 3;
+  }
+  
+  message RuleCategoryGroup {
+    com.coralogix.xdr.v1.rule.SecurityRuleCategory rule_category = 1;
+    repeated AssetResults asset_results = 2;
+  }
+
+  google.protobuf.StringValue execution_id = 1;
+  repeated RuleCategoryGroup rule_category_groups = 2;
 }
