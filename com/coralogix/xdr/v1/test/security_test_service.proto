@@ -78,11 +78,11 @@ service SecurityTestService {
       body: "*"
     };
   }
-  
-  rpc GetAssetResultsByRuleCategory(GetAssetResultsByRuleCategoryRequest) returns (GetAssetResultsByRuleCategoryResponse) {
-    option (audit_log_description).description = "get asset test results grouped by rule category";
+
+  rpc GetResourceResultsByRuleCategoryAndResourceType(GetResourceResultsByRuleCategoryAndResourceTypeRequest) returns (GetResourceResultsByRuleCategoryAndResourceTypeResponse) {
+    option (audit_log_description).description = "get resource test results grouped by rule category and resource-type";
     option (google.api.http) = {
-      post: "/xdr/v1/security-test/group-by-rule-category-and-asset"
+      post: "/xdr/v1/security-test/group-by-rule-category-and-resource-type"
       body: "*"
     };
   }
@@ -184,21 +184,27 @@ message GetSecurityTestResultsByPolicyCategoryResponse {
   repeated CategoryNode root_categories = 2;
 }
 
-message GetAssetResultsByRuleCategoryRequest {
+message GetResourceResultsByRuleCategoryAndResourceTypeRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
-message GetAssetResultsByRuleCategoryResponse {
-  message AssetResults {
-    google.protobuf.StringValue asset_name = 1;
+message GetResourceResultsByRuleCategoryAndResourceTypeResponse {
+  
+  message ResourceResults {
+    google.protobuf.StringValue resource_name = 1;
     google.protobuf.UInt32Value passed_count = 2;
     google.protobuf.UInt32Value failed_count = 3;
   }
   
+  message ResourceTypeGroup {
+    google.protobuf.StringValue resource_type_name = 1;
+    repeated ResourceResults resource_results = 2;
+  }
+
   message RuleCategoryGroup {
     com.coralogix.xdr.v1.rule.SecurityRuleCategory rule_category = 1;
-    repeated AssetResults asset_results = 2;
+    repeated ResourceTypeGroup resource_type_groups = 2;
   }
 
   google.protobuf.StringValue execution_id = 1;
