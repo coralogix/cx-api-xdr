@@ -21,8 +21,8 @@ service InventoryService {
 }
 
 message GetCountsRequest {
-  optional com.coralogix.xdr.v1.filter.LogFilterCounts log_filter = 1;
-  optional com.coralogix.xdr.v1.filter.SecurityRuleFilterCounts security_rule_filter = 2;
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
 message GetCountsResponse{
