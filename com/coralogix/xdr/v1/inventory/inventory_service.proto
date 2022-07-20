@@ -26,7 +26,6 @@ message GetCountsRequest {
 }
 
 message GetCountsResponse{
-  //It returns the counts for total number of tests, saas tests, paas tests, and resources count
   google.protobuf.UInt32Value total_tests = 1;
   google.protobuf.UInt32Value saas_tests = 2;
   google.protobuf.UInt32Value paas_tests = 3;
