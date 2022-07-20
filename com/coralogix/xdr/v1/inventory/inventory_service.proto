@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.inventory;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
+
+service InventoryService {
+
+  rpc GetCounts (GetCountsRequest) returns (GetCountsResponse) {
+    option (audit_log_description).description = "get an inventory of tests and resources";
+    option (google.api.http) = {
+      post: "/xdr/v1/inventory/count"
+      response_body: "inventory"
+    };
+  }
+
+}
+
+message GetCountsRequest {
+  optional com.coralogix.xdr.v1.filter.LogFilterCounts log_filter = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityRuleFilterCounts security_rule_filter = 2;
+}
+
+message GetCountsResponse{
+  //It returns the counts for total number of tests, saas tests, paas tests, and resources count
+  map<string, google.protobuf.UInt32Value> counts = 1;
+}
