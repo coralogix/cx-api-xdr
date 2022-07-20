@@ -15,6 +15,7 @@ message TestSubjectDetails {
   optional google.protobuf.Timestamp creation_date = 6;
   google.protobuf.Struct additional_data = 7;
   google.protobuf.Struct dynamic_attributes_data = 8;
+  google.protobuf.StringValue test_identity = 9;
 }
 
 enum SecurityTestResultStatus {
