@@ -21,11 +21,13 @@ service InventoryService {
 }
 
 message GetCountsRequest {
-  optional com.coralogix.xdr.v1.filter.LogFilterCounts log_filter = 1;
-  optional com.coralogix.xdr.v1.filter.SecurityRuleFilterCounts security_rule_filter = 2;
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
 message GetCountsResponse{
-  //It returns the counts for total number of tests, saas tests, paas tests, and resources count
-  map<string, google.protobuf.UInt32Value> counts = 1;
+  google.protobuf.UInt32Value total_tests = 1;
+  google.protobuf.UInt32Value saas_tests = 2;
+  google.protobuf.UInt32Value paas_tests = 3;
+  google.protobuf.UInt32Value resources = 4;
 }
