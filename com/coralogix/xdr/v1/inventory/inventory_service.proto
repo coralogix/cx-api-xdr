@@ -14,7 +14,7 @@ service InventoryService {
     option (audit_log_description).description = "get an inventory of tests and resources";
     option (google.api.http) = {
       post: "/xdr/v1/inventory/count"
-      response_body: "inventory"
+      body: "*"
     };
   }
 
