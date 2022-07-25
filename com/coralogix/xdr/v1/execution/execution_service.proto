@@ -3,7 +3,6 @@ syntax = "proto3";
 package com.coralogix.xdr.v1.execution;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
-import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/wrappers.proto";
@@ -14,7 +13,7 @@ service ExecutionService {
   rpc GetExecutions(GetExecutionsRequest) returns (GetExecutionsResponse) {
     option (audit_log_description).description = "get executions";
     option (google.api.http) = {
-      post: "/xdr/v1/get_executions"
+      get: "/xdr/v1/execution"
       body: "*"
     };
   }
