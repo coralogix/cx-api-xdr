@@ -14,7 +14,6 @@ service ExecutionService {
     option (audit_log_description).description = "get executions";
     option (google.api.http) = {
       get: "/xdr/v1/execution"
-      body: "*"
     };
   }
 
