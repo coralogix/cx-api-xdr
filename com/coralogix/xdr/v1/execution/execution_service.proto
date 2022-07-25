@@ -27,7 +27,7 @@ message GetExecutionsRequest {
 message GetExecutionsResponse {
   message Execution {
     google.protobuf.StringValue execution_id = 1;
-    google.protobuf.Timestamp executed_at = 2;
+    google.protobuf.Timestamp started_at = 2;
   }
   
   repeated Execution executions = 1;
