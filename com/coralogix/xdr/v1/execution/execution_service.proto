@@ -13,7 +13,7 @@ service ExecutionService {
   rpc GetExecutions(GetExecutionsRequest) returns (GetExecutionsResponse) {
     option (audit_log_description).description = "get executions";
     option (google.api.http) = {
-      get: "/xdr/v1/execution"
+      get: "/xdr/v1/executions"
     };
   }
 
