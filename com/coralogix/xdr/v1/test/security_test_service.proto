@@ -96,14 +96,6 @@ service SecurityTestService {
       body: "*"
     };
   }
-
-  rpc GetResourceResultsByRuleCategory(GetResourceResultsByRuleCategoryRequest) returns (GetResourceResultsByRuleCategoryResponse) {
-    option (audit_log_description).description = "get resource test results grouped by rule category";
-    option (google.api.http) = {
-      post: "/xdr/v1/security-test/resource-results-by-rule-category"
-      body: "*"
-    };
-  }
 }
 
 message GetSecurityTestsOverviewRequest {
@@ -223,4 +215,35 @@ message GetResourceResultsByRuleCategoryResponse {
 
   google.protobuf.StringValue execution_id = 1;
   repeated RuleCategoryGroup rule_category_groups = 2;
+}
+
+message GetResourceResultsRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  // Af of now, resource_name is considered as the identifier of the resource
+  google.protobuf.StringValue resource_id = 2;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 3;
+}
+
+message GetResourceResultsResponse {
+  message ResourceItem {
+    google.protobuf.StringValue resource_id = 1;
+    google.protobuf.StringValue resource_name = 2;
+    com.coralogix.xdr.v1.provider.Provider provider = 3;
+    google.protobuf.StringValue region = 4;
+    google.protobuf.StringValue account = 5;
+    google.protobuf.UInt32Value passed_count = 6;
+    google.protobuf.UInt32Value failed_count = 7;
+  }
+
+  message TestResult {
+    TestSubjectDetails subject_details = 1;
+    SecurityTestResultStatus result_status = 2;
+    com.coralogix.xdr.v1.rule.SecurityRule rule = 3;
+    repeated com.coralogix.xdr.v1.policy.SecurityPolicy related_policies = 4;
+  }
+
+  google.protobuf.StringValue execution_id = 1; // UUID
+  ResourceItem resource_item = 2;
+  repeated TestResult results = 3;
+  google.protobuf.Timestamp executed_at = 4;
 }
