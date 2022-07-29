@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.execution;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+service ExecutionService {
+
+  rpc GetExecutions(GetExecutionsRequest) returns (GetExecutionsResponse) {
+    option (audit_log_description).description = "get executions";
+    option (google.api.http) = {
+      get: "/xdr/v1/executions"
+    };
+  }
+
+}
+
+message GetExecutionsRequest {
+}
+
+message GetExecutionsResponse {
+  message Execution {
+    google.protobuf.StringValue execution_id = 1;
+    google.protobuf.Timestamp started_at = 2;
+  }
+  
+  repeated Execution executions = 1;
+}
