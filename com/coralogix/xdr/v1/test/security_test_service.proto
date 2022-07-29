@@ -203,11 +203,13 @@ message GetResourceResultsRequest {
 
 message GetResourceResultsResponse {
   message ResourceItem {
-    google.protobuf.StringValue resource_name = 1;
-    com.coralogix.xdr.v1.provider.Provider provider = 2;
-    google.protobuf.UInt32Value passed_count = 3;
-    google.protobuf.UInt32Value failed_count = 4;
-    google.protobuf.Struct resource_metadata = 5;
+    google.protobuf.StringValue resource_id = 1;
+    google.protobuf.StringValue resource_name = 2;
+    com.coralogix.xdr.v1.provider.Provider provider = 3;
+    google.protobuf.StringValue region = 4;
+    google.protobuf.StringValue account = 5;
+    google.protobuf.UInt32Value passed_count = 6;
+    google.protobuf.UInt32Value failed_count = 7;
   }
 
   message TestResult {
