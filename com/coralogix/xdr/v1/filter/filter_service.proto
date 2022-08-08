@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.filter;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+service SecurityTestService {
+
+  rpc GetFilterableFields(GetFilterableFieldsRequest) returns (GetFilterableFieldsResponse){
+    option (audit_log_description).description = "get list of fields to use in filtering";
+    option (google.api.http) = {
+      post: "/xdr/v1/filter/filterable-fields"
+    };
+  }
+
+  rpc GetFilterAggs(GetFilterAggsRequest) returns (GetFilterAggsResponse) {
+    option (audit_log_description).description = "get filter aggregations - value counts";
+    option (google.api.http) = {
+      post: "/xdr/v1/filter/{execution_id}/filter-aggregations"
+      body: "*"
+    };
+  }
+}
+
+message GetFilterAggsRequest {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetFilterAggsResponse {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.FilterCounts test_counts = 2;
+  com.coralogix.xdr.v1.filter.FilterCounts resource_counts = 3;
+}
+
+message GetFilterableFieldsRequest {
+}
+
+message GetFilterableFieldsResponse {
+
+  message DynamicAttributes {
+    repeated com.coralogix.xdr.v1.rule.DynamicAttribute dynamic_attributes = 1;
+  }
+
+  map<string, DynamicAttributes> provider_filters = 1;
+  map<string, DynamicAttributes> service_filters = 2;
+  map<string, DynamicAttributes> security_rule_filters = 3;
+}
