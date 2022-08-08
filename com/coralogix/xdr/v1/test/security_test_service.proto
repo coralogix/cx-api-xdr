@@ -145,8 +145,9 @@ message GetSecurityTestFilterAggsRequest {
 }
 
 message GetSecurityTestFilterAggsResponse {
-  com.coralogix.xdr.v1.filter.LogFilterCounts log_filter = 1;
-  com.coralogix.xdr.v1.filter.SecurityRuleFilterCounts security_rule_filter = 2;
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.FilterCounts test_counts = 2;
+  com.coralogix.xdr.v1.filter.FilterCounts resource_counts = 3;
 }
 
 message GetFilterableFieldsRequest {
