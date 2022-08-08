@@ -13,7 +13,6 @@ import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 

@@ -3,14 +3,14 @@ syntax = "proto3";
 package com.coralogix.xdr.v1.filter;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/rule/security_rule.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
-service SecurityTestService {
+service FilterService {
 
   rpc GetFilterableFields(GetFilterableFieldsRequest) returns (GetFilterableFieldsResponse){
     option (audit_log_description).description = "get list of fields to use in filtering";

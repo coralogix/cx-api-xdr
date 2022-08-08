@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package com.coralogix.xdr.v1.provider;
 
-import "com/coralogix/xdr/v1/rule/security_rule.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 import "com/coralogix/xdr/v1/provider/provider.proto";
 import "com/coralogix/xdr/v1/audit_log.proto";
@@ -40,12 +39,16 @@ message GetProviderSummaryRequest {
 }
 
 message GetProviderSummaryResponse {
-  message ProviderWithSummary {
-    Provider provider = 1;
-    google.protobuf.UInt64Value failed_count = 2;
-    google.protobuf.UInt64Value passed_count = 3;
-    google.protobuf.UInt64Value total_count = 4;
+  message Summary {
+    google.protobuf.UInt64Value failed_count = 1;
+    google.protobuf.UInt64Value passed_count = 2;
+    google.protobuf.UInt64Value total_count = 3;
   }
-  repeated ProviderWithSummary summaries = 1;
+  message ProviderWithSummaries {
+    Provider provider = 1;
+    Summary test_summaries = 2;
+    Summary resource_summaries = 3;
+  }
+  repeated ProviderWithSummaries provider_summaries = 1;
   google.protobuf.StringValue execution_id = 2;
 }
