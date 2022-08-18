@@ -47,7 +47,7 @@ message GetProviderTestSummaryRequest {
 }
 
 message GetProviderTestSummaryResponse {
-  repeated ProviderWithSummary provider_summary = 1;
+  repeated ProviderWithSummary provider_summaries = 1;
   google.protobuf.StringValue execution_id = 2;
 }
 
@@ -57,7 +57,7 @@ message GetProviderResourceSummaryRequest {
 }
 
 message GetProviderResourceSummaryResponse {
-  repeated ProviderWithSummary provider_summary = 1;
+  repeated ProviderWithSummary provider_summaries = 1;
   google.protobuf.StringValue execution_id = 2;
 }
 
