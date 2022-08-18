@@ -22,7 +22,7 @@ service FilterService {
   rpc GetTestFilterAggs(GetTestFilterAggsRequest) returns (GetTestFilterAggsResponse) {
     option (audit_log_description).description = "get filter aggregations - test value counts";
     option (google.api.http) = {
-      post: "/xdr/v1/filter/{execution_id}/test-filter-aggregations"
+      post: "/xdr/v1/filter/test-filter-aggregations"
       body: "*"
     };
   }
@@ -30,7 +30,7 @@ service FilterService {
   rpc GetResourceFilterAggs(GetResourceFilterAggsRequest) returns (GetResourceFilterAggsResponse) {
     option (audit_log_description).description = "get filter aggregations - resource value counts";
     option (google.api.http) = {
-      post: "/xdr/v1/filter/{execution_id}/resource-filter-aggregations"
+      post: "/xdr/v1/filter/resource-filter-aggregations"
       body: "*"
     };
   }
