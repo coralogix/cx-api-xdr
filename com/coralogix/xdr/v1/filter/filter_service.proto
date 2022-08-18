@@ -19,7 +19,7 @@ service FilterService {
     };
   }
 
-  rpc GetTestFilterAggs(GetFilterAggsRequest) returns (GetFilterAggsResponse) {
+  rpc GetTestFilterAggs(GetTestFilterAggsRequest) returns (GetTestFilterAggsResponse) {
     option (audit_log_description).description = "get filter aggregations - test value counts";
     option (google.api.http) = {
       post: "/xdr/v1/filter/{execution_id}/test-filter-aggregations"
@@ -27,7 +27,7 @@ service FilterService {
     };
   }
 
-  rpc GetResourceFilterAggs(GetFilterAggsRequest) returns (GetFilterAggsResponse) {
+  rpc GetResourceFilterAggs(GetResourceFilterAggsRequest) returns (GetResourceFilterAggsResponse) {
     option (audit_log_description).description = "get filter aggregations - resource value counts";
     option (google.api.http) = {
       post: "/xdr/v1/filter/{execution_id}/resource-filter-aggregations"
@@ -36,15 +36,26 @@ service FilterService {
   }
 }
 
-message GetFilterAggsRequest {
+message GetTestFilterAggsRequest {
   google.protobuf.StringValue execution_id = 1; // UUID
   com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
-message GetFilterAggsResponse {
+message GetTestFilterAggsResponse {
   google.protobuf.StringValue execution_id = 1; // UUID
   com.coralogix.xdr.v1.filter.FilterCounts filter_counts = 2;
 }
+
+message GetResourceFilterAggsRequest {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetResourceFilterAggsResponse {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.FilterCounts filter_counts = 2;
+}
+
 
 message GetFilterableFieldsRequest {
 }
