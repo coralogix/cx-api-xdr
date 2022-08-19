@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.filter;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/rule/security_rule.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+
+import "google/api/annotations.proto";
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/wrappers.proto";
+
+service FilterService {
+
+  rpc GetFilterableFields(GetFilterableFieldsRequest) returns (GetFilterableFieldsResponse){
+    option (audit_log_description).description = "get list of fields to use in filtering";
+    option (google.api.http) = {
+      post: "/xdr/v1/filter/filterable-fields"
+    };
+  }
+
+  rpc GetTestFilterAggs(GetTestFilterAggsRequest) returns (GetTestFilterAggsResponse) {
+    option (audit_log_description).description = "get filter aggregations - test value counts";
+    option (google.api.http) = {
+      post: "/xdr/v1/filter/test-filter-aggregations"
+      body: "*"
+    };
+  }
+
+  rpc GetResourceFilterAggs(GetResourceFilterAggsRequest) returns (GetResourceFilterAggsResponse) {
+    option (audit_log_description).description = "get filter aggregations - resource value counts";
+    option (google.api.http) = {
+      post: "/xdr/v1/filter/resource-filter-aggregations"
+      body: "*"
+    };
+  }
+}
+
+message GetTestFilterAggsRequest {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetTestFilterAggsResponse {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.FilterCounts filter_counts = 2;
+}
+
+message GetResourceFilterAggsRequest {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetResourceFilterAggsResponse {
+  google.protobuf.StringValue execution_id = 1; // UUID
+  com.coralogix.xdr.v1.filter.FilterCounts filter_counts = 2;
+}
+
+
+message GetFilterableFieldsRequest {
+}
+
+message GetFilterableFieldsResponse {
+
+  message DynamicAttributes {
+    repeated com.coralogix.xdr.v1.rule.DynamicAttribute dynamic_attributes = 1;
+  }
+
+  map<string, DynamicAttributes> provider_filters = 1;
+  map<string, DynamicAttributes> service_filters = 2;
+  map<string, DynamicAttributes> security_rule_filters = 3;
+}

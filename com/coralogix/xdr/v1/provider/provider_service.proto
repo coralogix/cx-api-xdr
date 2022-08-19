@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package com.coralogix.xdr.v1.provider;
 
-import "com/coralogix/xdr/v1/rule/security_rule.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 import "com/coralogix/xdr/v1/provider/provider.proto";
 import "com/coralogix/xdr/v1/audit_log.proto";
@@ -12,10 +11,18 @@ import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 
 service ProviderService {
-  rpc GetProviderSummary (GetProviderSummaryRequest) returns (GetProviderSummaryResponse) {
+  rpc GetProviderTestSummary (GetProviderTestSummaryRequest) returns (GetProviderTestSummaryResponse) {
     option (audit_log_description).description = "get platform summary";
     option (google.api.http) = {
-      post: "/xdr/v1/get_provider_summaries"
+      post: "/xdr/v1/get_provider_test_summaries"
+      body: "*"
+    };
+  }
+
+  rpc GetProviderResourceSummary (GetProviderResourceSummaryRequest) returns (GetProviderResourceSummaryResponse) {
+    option (audit_log_description).description = "get platform summary";
+    option (google.api.http) = {
+      post: "/xdr/v1/get_provider_resource_summaries"
       body: "*"
     };
   }
@@ -34,18 +41,30 @@ message GetProvidersResponse {
   repeated Provider data = 1;
 }
 
-message GetProviderSummaryRequest {
+message GetProviderTestSummaryRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
 }
 
-message GetProviderSummaryResponse {
-  message ProviderWithSummary {
-    Provider provider = 1;
-    google.protobuf.UInt64Value failed_count = 2;
-    google.protobuf.UInt64Value passed_count = 3;
-    google.protobuf.UInt64Value total_count = 4;
-  }
-  repeated ProviderWithSummary summaries = 1;
+message GetProviderTestSummaryResponse {
+  repeated ProviderWithSummary provider_summaries = 1;
   google.protobuf.StringValue execution_id = 2;
+}
+
+message GetProviderResourceSummaryRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetProviderResourceSummaryResponse {
+  repeated ProviderWithSummary provider_summaries = 1;
+  google.protobuf.StringValue execution_id = 2;
+}
+
+
+message ProviderWithSummary {
+  Provider provider = 1;
+  google.protobuf.UInt64Value failed_count = 2;
+  google.protobuf.UInt64Value passed_count = 3;
+  google.protobuf.UInt64Value total_count = 4;
 }

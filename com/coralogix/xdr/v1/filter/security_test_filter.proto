@@ -42,6 +42,11 @@ message CustomFilterValueCounts {
   map<string, google.protobuf.UInt32Value> filter_values = 1;
 }
 
+message FilterCounts {
+  LogFilterCounts log_filter = 1;
+  SecurityRuleFilterCounts security_rule_filter = 2;
+}
+
 message LogFilterCounts {
   map<string, google.protobuf.UInt32Value> test_identity = 1;
   map<string, google.protobuf.UInt32Value> item = 2;
