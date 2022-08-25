@@ -23,9 +23,9 @@ service InventoryService {
 message GetCountsRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
-  optional com.coralogix.xdr.v1.filter.SecurityTestFilter totalFilter = 3;
-  optional com.coralogix.xdr.v1.filter.SecurityTestFilter saasFilter = 4;
-  optional com.coralogix.xdr.v1.filter.SecurityTestFilter paasFilter = 5;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter totalTestsFilter = 3;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter saasTestsFilter = 4;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter paasTestsFilter = 5;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter resourcesFilter = 6;
 }
 
