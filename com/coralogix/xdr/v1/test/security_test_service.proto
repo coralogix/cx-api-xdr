@@ -95,7 +95,22 @@ service SecurityTestService {
       body: "*"
     };
   }
+
+  rpc SetResourceActivation(ResourceActivationRequest) returns (ResourceActivationResponse) {
+    option (audit_log_description).description = "set resource activation";
+    option (google.api.http) = {
+      post: "/xdr/v1/test/resource/activate/{resource_id}"
+      body: "*"
+    };
+  }
 }
+
+message ResourceActivationRequest {
+  google.protobuf.StringValue resource_id = 1;
+  bool is_active = 2;
+}
+
+message ResourceActivationResponse{}
 
 message GetSecurityTestsOverviewRequest {
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 1;
