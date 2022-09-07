@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+package com.coralogix.xdr.v1.test;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
