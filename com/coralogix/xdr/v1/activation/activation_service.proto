@@ -7,6 +7,7 @@ import "com/coralogix/xdr/v1/audit_log.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
 
 service ActivationService {
   rpc SetRuleActivation(RuleActivationRequest) returns (RuleActivationResponse) {
@@ -30,6 +31,13 @@ service ActivationService {
     option (google.api.http) = {
       put: "/xdr/v1/activation/resource/{resource_id}"
       body: "*"
+    };
+  }
+
+  rpc GetDeactivations(GetDeactivationsRequest) returns (GetDeactivationsResponse) {
+    option (audit_log_description).description = "get deactivations";
+    option (google.api.http) = {
+      get: "/xdr/v1/deactivation"
     };
   }
 }
@@ -57,3 +65,39 @@ message ResourceActivationRequest {
 
 message ResourceActivationResponse{}
 
+message GetDeactivationsRequest {
+  enum DeactivationScope {
+    DEACTIVATION_SCOPE_UNSPECIFIED = 0;
+    DEACTIVATION_SCOPE_RULE = 1;
+    DEACTIVATION_SCOPE_RESOURCE = 2;
+    DEACTIVATION_SCOPE_RULE_AND_RESOURCE = 3;
+  }
+  
+  DeactivationScope scope = 1;
+}
+
+message GetDeactivationsResponse {
+  message RuleDeactivation {
+    google.protobuf.StringValue test_identity = 1;
+  }
+  message ResourceDeactivation {
+    google.protobuf.StringValue resource_id = 1;
+  }
+  message RuleAndResourceDeactivation {
+    google.protobuf.StringValue test_identity = 1;
+    google.protobuf.StringValue resource_id = 2;
+  }
+  message DeactivationDetails {
+    oneof value {
+      RuleDeactivation rule_deactivation = 1;
+      ResourceDeactivation resource_deactivation = 2;
+      RuleAndResourceDeactivation rule_and_resource_deactivation = 3;
+    }
+  }
+  message Deactivation {
+    DeactivationDetails details = 1;
+    google.protobuf.Timestamp deactivated_at = 2;  
+  }
+  
+  repeated Deactivation deactivations = 1;
+}
