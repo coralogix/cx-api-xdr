@@ -77,7 +77,7 @@ service SecurityTestService {
   rpc SetResourceActivation(ResourceActivationRequest) returns (ResourceActivationResponse) {
     option (audit_log_description).description = "set resource activation";
     option (google.api.http) = {
-      post: "/xdr/v1/test/resource/activate/{resource_id}"
+      put: "/xdr/v1/test/resource/activate/{resource_id}"
       body: "*"
     };
   }

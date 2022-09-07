@@ -112,7 +112,7 @@ service SecurityRuleManagementService {
   rpc SetRuleActivation(RuleActivationRequest) returns (RuleActivationResponse) {
     option (audit_log_description).description = "set if rule is activated";
     option (google.api.http) = {
-      post: "/xdr/management/v1/security_rule/activate/{rule_id}"
+      put: "/xdr/management/v1/security_rule/activate/{rule_id}"
       body: "*"
     };
   }
