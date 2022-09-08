@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.coralogix.xdr.v1.test;
+package com.coralogix.xdr.v1.activation;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 
