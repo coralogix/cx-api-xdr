@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.activation;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
+service ActivationService {
+  rpc SetRuleActivation(RuleActivationRequest) returns (RuleActivationResponse) {
+    option (audit_log_description).description = "set if rule is activated";
+    option (google.api.http) = {
+      put: "/xdr/v1/activation/security_rule/{rule_id}"
+      body: "*"
+    };
+  }
+
+  rpc SetRuleAndResourceActivation(RuleAndResourceActivationRequest) returns (RuleAndResourceActivationResponse) {
+    option (audit_log_description).description = "set if rule and resource is activated";
+    option (google.api.http) = {
+      put: "/xdr/v1/activation/rule_and_resource"
+      body: "*"
+    };
+  }
+
+  rpc SetResourceActivation(ResourceActivationRequest) returns (ResourceActivationResponse) {
+    option (audit_log_description).description = "set resource activation";
+    option (google.api.http) = {
+      put: "/xdr/v1/activation/resource/{resource_id}"
+      body: "*"
+    };
+  }
+}
+
+
+message RuleAndResourceActivationResponse {}
+
+message RuleAndResourceActivationRequest {
+  google.protobuf.StringValue rule_id = 1;
+  google.protobuf.StringValue resource_id = 2;
+  bool is_active = 3;
+}
+
+message RuleActivationResponse{}
+
+message RuleActivationRequest {
+  google.protobuf.StringValue rule_id = 1;
+  bool is_active = 2;
+}
+
+message ResourceActivationRequest {
+  google.protobuf.StringValue resource_id = 1;
+  bool is_active = 2;
+}
+
+message ResourceActivationResponse{}
+
