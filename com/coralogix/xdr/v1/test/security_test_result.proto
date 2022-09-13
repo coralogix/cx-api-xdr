@@ -16,6 +16,7 @@ message TestSubjectDetails {
   google.protobuf.Struct additional_data = 7;
   google.protobuf.Struct dynamic_attributes_data = 8;
   google.protobuf.StringValue test_identity = 9;
+  google.protobuf.BoolValue is_active = 10;
 }
 
 enum SecurityTestResultStatus {

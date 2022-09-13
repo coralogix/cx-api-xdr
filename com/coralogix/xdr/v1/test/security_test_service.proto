@@ -151,6 +151,7 @@ message GetResourceResultsByRuleCategoryResponse {
     google.protobuf.StringValue service_name = 2;
     google.protobuf.UInt32Value passed_count = 3;
     google.protobuf.UInt32Value failed_count = 4;
+    google.protobuf.BoolValue is_active = 5;
   }
 
   message RuleCategoryGroup {

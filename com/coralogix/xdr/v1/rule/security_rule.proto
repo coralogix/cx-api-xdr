@@ -15,7 +15,7 @@ message DynamicAttribute {
 message SecurityRule {
   reserved 6;
   reserved "cloud_platform";
-  
+
   message Provider {
     google.protobuf.StringValue name = 1;
   }
