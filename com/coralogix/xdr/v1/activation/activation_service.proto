@@ -20,7 +20,7 @@ service ActivationService {
   rpc SetRuleAndResourceActivation(RuleAndResourceActivationRequest) returns (RuleAndResourceActivationResponse) {
     option (audit_log_description).description = "set if rule and resource is activated";
     option (google.api.http) = {
-      post: "/xdr/v1/activation/rule_and_resource"
+      put: "/xdr/v1/activation/rule_and_resource"
       body: "*"
     };
   }
