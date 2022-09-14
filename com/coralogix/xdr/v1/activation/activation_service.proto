@@ -37,7 +37,7 @@ service ActivationService {
   rpc GetDeactivations(GetDeactivationsRequest) returns (GetDeactivationsResponse) {
     option (audit_log_description).description = "get deactivations";
     option (google.api.http) = {
-      get: "/xdr/v1/deactivation"
+      get: "/xdr/v1/deactivations"
     };
   }
 }
@@ -74,6 +74,8 @@ message GetDeactivationsRequest {
   }
   
   DeactivationScope scope = 1;
+  google.protobuf.StringValue test_identity = 2;
+  google.protobuf.StringValue resource_id = 3;
 }
 
 message GetDeactivationsResponse {
