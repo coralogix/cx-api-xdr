@@ -37,7 +37,7 @@ service ActivationService {
   rpc GetDeactivations(GetDeactivationsRequest) returns (GetDeactivationsResponse) {
     option (audit_log_description).description = "get deactivations";
     option (google.api.http) = {
-      get: "/xdr/v1/deactivations"
+      post: "/xdr/v1/deactivations"
     };
   }
 }
