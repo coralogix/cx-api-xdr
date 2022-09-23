@@ -25,6 +25,7 @@ message SecurityTestItem {
   com.coralogix.xdr.v1.rule.SecurityRule rule = 1;
   google.protobuf.UInt32Value passed_count = 2;
   google.protobuf.UInt32Value failed_count = 3;
+  google.protobuf.BoolValue is_active = 4;
 }
 
 message SecurityTestBreakdown {
