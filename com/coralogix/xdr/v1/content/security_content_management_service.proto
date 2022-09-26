@@ -60,7 +60,6 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue name = 1;
   }
 
-
   message ResourceService {
     google.protobuf.StringValue name = 1;
   }
