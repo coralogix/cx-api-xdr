@@ -56,6 +56,15 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue name = 1;
   }
 
+  message ResourceCategory {
+    google.protobuf.StringValue name = 1;
+  }
+
+
+  message ResourceService {
+    google.protobuf.StringValue name = 1;
+  }
+
   message SecurityRuleContent {
     reserved 5;
     reserved "cloud_platform";
@@ -80,6 +89,8 @@ message ReplaceSecurityDataRequest {
   repeated SecurityRuleContent security_rules = 2;
   repeated SecurityRuleCategoryContent security_rule_categories = 3;
   repeated ProviderContent providers = 4;
+  repeated ResourceCategory resource_categories = 5;
+  repeated ResourceService resource_services = 6;
 }
 
 message ReplaceSecurityDataResponse {
