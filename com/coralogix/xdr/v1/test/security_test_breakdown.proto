@@ -20,7 +20,7 @@ message CountByResult {
   google.protobuf.UInt32Value failed = 2;
   optional SeveritiesCount failed_severities = 3;
   google.protobuf.UInt32Value inactive = 4;
-  google.protobuf.UInt32Value unrelated = 5;
+  google.protobuf.UInt32Value not_applicable = 5;
 }
 
 message SecurityTestItem {
