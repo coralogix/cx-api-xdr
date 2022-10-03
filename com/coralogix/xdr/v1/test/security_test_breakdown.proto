@@ -19,6 +19,8 @@ message CountByResult {
   google.protobuf.UInt32Value passed = 1;
   google.protobuf.UInt32Value failed = 2;
   optional SeveritiesCount failed_severities = 3;
+  google.protobuf.UInt32Value inactive = 4;
+  google.protobuf.UInt32Value not_applicable = 5;
 }
 
 message SecurityTestItem {
@@ -29,11 +31,9 @@ message SecurityTestItem {
 }
 
 message SecurityTestBreakdown {
-  reserved 5;
-  reserved "count_by_severity";
+  reserved 5, 2, 4;
+  reserved "count_by_severity", "security_test_items", "all_count";
   google.protobuf.StringValue execution_id = 1; // UUID
-  repeated SecurityTestItem security_test_items = 2;
   google.protobuf.Timestamp executed_at = 3;
-  google.protobuf.UInt32Value all_count = 4;
   CountByResult security_rule_result = 6;
 }
