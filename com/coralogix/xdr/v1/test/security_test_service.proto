@@ -59,9 +59,9 @@ service SecurityTestService {
   }
 
   rpc GetResourceResultsByResourceCategory(GetResourceResultsByResourceCategoryRequest) returns (GetResourceResultsByResourceCategoryResponse) {
-    option (audit_log_description).description = "get resource test results grouped by rule category";
+    option (audit_log_description).description = "get resource test results grouped by resource category";
     option (google.api.http) = {
-      post: "/xdr/v1/security-test/resource-results-by-rule-category"
+      post: "/xdr/v1/security-test/resource-results-by-resource-category"
       body: "*"
     };
   }
@@ -69,7 +69,7 @@ service SecurityTestService {
   rpc GetResourceResultsByRuleCategory(GetResourceResultsByRuleCategoryRequest) returns (GetResourceResultsByRuleCategoryResponse) {
     option (audit_log_description).description = "get resource test results grouped by rule category";
     option (google.api.http) = {
-      post: "/xdr/v1/security-test/resource-results-by-resource-category"
+      post: "/xdr/v1/security-test/resource-results-by-rule-category"
       body: "*"
     };
   }
