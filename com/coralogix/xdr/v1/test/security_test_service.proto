@@ -168,7 +168,7 @@ message GetResourceResultsByResourceCategoryResponse {
   }
 
   google.protobuf.StringValue execution_id = 1;
-  repeated ResourceCategoryGroup rule_category_groups = 2;
+  repeated ResourceCategoryGroup resource_category_groups = 2;
 }
 
 message GetResourceResultsByRuleCategoryRequest {
