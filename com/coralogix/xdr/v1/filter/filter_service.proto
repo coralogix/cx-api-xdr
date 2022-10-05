@@ -55,7 +55,7 @@ message GetResourceFilterAggsRequest {
 
 message GetResourceFilterAggsResponse {
   google.protobuf.StringValue execution_id = 1; // UUID
-  com.coralogix.xdr.v1.filter.FilterCounts filter_counts = 2;
+  com.coralogix.xdr.v1.filter.ResourceFilterCounts filter_counts = 2;
 }
 
 
