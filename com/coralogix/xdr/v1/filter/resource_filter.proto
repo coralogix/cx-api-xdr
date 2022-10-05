@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.filter;
+
+import "com/coralogix/xdr/v1/provider/provider.proto";
+
+import "google/protobuf/wrappers.proto";
+
+message ResourceFilter {
+  message LogFilter {
+    message CustomFilterValue {
+      repeated google.protobuf.StringValue filter_values = 1;
+    }
+
+    repeated google.protobuf.StringValue test_identity = 1;
+    repeated google.protobuf.StringValue item = 2;
+    repeated google.protobuf.StringValue provider = 3;
+    repeated google.protobuf.StringValue result_status = 6;
+    map<string, CustomFilterValue> custom_filters = 7;
+  }
+
+  message SecurityRuleFilter {
+
+    message ProviderFilter {
+      repeated google.protobuf.StringValue name = 1;
+      repeated provider.ProviderType type = 2;
+    }
+
+    repeated google.protobuf.UInt32Value severity = 1;
+    repeated google.protobuf.StringValue policy = 2;
+    repeated google.protobuf.StringValue resource_category = 3;
+    repeated google.protobuf.StringValue resource_service = 4;
+    repeated ProviderFilter provider = 5;
+  }
+
+  LogFilter log_filter = 1;
+  SecurityRuleFilter security_rule_filter = 2;
+}
+
+message ResourceFilterCounts {
+
+  message CustomFilterValueCounts {
+    map<string, google.protobuf.UInt32Value> filter_values = 1;
+  }
+
+  message LogFilterCounts {
+    map<string, google.protobuf.UInt32Value> test_identity = 1;
+    map<string, google.protobuf.UInt32Value> item = 2;
+    map<string, google.protobuf.UInt32Value> provider = 3;
+    map<string, google.protobuf.UInt32Value> result_status = 6;
+    map<string, CustomFilterValueCounts> custom_filters = 7;
+  }
+
+  message SecurityRuleFilterCounts {
+    map<string, google.protobuf.UInt32Value> severity = 1;
+    map<string, google.protobuf.UInt32Value> policy = 2;
+    map<string, google.protobuf.UInt32Value> resource_category = 3;
+    map<string, google.protobuf.UInt32Value> resource_service = 4;
+  }
+
+  LogFilterCounts log_filter = 1;
+  SecurityRuleFilterCounts security_rule_filter = 2;
+
+}

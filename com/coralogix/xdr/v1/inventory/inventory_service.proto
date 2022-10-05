@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.xdr.v1.inventory;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
+import "com/coralogix/xdr/v1/filter/resource_filter.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 
 import "google/api/annotations.proto";
@@ -28,7 +29,7 @@ message GetCountsRequest {
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter totalTestsFilter = 3;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter saasTestsFilter = 4;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter paasTestsFilter = 5;
-  optional com.coralogix.xdr.v1.filter.SecurityTestFilter resourcesFilter = 6;
+  optional com.coralogix.xdr.v1.filter.ResourceFilter resourcesFilter = 6;
 }
 
 message GetCountsResponse{

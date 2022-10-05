@@ -163,7 +163,7 @@ message GetResourceResultsByResourceCategoryResponse {
   }
 
   message ResourceCategoryGroup {
-    com.coralogix.xdr.v1.rule.ResourceCategory resource_category = 1;
+    google.protobuf.StringValue resource_category = 1;
     repeated ResourceResults resource_results = 2;
   }
 

@@ -56,10 +56,6 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue name = 1;
   }
 
-  message ResourceService {
-    google.protobuf.StringValue name = 1;
-  }
-
   message SecurityRuleContent {
     reserved 5;
     reserved "cloud_platform";
