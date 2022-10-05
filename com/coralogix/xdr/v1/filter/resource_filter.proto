@@ -30,7 +30,7 @@ message ResourceFilter {
     repeated google.protobuf.StringValue policy = 2;
     repeated google.protobuf.StringValue resource_category = 3;
     repeated google.protobuf.StringValue resource_service = 4;
-    repeated ProviderFilter provider = 5;
+    ProviderFilter provider = 5;
   }
 
   LogFilter log_filter = 1;
@@ -58,7 +58,13 @@ message ResourceFilterCounts {
     map<string, google.protobuf.UInt32Value> resource_service = 4;
   }
 
+  message ProviderFilterCounts {
+    map<string, google.protobuf.UInt32Value> name = 1;
+    map<string, google.protobuf.UInt32Value> type = 2;
+  }
+
   LogFilterCounts log_filter = 1;
   SecurityRuleFilterCounts security_rule_filter = 2;
+  ProviderFilterCounts provider = 3;
 
 }
