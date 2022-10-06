@@ -39,11 +39,11 @@ message ResourceFilter {
 
 message ResourceFilterCounts {
 
-  message CustomFilterValueCounts {
-    map<string, google.protobuf.UInt32Value> filter_values = 1;
-  }
-
   message LogFilterCounts {
+    message CustomFilterValueCounts {
+      map<string, google.protobuf.UInt32Value> filter_values = 1;
+    }
+
     map<string, google.protobuf.UInt32Value> test_identity = 1;
     map<string, google.protobuf.UInt32Value> item = 2;
     map<string, google.protobuf.UInt32Value> provider = 3;
@@ -52,6 +52,12 @@ message ResourceFilterCounts {
   }
 
   message SecurityRuleFilterCounts {
+
+    message ProviderFilterCounts {
+      map<string, google.protobuf.UInt32Value> name = 1;
+      map<string, google.protobuf.UInt32Value> type = 2;
+    }
+
     map<string, google.protobuf.UInt32Value> severity = 1;
     map<string, google.protobuf.UInt32Value> policy = 2;
     map<string, google.protobuf.UInt32Value> resource_category = 3;
@@ -59,13 +65,8 @@ message ResourceFilterCounts {
     ProviderFilterCounts provider = 5;
   }
 
-  message ProviderFilterCounts {
-    map<string, google.protobuf.UInt32Value> name = 1;
-    map<string, google.protobuf.UInt32Value> type = 2;
-  }
 
   LogFilterCounts log_filter = 1;
   SecurityRuleFilterCounts security_rule_filter = 2;
-  ProviderFilterCounts provider = 3;
 
 }
