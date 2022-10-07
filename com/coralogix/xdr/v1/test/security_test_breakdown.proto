@@ -7,6 +7,13 @@ import "google/protobuf/timestamp.proto";
 
 import "com/coralogix/xdr/v1/rule/security_rule.proto";
 
+message CountBySeverity {
+  google.protobuf.UInt32Value low = 1;
+  google.protobuf.UInt32Value medium = 2;
+  google.protobuf.UInt32Value high = 3;
+  google.protobuf.UInt32Value critical = 4;
+}
+
 message CountByResult {
 
   message SeveritiesCount{
@@ -36,4 +43,5 @@ message SecurityTestBreakdown {
   google.protobuf.StringValue execution_id = 1; // UUID
   google.protobuf.Timestamp executed_at = 3;
   CountByResult security_rule_result = 6;
+  CountBySeverity security_test_result = 7;
 }
