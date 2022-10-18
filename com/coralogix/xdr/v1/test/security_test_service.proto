@@ -82,6 +82,14 @@ service SecurityTestService {
       body: "*"
     };
   }
+  
+  rpc GetResourcesFailedTestCounts(GetResourcesFailedTestCountsRequest) returns (GetResourcesFailedTestCountsResponse) {
+    option (audit_log_description).description = "get resources failed test counts";
+    option (google.api.http) = {
+      post: "/xdr/v1/test/resource/failed-test-counts"
+      body: "*"
+    };
+  }
 }
 
 message GetSecurityTestsOverviewRequest {
@@ -227,3 +235,20 @@ message GetResourceResultsResponse {
   repeated TestResult results = 3;
   google.protobuf.Timestamp executed_at = 4;
 }
+
+message GetResourcesFailedTestCountsRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetResourcesFailedTestCountsResponse {
+  message ResourceResults {
+    google.protobuf.StringValue resource_id = 1;
+    google.protobuf.StringValue resource_name = 2;
+    google.protobuf.UInt32Value failed_count = 3;
+  }
+  
+  optional google.protobuf.StringValue execution_id = 1;
+  repeated ResourceResults results = 2;
+}
+
