@@ -48,14 +48,15 @@ message GetTestFilterAggsResponse {
 }
 
 message GetResourceFilterAggsRequest {
-  reserved 2;
   google.protobuf.StringValue execution_id = 1; // UUID
-  com.coralogix.xdr.v1.filter.ResourceFilter filter = 3;
+  com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+  com.coralogix.xdr.v1.filter.ResourceFilter resource_filter = 3;
 }
 
 message GetResourceFilterAggsResponse {
   google.protobuf.StringValue execution_id = 1; // UUID
-  com.coralogix.xdr.v1.filter.ResourceFilterCounts filter_counts = 2;
+  com.coralogix.xdr.v1.filter.FilterCounts filter_counts = 2;
+  com.coralogix.xdr.v1.filter.ResourceFilterCounts resource_filter_counts = 3;
 }
 
 

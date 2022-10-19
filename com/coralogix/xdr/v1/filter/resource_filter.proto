@@ -15,8 +15,8 @@ message ResourceFilter {
     repeated google.protobuf.StringValue test_identity = 1;
     repeated google.protobuf.StringValue item = 2;
     repeated google.protobuf.StringValue provider = 3;
-    repeated google.protobuf.StringValue result_status = 6;
-    map<string, CustomFilterValue> custom_filters = 7;
+    repeated google.protobuf.StringValue result_status = 4;
+    map<string, CustomFilterValue> custom_filters = 5;
   }
 
   message SecurityRuleFilter {
@@ -47,8 +47,8 @@ message ResourceFilterCounts {
     map<string, google.protobuf.UInt32Value> test_identity = 1;
     map<string, google.protobuf.UInt32Value> item = 2;
     map<string, google.protobuf.UInt32Value> provider = 3;
-    map<string, google.protobuf.UInt32Value> result_status = 6;
-    map<string, CustomFilterValueCounts> custom_filters = 7;
+    map<string, google.protobuf.UInt32Value> result_status = 4;
+    map<string, CustomFilterValueCounts> custom_filters = 5;
   }
 
   message SecurityRuleFilterCounts {

@@ -29,7 +29,8 @@ message GetCountsRequest {
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter totalTestsFilter = 3;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter saasTestsFilter = 4;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter paasTestsFilter = 5;
-  optional com.coralogix.xdr.v1.filter.ResourceFilter resourcesFilter = 6;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter resourcesFilter = 6;
+  optional com.coralogix.xdr.v1.filter.ResourceFilter resourceFilter = 7;
 }
 
 message GetCountsResponse{

@@ -10,6 +10,7 @@ import "com/coralogix/xdr/v1/test/security_test_breakdown.proto";
 import "com/coralogix/xdr/v1/test/security_tests_overview.proto";
 import "com/coralogix/xdr/v1/test/security_test_result.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+import "com/coralogix/xdr/v1/filter/resource_filter.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
@@ -149,7 +150,7 @@ message GetSecurityTestResultsByPolicyCategoryResponse {
 
 message GetResourceResultsByResourceCategoryRequest {
   optional google.protobuf.StringValue execution_id = 1;
-  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+  optional com.coralogix.xdr.v1.filter.ResourceFilter filter = 2;
 }
 
 message GetResourceResultsByResourceCategoryResponse {
@@ -200,6 +201,7 @@ message GetResourceResultsRequest {
   // Af of now, resource_name is considered as the identifier of the resource
   google.protobuf.StringValue resource_id = 2;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 3;
+  optional com.coralogix.xdr.v1.filter.ResourceFilter resource_filter= 4;
 }
 
 message GetResourceResultsResponse {
