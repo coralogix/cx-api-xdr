@@ -239,6 +239,7 @@ message GetResourceResultsResponse {
 message GetResourcesFailedTestCountsRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+  google.protobuf.UInt32Value amount_of_resources = 3;
 }
 
 message GetResourcesFailedTestCountsResponse {
