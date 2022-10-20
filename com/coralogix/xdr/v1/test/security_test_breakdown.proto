@@ -36,4 +36,5 @@ message SecurityTestBreakdown {
   google.protobuf.StringValue execution_id = 1; // UUID
   google.protobuf.Timestamp executed_at = 3;
   CountByResult security_rule_result = 6;
+  CountByResult security_test_result = 7;
 }
