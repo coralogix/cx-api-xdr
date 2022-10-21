@@ -36,6 +36,8 @@ message SecurityRule {
   google.protobuf.StringValue description = 15;
   Provider provider = 16;
   SecurityRuleCategory category = 17;
+  google.protobuf.StringValue resource_category = 18;
+  google.protobuf.StringValue resource_service = 19;
 }
 
 message SecurityRuleCategory {

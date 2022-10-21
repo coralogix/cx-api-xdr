@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package com.coralogix.xdr.v1.provider;
 
+import "com/coralogix/xdr/v1/filter/resource_filter.proto";
 import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
 import "com/coralogix/xdr/v1/provider/provider.proto";
 import "com/coralogix/xdr/v1/audit_log.proto";
@@ -54,6 +55,7 @@ message GetProviderTestSummaryResponse {
 message GetProviderResourceSummaryRequest {
   optional google.protobuf.StringValue execution_id = 1;
   optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+  optional com.coralogix.xdr.v1.filter.ResourceFilter resource_filter = 3;
 }
 
 message GetProviderResourceSummaryResponse {

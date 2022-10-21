@@ -72,6 +72,8 @@ message ReplaceSecurityDataRequest {
     google.protobuf.StringValue description = 11;
     google.protobuf.StringValue rule_category_name = 12;
     google.protobuf.StringValue provider_name = 13;
+    google.protobuf.StringValue resource_category = 14;
+    google.protobuf.StringValue resource_service = 15;
   }
 
   repeated PolicyWithCategories policies_with_categories = 1;
