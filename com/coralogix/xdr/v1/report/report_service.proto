@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.report;
+
+import "com/coralogix/xdr/v1/filter/resource_filter.proto";
+import "com/coralogix/xdr/v1/filter/security_test_filter.proto";
+import "com/coralogix/xdr/v1/provider/provider.proto";
+import "com/coralogix/xdr/v1/audit_log.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
+service ReportService {
+  rpc GetReport (GetReportRequest) returns (stream GetReportResponse) {
+    option (audit_log_description).description = "get report";
+    option (google.api.http) = {
+      post: "/xdr/v1/report/get_report"
+      body: "*"
+    };
+  }
+}
+
+message GetReportRequest {
+  optional google.protobuf.StringValue execution_id = 1;
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetReportResponse {
+  message ReportRow {
+    google.protobuf.StringValue category = 1;
+    google.protobuf.StringValue service = 2;
+    google.protobuf.StringValue test_name = 3;
+    google.protobuf.StringValue resource_name = 4;
+    google.protobuf.StringValue resource_id = 5;
+    google.protobuf.StringValue arn = 6;
+    google.protobuf.StringValue provider = 7;
+    google.protobuf.StringValue region = 8;
+    google.protobuf.StringValue account_number = 9;
+    google.protobuf.StringValue pass_or_failed = 10;
+    google.protobuf.StringValue severity = 11;
+    google.protobuf.StringValue compliance_framework = 12;
+    google.protobuf.StringValue active_or_inactive = 13;
+  }
+  
+  repeated ReportRow report_rows = 1;
+}
