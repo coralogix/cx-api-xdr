@@ -39,7 +39,7 @@ message GetReportResponse {
     google.protobuf.StringValue account_number = 9;
     google.protobuf.BoolValue is_passed_result = 10;
     google.protobuf.UInt32Value severity = 11;
-    repeated google.protobuf.StringValue security_policy = 12;
+    repeated google.protobuf.StringValue security_policies = 12;
     google.protobuf.BoolValue is_active = 13;
   }
 
