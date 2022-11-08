@@ -247,6 +247,7 @@ message GetTopFailedResourceTestCountsResponse {
     google.protobuf.StringValue resource_id = 1;
     google.protobuf.StringValue resource_name = 2;
     google.protobuf.UInt32Value failed_count = 3;
+    google.protobuf.StringValue resource_service = 4;
   }
   
   optional google.protobuf.StringValue execution_id = 1;
