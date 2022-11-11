@@ -83,15 +83,6 @@ service SecurityTestService {
     };
   }
   
-  // Deprecated - it's going to be removed soon.
-  rpc GetTopFailedResourceTestCounts(GetTopFailedResourceTestCountsRequest) returns (GetTopFailedResourceTestCountsResponse) {
-    option (audit_log_description).description = "get top failed resource test counts";
-    option (google.api.http) = {
-      post: "/xdr/v1/test/resource/top-failed-test-counts"
-      body: "*"
-    };
-  }
-
   rpc GetTopFailedResourcesByResourceService(GetTopFailedResourcesByResourceServiceRequest) returns (GetTopFailedResourcesByResourceServiceResponse) {
     option (audit_log_description).description = "get top failed resources by resource service";
     option (google.api.http) = {
@@ -243,23 +234,6 @@ message GetResourceResultsResponse {
   ResourceItem resource_item = 2;
   repeated TestResult results = 3;
   google.protobuf.Timestamp executed_at = 4;
-}
-
-message GetTopFailedResourceTestCountsRequest {
-  optional google.protobuf.StringValue execution_id = 1;
-  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
-  google.protobuf.UInt32Value amount_of_resources = 3;
-}
-
-message GetTopFailedResourceTestCountsResponse {
-  message ResourceResults {
-    google.protobuf.StringValue resource_id = 1;
-    google.protobuf.StringValue resource_name = 2;
-    google.protobuf.UInt32Value failed_count = 3;
-  }
-  
-  optional google.protobuf.StringValue execution_id = 1;
-  repeated ResourceResults results = 2;
 }
 
 message GetTopFailedResourcesByResourceServiceRequest {
