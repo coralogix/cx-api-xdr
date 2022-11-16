@@ -64,7 +64,6 @@ message SecurityRuleFilterCounts {
   map<string, google.protobuf.UInt32Value> severity = 1;
   map<string, google.protobuf.UInt32Value> policy = 2;
   ProviderFilterCounts provider = 3;
-  map<string, google.protobuf.UInt32Value> active = 4;
 }
 
 message ProviderFilterCounts {
