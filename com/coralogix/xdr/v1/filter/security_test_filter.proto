@@ -23,6 +23,7 @@ message LogFilter {
   repeated google.protobuf.StringValue item_type = 5;
   repeated google.protobuf.StringValue result_status = 6;
   map<string, CustomFilterValue> custom_filters = 7;
+  repeated google.protobuf.StringValue active = 8;
 }
 
 message SecurityRuleFilter {
@@ -55,6 +56,7 @@ message LogFilterCounts {
   map<string, google.protobuf.UInt32Value> item_type = 5;
   map<string, google.protobuf.UInt32Value> result_status = 6;
   map<string, CustomFilterValueCounts> custom_filters = 7;
+  map<string, google.protobuf.UInt32Value> active = 8;
 }
 
 message SecurityRuleFilterCounts {
