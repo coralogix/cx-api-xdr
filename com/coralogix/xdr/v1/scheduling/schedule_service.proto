@@ -34,7 +34,7 @@ service SchedulingService {
   }
 
   rpc RegisterScan(RegisterScanRequest) returns (RegisterScanResponse) {
-    option (audit_log_description).description = "get configured schedule";
+    option (audit_log_description).description = "register a new scan";
     option (google.api.http) = {
       post: "/xdr/scheduling/v1/schedule/register/scan"
       body: "*"
