@@ -33,7 +33,7 @@ service SchedulingService {
     };
   }
 
-  rpc RegisterScanStart(RegisterScanStartRequest) returns (RegisterScanStartResponse) {
+  rpc RegisterScan(RegisterScanRequest) returns (RegisterScanResponse) {
     option (audit_log_description).description = "get configured schedule";
     option (google.api.http) = {
       post: "/xdr/scheduling/v1/schedule/register/scan"
@@ -42,11 +42,11 @@ service SchedulingService {
   }
 }
 
-message RegisterScanStartRequest {
+message RegisterScanRequest {
   google.protobuf.StringValue platform = 1;
 }
 
-message RegisterScanStartResponse {
+message RegisterScanResponse {
   bool registered = 1;
 }
 
@@ -63,11 +63,11 @@ message CreateOrUpdateScheduleResponse {
 message CreateOrUpdateScheduleRequest {}
 
 message Schedule {
-  Time initial_value = 1;
+  TimeOfDay time_of_day = 1; // 12 hours 00 minutes
   google.protobuf.Int32Value scan_frequency = 2; //value in hours 6/12/24
 }
 
-message Time {
+message TimeOfDay {
   google.protobuf.Int32Value hours = 1;
-  google.protobuf.Int32Value minutes = 2;
+  google.protobuf.Int32Value minutes = 2; // default value 0
 }
