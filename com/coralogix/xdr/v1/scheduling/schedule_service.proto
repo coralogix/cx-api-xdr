@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.scheduling;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+
+service SchedulingService {
+  rpc CreateSchedule(CreateOrUpdateScheduleRequest) returns(CreateOrUpdateScheduleResponse){
+    option (audit_log_description).description = "create a new schedule";
+    option (google.api.http) = {
+      post: "/xdr/scheduling/v1/schedule/update"
+      body: "*"
+    };
+  }
+
+  rpc UpdateSchedule(CreateOrUpdateScheduleRequest) returns (CreateOrUpdateScheduleResponse) {
+    option (audit_log_description).description = "update schedule";
+    option (google.api.http) = {
+      put: "/xdr/scheduling/v1/schedule/scan"
+      body: "*"
+    };
+  }
+
+  rpc GetSchedule(GetScheduleRequest) returns (GetScheduleResponse) {
+    option (audit_log_description).description = "get configured schedule";
+    option (google.api.http) = {
+      get: "/xdr/scheduling/v1/schedule"
+    };
+  }
+
+  rpc RegisterScanStart(RegisterScanStartRequest) returns (RegisterScanStartResponse) {
+    option (audit_log_description).description = "get configured schedule";
+    option (google.api.http) = {
+      post: "/xdr/scheduling/v1/schedule/register/scan"
+      body: "*"
+    };
+  }
+}
+
+message RegisterScanStartRequest {
+  google.protobuf.StringValue platform = 1;
+}
+
+message RegisterScanStartResponse {
+  bool registered = 1;
+}
+
+message GetScheduleResponse {
+  Schedule schedule = 1;
+}
+
+message GetScheduleRequest{}
+
+message CreateOrUpdateScheduleResponse {
+  Schedule schedule = 1;
+}
+
+message CreateOrUpdateScheduleRequest {}
+
+message Schedule {
+  Time initial_value = 1;
+  google.protobuf.Int32Value scan_frequency = 2; //value in hours 6/12/24
+}
+
+message Time {
+  google.protobuf.Int32Value hours = 1;
+  google.protobuf.Int32Value minutes = 2;
+}
