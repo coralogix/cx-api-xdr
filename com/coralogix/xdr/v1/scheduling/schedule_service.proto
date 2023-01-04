@@ -13,7 +13,7 @@ service SchedulingService {
   rpc CreateSchedule(CreateOrUpdateScheduleRequest) returns(CreateOrUpdateScheduleResponse){
     option (audit_log_description).description = "create a new schedule";
     option (google.api.http) = {
-      post: "/xdr/scheduling/v1/schedule/update"
+      post: "/xdr/scheduling/v1/schedule/scan"
       body: "*"
     };
   }
