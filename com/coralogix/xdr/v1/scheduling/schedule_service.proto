@@ -60,7 +60,9 @@ message CreateOrUpdateScheduleResponse {
   Schedule schedule = 1;
 }
 
-message CreateOrUpdateScheduleRequest {}
+message CreateOrUpdateScheduleRequest {
+  Schedule schedule = 1;
+}
 
 message Schedule {
   TimeOfDay time_of_day = 1; // 12 hours 00 minutes
