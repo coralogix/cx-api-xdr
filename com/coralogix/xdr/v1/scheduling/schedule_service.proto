@@ -56,9 +56,7 @@ message GetScheduleResponse {
 
 message GetScheduleRequest{}
 
-message CreateOrUpdateScheduleResponse {
-  Schedule schedule = 1;
-}
+message CreateOrUpdateScheduleResponse {}
 
 message CreateOrUpdateScheduleRequest {
   Schedule schedule = 1;
