@@ -12,9 +12,9 @@ import "google/api/annotations.proto";
 service SchedulingService {
 
   rpc CreateOrUpdateSchedule(CreateOrUpdateScheduleRequest) returns (CreateOrUpdateScheduleResponse) {
-    option (audit_log_description).description = "update schedule";
+    option (audit_log_description).description = "update or create schedule";
     option (google.api.http) = {
-      put: "/xdr/scheduling/v1/schedule/scan"
+      post: "/xdr/scheduling/v1/schedule/scan"
       body: "*"
     };
   }
@@ -45,6 +45,7 @@ message RegisterScanResponse {
 
 message GetScheduleResponse {
   Schedule schedule = 1;
+  google.protobuf.Timestamp last_execution = 2;
 }
 
 message GetScheduleRequest{}
