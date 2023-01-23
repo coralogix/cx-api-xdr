@@ -25,6 +25,18 @@ service SchedulingService {
       get: "/xdr/scheduling/v1/schedule"
     };
   }
+
+  rpc RunNow(ScanNowRequest) returns (ScanNowResponse) {
+    option (audit_log_description).description = "insert a manual scan";
+    option (google.api.http) = {
+      get: "/xdr/scheduling/v1/schedule/scan/now"
+    };
+  }
+}
+
+message ScanNowRequest{}
+message ScanNowResponse{
+  google.protobuf.BoolValue canRun = 1;
 }
 
 message GetScheduleResponse {
