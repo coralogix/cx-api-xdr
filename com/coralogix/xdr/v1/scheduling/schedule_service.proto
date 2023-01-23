@@ -36,7 +36,7 @@ service SchedulingService {
 
 message ScanNowRequest{}
 message ScanNowResponse{
-  google.protobuf.BoolValue canRun = 1;
+  google.protobuf.BoolValue can_run = 1;
 }
 
 message GetScheduleResponse {
