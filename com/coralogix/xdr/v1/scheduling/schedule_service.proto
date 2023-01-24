@@ -27,7 +27,7 @@ service SchedulingService {
   }
 
   rpc ScanNow(ScanNowRequest) returns (ScanNowResponse) {
-    option (audit_log_description).description = "insert a manual scan";
+    option (audit_log_description).description = "schedule a manual scan";
     option (google.api.http) = {
       get: "/xdr/scheduling/v1/schedule/scan/now"
     };
