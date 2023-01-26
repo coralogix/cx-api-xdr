@@ -26,21 +26,29 @@ service SchedulingService {
     };
   }
 
-  rpc RegisterScan(RegisterScanRequest) returns (RegisterScanResponse) {
-    option (audit_log_description).description = "register a new scan";
+  rpc ScanNow(ScanNowRequest) returns (ScanNowResponse) {
+    option (audit_log_description).description = "schedule a manual scan";
     option (google.api.http) = {
-      post: "/xdr/scheduling/v1/schedule/register/scan"
-      body: "*"
+      get: "/xdr/scheduling/v1/schedule/scan/now"
+    };
+  }
+
+  rpc GetManualExecutionAvailability(GetManualExecutionAvailabilityRequest) returns (GetManualExecutionAvailabilityResponse) {
+    option (audit_log_description).description = "get manual execution availability";
+    option (google.api.http) = {
+      get: "/xdr/scheduling/v1/schedule/scan/now/availability"
     };
   }
 }
 
-message RegisterScanRequest {
-  google.protobuf.StringValue provider = 1;
+message GetManualExecutionAvailabilityRequest{}
+message GetManualExecutionAvailabilityResponse{
+  google.protobuf.BoolValue can_register = 1;
 }
 
-message RegisterScanResponse {
-  bool registered = 1;
+message ScanNowRequest{}
+message ScanNowResponse{
+  google.protobuf.BoolValue registered = 1;
 }
 
 message GetScheduleResponse {
@@ -55,8 +63,6 @@ message CreateOrUpdateScheduleResponse {}
 message CreateOrUpdateScheduleRequest {
   Schedule schedule = 1;
 }
-
-message UpdateScheduleResponse {}
 
 message Schedule {
   TimeOfDay time_of_day = 1; // 12 hours 00 minutes
