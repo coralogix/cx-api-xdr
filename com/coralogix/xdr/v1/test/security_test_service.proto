@@ -124,14 +124,14 @@ message GetAllSecurityTestResultsRequest {
 }
 
 message GetAllSecurityTestResultsResponse {
-  message IndividualTestResults {
+  message Result {
     SecurityTestItem security_test_item = 1;
-    repeated SecurityTestResult results = 2;
+    repeated SecurityTestResult test_results = 2;
   }
 
   google.protobuf.StringValue execution_id = 1; // UUID
   google.protobuf.Timestamp executed_at = 2;
-  repeated IndividualTestResults results = 3;
+  repeated Result results = 3;
 }
 
 message GetSecurityTestResultsRequest {
