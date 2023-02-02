@@ -35,8 +35,16 @@ service SecurityTestService {
     };
   }
 
+  rpc GetAllSecurityTestResults(GetAllSecurityTestResultsRequest) returns (GetAllSecurityTestResultsResponse) {
+    option (audit_log_description).description = "get all security test results";
+    option (google.api.http) = {
+      post: "/xdr/v1/test/all_results/{execution_id}"
+      body: "*"
+    };
+  }
+
   rpc GetSecurityTestResults(GetSecurityTestResultsRequest) returns (GetSecurityTestResultsResponse) {
-    option (audit_log_description).description = "get security test results";
+    option (audit_log_description).description = "get security test results for a single test identity";
     option (google.api.http) = {
       post: "/xdr/v1/test/results/{execution_id}"
       body: "*"
@@ -108,6 +116,22 @@ message GetSecurityTestBreakdownRequest {
 
 message GetSecurityTestBreakdownResponse {
   SecurityTestBreakdown test_breakdown = 1;
+}
+
+message GetAllSecurityTestResultsRequest {
+  optional google.protobuf.StringValue execution_id = 1; // UUID
+  optional com.coralogix.xdr.v1.filter.SecurityTestFilter filter = 2;
+}
+
+message GetAllSecurityTestResultsResponse {
+  message Result {
+    SecurityTestItem security_test_item = 1;
+    repeated SecurityTestResult test_results = 2;
+  }
+
+  google.protobuf.StringValue execution_id = 1; // UUID
+  google.protobuf.Timestamp executed_at = 2;
+  repeated Result results = 3;
 }
 
 message GetSecurityTestResultsRequest {
