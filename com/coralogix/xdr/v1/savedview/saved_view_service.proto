@@ -65,7 +65,7 @@ message GetAllSavedViewsResponse{
     google.protobuf.StringValue name = 2;
     google.protobuf.StringValue owner_id = 3;
     google.protobuf.BoolValue is_shared = 4;
-    google.protobuf.StringValue json_view_structure = 5;
+    google.protobuf.Struct json_view_structure = 5;
     ScreenType screen_type = 6;
     google.protobuf.BoolValue is_default = 7;
   }
