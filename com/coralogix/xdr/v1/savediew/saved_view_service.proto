@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package com.coralogix.xdr.v1.view;
+package com.coralogix.xdr.v1.savedview;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "google/protobuf/wrappers.proto";
