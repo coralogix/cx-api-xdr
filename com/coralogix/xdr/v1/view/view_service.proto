@@ -7,7 +7,7 @@ import "google/protobuf/wrappers.proto";
 
 service ViewService {
   rpc SaveView(SaveViewRequest) returns (SaveViewResponse) {
-    option (audit_log_description).description = "save a new screen view";
+    option (audit_log_description).description = "save a new view";
     option (google.api.http) = {
       post: "/v1/views/save"
       body: "*"
@@ -15,7 +15,7 @@ service ViewService {
   }
 
   rpc DeleteView(DeleteView) returns (DeleteViewResponse) {
-    option (audit_log_description).description = "delete screen view";
+    option (audit_log_description).description = "delete view";
     option (google.api.http) = {
       delete: "/v1/views/delete/{view_id}",
       body: "*"
@@ -23,7 +23,7 @@ service ViewService {
   }
 
   rpc UpdateView(UpdateViewRequest) returns (UpdateViewResponse) {
-    option (audit_log_description).description = "update screen view";
+    option (audit_log_description).description = "update view";
     option (google.api.http) = {
       put: "/v1/views/update"
       body: "*"
@@ -38,7 +38,7 @@ service ViewService {
   }
 
   rpc SaveDefaultView(SaveDefaultViewRequest) returns (SaveDefaultViewResponse) {
-    option (audit_log_description).description = "save default screen view";
+    option (audit_log_description).description = "save default view";
     option (google.api.http) = {
       post: "/v1/views/default/save"
       body: "*"
@@ -46,7 +46,7 @@ service ViewService {
   }
 
   rpc DeleteDefault(DeleteDefaultView) returns (DeleteDefaultViewResponse) {
-    option (audit_log_description).description = "delete default screen view";
+    option (audit_log_description).description = "delete default view";
     option (google.api.http) = {
       delete: "/v1/views/default/remove/{view_id}"
       body: "*"
