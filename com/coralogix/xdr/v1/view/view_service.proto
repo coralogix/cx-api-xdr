@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.view;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "google/protobuf/wrappers.proto";
+
+service ViewService {
+  rpc SaveView(SaveViewRequest) returns (SaveViewResponse) {
+    option (audit_log_description).description = "save a new screen view";
+    option (google.api.http) = {
+      post: "/v1/views/save"
+      body: "*"
+    };
+  }
+
+  rpc DeleteView(DeleteView) returns (DeleteViewResponse) {
+    option (audit_log_description).description = "delete screen view";
+    option (google.api.http) = {
+      delete: "/v1/views/delete/{view_id}"
+    };
+  }
+
+  rpc UpdateView(UpdateViewRequest) returns (UpdateViewResponse) {
+    option (audit_log_description).description = "update screen view";
+    option (google.api.http) = {
+      put: "/v1/views/update"
+      body: "*"
+    };
+  }
+
+  rpc GetAllViews(GetAllViewsRequest) returns (GetAllViewsResponse) {
+    option (audit_log_description).description = "get all views, including shared";
+    option (google.api.http) = {
+      get: "/v1/views"
+    };
+  }
+
+  rpc SaveDefaultView(SaveDefaultViewRequest) returns (SaveDefaultViewResponse) {
+    option (audit_log_description).description = "save default screen view";
+    option (google.api.http) = {
+      post: "/v1/views/default/save"
+      body: "*"
+    };
+  }
+
+  rpc DeleteDefault(DeleteDefaultView) returns (DeleteDefaultViewResponse) {
+    option (audit_log_description).description = "delete default screen view";
+    option (google.api.http) = {
+      delete: "/v1/views/default/remove/{view_id}"
+    };
+  }
+}
+
+enum ScreenType {
+  CSPM = 0;
+  SSPM = 1;
+}
+
+message SaveViewRequest {
+  google.protobuf.StringValue json_view_structure = 1;
+  google.protobuf.BoolValue is_shared = 2;
+  ScreenType screen_type = 3;
+}
+
+message SaveDefaultViewResponse {}
+
+message SaveDefaultViewRequest {
+  google.protobuf.StringValue view_id = 1;
+}
+message SaveViewResponse {}
+
+message GetAllViewsRequest {
+  ScreenType screen_type = 1;
+}
+
+message GetAllViewsResponse{
+  message ScreenView {
+    google.protobuf.StringValue id = 1;
+    google.protobuf.StringValue owner_id = 2;
+    google.protobuf.BoolValue is_shared = 3;
+    google.protobuf.StringValue json_view_structure = 4;
+    ScreenType screen_type = 5;
+  }
+}
+
+message DeleteDefaultView {
+  google.protobuf.StringValue view_id = 1;
+}
+
+message DeleteDefaultViewResponse {}
+
+message DeleteView {
+  google.protobuf.StringValue view_id = 1;
+}
+
+message DeleteViewResponse {}
+
+message UpdateViewRequest {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue json_view_structure = 2;
+  google.protobuf.BoolValue is_shared = 3;
+}
+
+message UpdateViewResponse {}
