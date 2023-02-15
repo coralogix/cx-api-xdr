@@ -16,7 +16,7 @@ service SavedViewService {
     };
   }
 
-  rpc DeleteSavedView(DeleteSavedView) returns (DeleteSavedViewResponse) {
+  rpc DeleteSavedView(DeleteSavedViewRequest) returns (DeleteSavedViewResponse) {
     option (audit_log_description).description = "delete view";
     option (google.api.http) = {
       delete: "/v1/saved_views/delete/{view_id}",
@@ -46,11 +46,7 @@ enum ScreenType {
 }
 
 message CreateSavedViewRequest {
-  google.protobuf.Struct json_view_structure = 1;
-  google.protobuf.BoolValue is_shared = 2;
-  ScreenType screen_type = 3;
-  google.protobuf.StringValue name = 4;
-  google.protobuf.BoolValue is_default = 5;
+  SavedView saved_view = 1;
 }
 
 message CreateSavedViewResponse {}
@@ -60,34 +56,33 @@ message GetAllSavedViewsRequest {
 }
 
 message GetAllSavedViewsResponse{
-  message ScreenView {
-    google.protobuf.StringValue id = 1;
-    google.protobuf.StringValue name = 2;
-    google.protobuf.StringValue owner_id = 3;
-    google.protobuf.BoolValue is_shared = 4;
-    google.protobuf.Struct json_view_structure = 5;
-    ScreenType screen_type = 6;
-    google.protobuf.BoolValue is_default = 7;
+  message SavedViewWithOwner {
+    SavedView saved_view = 1;
+    google.protobuf.StringValue owner_id = 2;
   }
 
-  repeated ScreenView views = 1;
+  repeated SavedViewWithOwner views = 1;
 }
 
 
 message DeleteDefaultSavedViewResponse {}
 
-message DeleteSavedView {
+message DeleteSavedViewRequest {
   google.protobuf.StringValue view_id = 1;
 }
 
 message DeleteSavedViewResponse {}
 
 message UpdateSavedViewRequest {
+  SavedView saved_view = 1;
+}
+
+message UpdateSavedViewResponse {}
+
+message SavedView {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.Struct json_view_structure = 3;
   google.protobuf.BoolValue is_shared = 4;
   google.protobuf.BoolValue is_default = 5;
 }
-
-message UpdateSavedViewResponse {}
