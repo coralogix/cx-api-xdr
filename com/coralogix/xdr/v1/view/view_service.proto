@@ -17,7 +17,8 @@ service ViewService {
   rpc DeleteView(DeleteView) returns (DeleteViewResponse) {
     option (audit_log_description).description = "delete screen view";
     option (google.api.http) = {
-      delete: "/v1/views/delete/{view_id}"
+      delete: "/v1/views/delete/{view_id}",
+      body: "*"
     };
   }
 
@@ -48,6 +49,7 @@ service ViewService {
     option (audit_log_description).description = "delete default screen view";
     option (google.api.http) = {
       delete: "/v1/views/default/remove/{view_id}"
+      body: "*"
     };
   }
 }
