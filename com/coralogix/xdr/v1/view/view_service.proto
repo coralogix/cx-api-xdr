@@ -4,52 +4,38 @@ package com.coralogix.xdr.v1.view;
 
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
 
-service ViewService {
-  rpc SaveView(SaveViewRequest) returns (SaveViewResponse) {
+
+service SavedViewService {
+  rpc CreateSavedView(CreateSavedViewRequest) returns (CreateSavedViewResponse) {
     option (audit_log_description).description = "save a new view";
     option (google.api.http) = {
-      post: "/v1/views/save"
+      post: "/v1/saved_views"
       body: "*"
     };
   }
 
-  rpc DeleteView(DeleteView) returns (DeleteViewResponse) {
+  rpc DeleteSavedView(DeleteSavedView) returns (DeleteSavedViewResponse) {
     option (audit_log_description).description = "delete view";
     option (google.api.http) = {
-      delete: "/v1/views/delete/{view_id}",
+      delete: "/v1/saved_views/delete/{view_id}",
       body: "*"
     };
   }
 
-  rpc UpdateView(UpdateViewRequest) returns (UpdateViewResponse) {
+  rpc UpdateSavedView(UpdateSavedViewRequest) returns (UpdateSavedViewResponse) {
     option (audit_log_description).description = "update view";
     option (google.api.http) = {
-      put: "/v1/views/update"
+      put: "/v1/saved_views"
       body: "*"
     };
   }
 
-  rpc GetAllViews(GetAllViewsRequest) returns (GetAllViewsResponse) {
+  rpc GetAllSavedViews(GetAllSavedViewsRequest) returns (GetAllSavedViewsResponse) {
     option (audit_log_description).description = "get all views, including shared";
     option (google.api.http) = {
-      get: "/v1/views"
-    };
-  }
-
-  rpc SaveDefaultView(SaveDefaultViewRequest) returns (SaveDefaultViewResponse) {
-    option (audit_log_description).description = "save default view";
-    option (google.api.http) = {
-      post: "/v1/views/default/save"
-      body: "*"
-    };
-  }
-
-  rpc DeleteDefault(DeleteDefaultView) returns (DeleteDefaultViewResponse) {
-    option (audit_log_description).description = "delete default view";
-    option (google.api.http) = {
-      delete: "/v1/views/default/remove/{view_id}"
-      body: "*"
+      get: "/v1/saved_views"
     };
   }
 }
@@ -59,49 +45,49 @@ enum ScreenType {
   SSPM = 1;
 }
 
-message SaveViewRequest {
-  google.protobuf.StringValue json_view_structure = 1;
+message CreateSavedViewRequest {
+  google.protobuf.Struct json_view_structure = 1;
   google.protobuf.BoolValue is_shared = 2;
   ScreenType screen_type = 3;
+  google.protobuf.StringValue name = 4;
+  google.protobuf.BoolValue is_default = 5;
 }
 
-message SaveDefaultViewResponse {}
+message CreateSavedViewResponse {}
 
-message SaveDefaultViewRequest {
-  google.protobuf.StringValue view_id = 1;
-}
-message SaveViewResponse {}
-
-message GetAllViewsRequest {
+message GetAllSavedViewsRequest {
   ScreenType screen_type = 1;
 }
 
-message GetAllViewsResponse{
+message GetAllSavedViewsResponse{
   message ScreenView {
     google.protobuf.StringValue id = 1;
-    google.protobuf.StringValue owner_id = 2;
-    google.protobuf.BoolValue is_shared = 3;
-    google.protobuf.StringValue json_view_structure = 4;
-    ScreenType screen_type = 5;
+    google.protobuf.StringValue name = 2;
+    google.protobuf.StringValue owner_id = 3;
+    google.protobuf.BoolValue is_shared = 4;
+    google.protobuf.StringValue json_view_structure = 5;
+    ScreenType screen_type = 6;
+    google.protobuf.BoolValue is_default = 7;
   }
+
+  repeated ScreenView views = 1;
 }
 
-message DeleteDefaultView {
+
+message DeleteDefaultSavedViewResponse {}
+
+message DeleteSavedView {
   google.protobuf.StringValue view_id = 1;
 }
 
-message DeleteDefaultViewResponse {}
+message DeleteSavedViewResponse {}
 
-message DeleteView {
-  google.protobuf.StringValue view_id = 1;
-}
-
-message DeleteViewResponse {}
-
-message UpdateViewRequest {
+message UpdateSavedViewRequest {
   google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue json_view_structure = 2;
-  google.protobuf.BoolValue is_shared = 3;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.Struct json_view_structure = 3;
+  google.protobuf.BoolValue is_shared = 4;
+  google.protobuf.BoolValue is_default = 5;
 }
 
-message UpdateViewResponse {}
+message UpdateSavedViewResponse {}
