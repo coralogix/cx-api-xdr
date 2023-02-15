@@ -5,7 +5,7 @@ package com.coralogix.xdr.v1.savedview;
 import "com/coralogix/xdr/v1/audit_log.proto";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/struct.proto";
-
+import "google/api/annotations.proto";
 
 service SavedViewService {
   rpc CreateSavedView(CreateSavedViewRequest) returns (CreateSavedViewResponse) {
