@@ -46,7 +46,10 @@ enum ScreenType {
 }
 
 message CreateSavedViewRequest {
-  SavedView saved_view = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.Struct json_view_structure = 3;
+  google.protobuf.BoolValue is_shared = 4;
+  google.protobuf.BoolValue is_default = 5;
 }
 
 message CreateSavedViewResponse {}
@@ -56,12 +59,16 @@ message GetAllSavedViewsRequest {
 }
 
 message GetAllSavedViewsResponse{
-  message SavedViewWithOwner {
-    SavedView saved_view = 1;
-    google.protobuf.StringValue owner_id = 2;
+  message SavedView {
+    google.protobuf.StringValue id = 1;
+    google.protobuf.StringValue name = 2;
+    google.protobuf.Struct json_view_structure = 3;
+    google.protobuf.BoolValue is_shared = 4;
+    google.protobuf.BoolValue is_default = 5;
+    google.protobuf.StringValue owner_id = 6;
   }
-
-  repeated SavedViewWithOwner views = 1;
+  
+  repeated SavedView views = 1;
 }
 
 
@@ -74,16 +81,12 @@ message DeleteSavedViewRequest {
 message DeleteSavedViewResponse {}
 
 message UpdateSavedViewRequest {
-  SavedView saved_view = 1;
-}
-
-message UpdateSavedViewResponse {}
-
-message SavedView {
-  google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.Struct json_view_structure = 3;
   google.protobuf.BoolValue is_shared = 4;
   google.protobuf.BoolValue is_default = 5;
 }
+
+message UpdateSavedViewResponse {}
+
 
