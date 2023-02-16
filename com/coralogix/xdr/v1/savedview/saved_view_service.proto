@@ -82,6 +82,7 @@ message DeleteSavedViewRequest {
 message DeleteSavedViewResponse {}
 
 message UpdateSavedViewRequest {
+  google.protobuf.StringValue saved_view_id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.Struct json_view_structure = 3;
   google.protobuf.BoolValue is_shared = 4;
