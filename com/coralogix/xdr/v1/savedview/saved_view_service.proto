@@ -50,7 +50,7 @@ message CreateSavedViewRequest {
   google.protobuf.Struct json_view_structure = 3;
   google.protobuf.BoolValue is_shared = 4;
   google.protobuf.BoolValue is_default = 5;
-  ScreenType ScreenType = 6;
+  ScreenType screen_type = 6;
 }
 
 message CreateSavedViewResponse {}
