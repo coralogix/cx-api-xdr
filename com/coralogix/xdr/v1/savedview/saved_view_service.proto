@@ -11,7 +11,7 @@ service SavedViewService {
   rpc CreateSavedView(CreateSavedViewRequest) returns (CreateSavedViewResponse) {
     option (audit_log_description).description = "save a new view";
     option (google.api.http) = {
-      post: "/v1/saved_views"
+      post: "/xdr/v1/saved_views"
       body: "*"
     };
   }
@@ -19,7 +19,7 @@ service SavedViewService {
   rpc DeleteSavedView(DeleteSavedViewRequest) returns (DeleteSavedViewResponse) {
     option (audit_log_description).description = "delete view";
     option (google.api.http) = {
-      delete: "/v1/saved_views/delete/{view_id}",
+      delete: "/xdr/v1/saved_views/delete/{view_id}",
       body: "*"
     };
   }
@@ -27,7 +27,7 @@ service SavedViewService {
   rpc UpdateSavedView(UpdateSavedViewRequest) returns (UpdateSavedViewResponse) {
     option (audit_log_description).description = "update view";
     option (google.api.http) = {
-      put: "/v1/saved_views"
+      put: "/xdr/v1/saved_views"
       body: "*"
     };
   }
@@ -35,7 +35,7 @@ service SavedViewService {
   rpc GetAllSavedViews(GetAllSavedViewsRequest) returns (GetAllSavedViewsResponse) {
     option (audit_log_description).description = "get all views, including shared";
     option (google.api.http) = {
-      get: "/v1/saved_views"
+      get: "/xdr/v1/saved_views"
     };
   }
 }
