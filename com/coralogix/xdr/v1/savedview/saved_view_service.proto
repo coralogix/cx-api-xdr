@@ -9,7 +9,7 @@ import "google/api/annotations.proto";
 
 service SavedViewService {
   rpc CreateSavedView(CreateSavedViewRequest) returns (CreateSavedViewResponse) {
-    option (audit_log_description).description = "save a new view";
+    option (audit_log_description).description = "create a new saved view";
     option (google.api.http) = {
       post: "/xdr/v1/saved_views"
       body: "*"
