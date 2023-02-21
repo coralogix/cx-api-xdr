@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.v1.savedview;
+
+import "com/coralogix/xdr/v1/audit_log.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+
+service SavedViewService {
+  rpc CreateSavedView(CreateSavedViewRequest) returns (CreateSavedViewResponse) {
+    option (audit_log_description).description = "create a new saved view";
+    option (google.api.http) = {
+      post: "/xdr/v1/saved_views"
+      body: "*"
+    };
+  }
+
+  rpc DeleteSavedView(DeleteSavedViewRequest) returns (DeleteSavedViewResponse) {
+    option (audit_log_description).description = "delete saved view";
+    option (google.api.http) = {
+      delete: "/xdr/v1/saved_views/delete/{view_id}",
+      body: "*"
+    };
+  }
+
+  rpc UpdateSavedView(UpdateSavedViewRequest) returns (UpdateSavedViewResponse) {
+    option (audit_log_description).description = "update saved view";
+    option (google.api.http) = {
+      put: "/xdr/v1/saved_views"
+      body: "*"
+    };
+  }
+
+  rpc GetAllSavedViews(GetAllSavedViewsRequest) returns (GetAllSavedViewsResponse) {
+    option (audit_log_description).description = "get all saved views, including shared";
+    option (google.api.http) = {
+      get: "/xdr/v1/saved_views"
+    };
+  }
+}
+
+enum ScreenType {
+  CSPM = 0;
+  SSPM = 1;
+}
+
+message CreateSavedViewRequest {
+  google.protobuf.StringValue name = 2;
+  google.protobuf.Struct json_view_structure = 3;
+  google.protobuf.BoolValue is_shared = 4;
+  google.protobuf.BoolValue is_default = 5;
+  ScreenType screen_type = 6;
+}
+
+message CreateSavedViewResponse {}
+
+message GetAllSavedViewsRequest {
+  ScreenType screen_type = 1;
+}
+
+message GetAllSavedViewsResponse{
+  message SavedView {
+    google.protobuf.StringValue id = 1;
+    google.protobuf.StringValue name = 2;
+    google.protobuf.Struct view_structure = 3;
+    google.protobuf.BoolValue is_shared = 4;
+    google.protobuf.BoolValue is_default = 5;
+    google.protobuf.StringValue owner_id = 6;
+    ScreenType screen_type = 7;
+  }
+  
+  repeated SavedView views = 1;
+}
+
+
+message DeleteDefaultSavedViewResponse {}
+
+message DeleteSavedViewRequest {
+  google.protobuf.StringValue view_id = 1;
+}
+
+message DeleteSavedViewResponse {}
+
+message UpdateSavedViewRequest {
+  google.protobuf.StringValue saved_view_id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.Struct view_structure = 3;
+  google.protobuf.BoolValue is_shared = 4;
+  google.protobuf.BoolValue is_default = 5;
+}
+
+message UpdateSavedViewResponse {}
+
+
