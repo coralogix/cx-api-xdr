@@ -17,7 +17,7 @@ service SavedViewService {
   }
 
   rpc DeleteSavedView(DeleteSavedViewRequest) returns (DeleteSavedViewResponse) {
-    option (audit_log_description).description = "delete view";
+    option (audit_log_description).description = "delete saved view";
     option (google.api.http) = {
       delete: "/xdr/v1/saved_views/delete/{view_id}",
       body: "*"
