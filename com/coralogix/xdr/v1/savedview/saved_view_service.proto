@@ -33,7 +33,7 @@ service SavedViewService {
   }
 
   rpc GetAllSavedViews(GetAllSavedViewsRequest) returns (GetAllSavedViewsResponse) {
-    option (audit_log_description).description = "get all views, including shared";
+    option (audit_log_description).description = "get all saved views, including shared";
     option (google.api.http) = {
       get: "/xdr/v1/saved_views"
     };
