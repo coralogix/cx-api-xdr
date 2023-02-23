@@ -32,7 +32,7 @@ service SavedViewService {
     };
   }
 
-  rpc GetAllSavedViews(GetAllSavedViewsRequest) returns (GetAllSavedViewsResponse) {
+  rpc GetSavedViews(GetSavedViewsRequest) returns (GetSavedViewsResponse) {
     option (audit_log_description).description = "get all saved views, including shared";
     option (google.api.http) = {
       get: "/xdr/v1/saved_views"
@@ -55,18 +55,18 @@ message CreateSavedViewRequest {
 
 message CreateSavedViewResponse {}
 
-message GetAllSavedViewsRequest {
+message GetSavedViewsRequest {
   ScreenType screen_type = 1;
 }
 
-message GetAllSavedViewsResponse{
+message GetSavedViewsResponse{
   message SavedView {
     google.protobuf.StringValue id = 1;
     google.protobuf.StringValue name = 2;
     google.protobuf.Struct view_structure = 3;
     google.protobuf.BoolValue is_shared = 4;
     google.protobuf.BoolValue is_default = 5;
-    google.protobuf.StringValue owner_id = 6;
+    google.protobuf.BoolValue is_owned = 6;
     ScreenType screen_type = 7;
   }
   
