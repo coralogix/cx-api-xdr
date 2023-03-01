@@ -53,7 +53,13 @@ message CreateSavedViewRequest {
   ScreenType screen_type = 6;
 }
 
-message CreateSavedViewResponse {}
+message CreateSavedViewResponse {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.Struct view_structure = 3;
+  google.protobuf.BoolValue is_shared = 4;
+  google.protobuf.BoolValue is_default = 5;
+}
 
 message GetSavedViewsRequest {
   ScreenType screen_type = 1;
