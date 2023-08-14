@@ -192,6 +192,7 @@ message UpdateSecurityRuleRequest {
   optional google.protobuf.StringValue service = 12;
   optional google.protobuf.StringValue item_type = 13;
   optional google.protobuf.StringValue description = 14;
+  optional google.protobuf.StringValue long_description = 15;
 }
 
 message UpdateSecurityRuleResponse {
