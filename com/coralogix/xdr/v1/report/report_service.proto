@@ -41,6 +41,7 @@ message GetReportResponse {
     google.protobuf.UInt32Value severity = 11;
     repeated google.protobuf.StringValue security_policies = 12;
     google.protobuf.BoolValue is_active = 13;
+    google.protobuf.StringValue severity_name = 14;
   }
 
   repeated ReportRow report_rows = 1;
