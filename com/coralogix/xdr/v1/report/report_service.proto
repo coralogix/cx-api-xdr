@@ -42,9 +42,9 @@ message GetReportResponse {
     repeated google.protobuf.StringValue security_policies = 12;
     google.protobuf.BoolValue is_active = 13;
     google.protobuf.StringValue severity_name = 14;
-    google.protobuf.StringValue test_title = 16;
-    google.protobuf.StringValue test_description = 15;
-    google.protobuf.StringValue test_long_description = 16;
+    google.protobuf.StringValue test_title = 15;
+    google.protobuf.StringValue test_description = 16;
+    google.protobuf.StringValue test_long_description = 17;
   }
 
   repeated ReportRow report_rows = 1;
