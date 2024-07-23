@@ -44,6 +44,7 @@ message GetReportResponse {
     google.protobuf.StringValue severity_name = 14;
     google.protobuf.StringValue test_title = 16;
     google.protobuf.StringValue test_description = 15;
+    google.protobuf.StringValue test_long_description = 16;
   }
 
   repeated ReportRow report_rows = 1;
